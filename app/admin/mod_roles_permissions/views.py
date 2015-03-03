@@ -1,13 +1,15 @@
-from flask import Blueprint
+from flask import Blueprint, g
 from flaskext.auth import Auth, AuthUser, logout, Permission, Role, \
     permission_required
+from app import mongo, flask_bcrypt
+import app
 
 mod_roles_permissions = Blueprint()
 
 auth = Auth(app, login_url_name='index')
 
 user_create = Permission('user', 'create')
-user_view = Permission('user', 'view')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ``  `   `   11`1`1``
+user_view = Permission('user', 'view')
 
 roles = {
     'admin': Role('admin', [user_create, user_view]),

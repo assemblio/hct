@@ -5,8 +5,14 @@ __pycache__/
 # C extensions
 *.so
 
+*.*~
+*.pyc
+.idea/
+config-template.cfg
+
 # Distribution / packaging
 .Python
+/venv
 env/
 build/
 develop-eggs/
