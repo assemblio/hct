@@ -4,6 +4,6 @@ from flask import Blueprint
 mod_applications = Blueprint('mod_applications', __name__)
 
 # Set the route and accepted methods
-@mod_applications.route('', methods=['GET'])
+@mod_applications.route('/applications', methods=['GET'])
 def index():
     return ""

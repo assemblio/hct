@@ -4,6 +4,6 @@ from flask import Blueprint
 mod_register = Blueprint('mod_register', __name__)
 
 # Set the route and accepted methods
-@mod_register.route('', methods=['GET'])
+@mod_register.route('/register', methods=['GET'])
 def index():
     return ""

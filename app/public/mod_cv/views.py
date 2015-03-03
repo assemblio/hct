@@ -4,6 +4,6 @@ from flask import Blueprint
 mod_cv = Blueprint('mod_cv', __name__)
 
 # Set the route and accepted methods
-@mod_cv.route('', methods=['GET'])
+@mod_cv.route('/cv', methods=['GET'])
 def index():
     return ""

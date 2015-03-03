@@ -7,15 +7,8 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask
 from flask.ext.pymongo import PyMongo
 
-from flask.ext.bcrypt import Bcrypt
-
-from utils.utils import Utils
-
 # Create MongoDB database object.
 mongo = PyMongo()
-utils = Utils()
-# Flask BCrypt hashing object will be used to salt the user password
-flask_bcrypt = Bcrypt()
 
 
 def create_app():

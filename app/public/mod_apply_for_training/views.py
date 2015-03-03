@@ -4,6 +4,6 @@ from flask import Blueprint
 mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
 
 # Set the route and accepted methods
-@mod_apply_for_training.route('', methods=['GET'])
+@mod_apply_for_training.route('/apply-for-training', methods=['GET'])
 def index():
     return ""

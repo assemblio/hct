@@ -13,12 +13,9 @@ def index():
             # Authenticate and log in!
             if g.users[username].authenticate(request.form['password']):
                 return '''
-                        <a href="{0}">View users</a><br/>
-                        <a href="{1}">Create users</a><br/>
-                        <a href="{2}">Logout</a>
-                        '''.format(url_for('user_view'),
-                                   url_for('user_create'),
-                                   url_for('logout'),)
+                        <a href="">View users</a><br/>
+                        <a href="">Create users</a><br/>
+                        <a href="">Logout</a>
+                        '''
         return 'Failure :('
-
-    return render_template('index.html')
+    return render_template('home/index.html')
