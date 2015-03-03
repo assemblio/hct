@@ -1,0 +1,14 @@
+Flask
+Flask-Admin
+flask-mongoengine
+Flask-Login
+Flask-Security
+
+Flask==0.10.1
+Flask-RESTful==0.2.12
+Flask-PyMongo==0.3.0
+Flask-WTF==0.9.5
+simplejson==3.3.0
+Flask-Bcrypt==0.5.2
+xhtml2pdf==0.0.6
+mimerender==0.5.5
