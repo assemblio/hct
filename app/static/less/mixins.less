@@ -1,37 +1,20 @@
-.button-variant(@color; @background; @border) {
-	color: @color;
-	background-color: @background;
-	border-color: @border;
+// Mixins
+// --------------------------
 
-	&:hover,
-	&:focus,
-	&:active,
-	&.active,
-	.open .dropdown-toggle& {
-		color: @color;
-		background-color: darken(@background, 10%);
-        border-color: darken(@border, 12%);
-	}
-	&:active,
-	&.active,
-	.open .dropdown-toggle& {
-		background-image: none;
-	}
-	&.disabled,
-	&[disabled],
-	fieldset[disabled] & {
-		&,
-		&:hover,
-		&:focus,
-		&:active,
-		&.active {
-			background-color: @background;
-			border-color: @border;
-		}
-	}
+.fa-icon-rotate(@degrees, @rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@rotation);
+  -webkit-transform: rotate(@degrees);
+     -moz-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+       -o-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
 
-	.badge {
-		color: @background;
-		background-color: @color;
-	}
+.fa-icon-flip(@horiz, @vert, @rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@rotation, mirror=1);
+  -webkit-transform: scale(@horiz, @vert);
+     -moz-transform: scale(@horiz, @vert);
+      -ms-transform: scale(@horiz, @vert);
+       -o-transform: scale(@horiz, @vert);
+          transform: scale(@horiz, @vert);
 }

@@ -34,9 +34,12 @@ def create_app():
     from app.public.mod_cv.views import mod_cv
     from app.public.mod_home.views import mod_home
     from app.public.mod_register.views import mod_register
-
+    from app.public.mod_jobs.views import mod_jobs
+    from app.public.mod_profile.views import mod_profile
 
     # Register public interface blueprint(s)
+    app.register_blueprint(mod_profile)
+    app.register_blueprint(mod_jobs)
     app.register_blueprint(mod_applications)
     app.register_blueprint(mod_apply_for_job)
     app.register_blueprint(mod_apply_for_training)
