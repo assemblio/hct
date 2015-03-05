@@ -1,11 +1,20 @@
-import os
 import ConfigParser
-import logging
-
 from logging.handlers import RotatingFileHandler
 
+import os
 from flask import Flask
 from flask.ext.pymongo import PyMongo
+
+
+
+
+
+
+
+
+
+
+
 
 # Create MongoDB database object.
 mongo = PyMongo()
@@ -24,18 +33,18 @@ def create_app():
     configure_logging(app)
 
     # Import Admin modules
-    from app.admin.mod_roles_permissions.views import mod_roles_permissions
-    from app.admin.mod_users.views import mod_users
+    from app.modules.admin.mod_roles_permissions.views import mod_roles_permissions
+    from app.modules.admin.mod_users.views import mod_users
 
     # Import public interface modules
-    from app.public.mod_applications.views import mod_applications
-    from app.public.mod_apply_for_job.views import mod_apply_for_job
-    from app.public.mod_apply_for_training.views import mod_apply_for_training
-    from app.public.mod_cv.views import mod_cv
-    from app.public.mod_home.views import mod_home
-    from app.public.mod_register.views import mod_register
-    from app.public.mod_jobs.views import mod_jobs
-    from app.public.mod_profile.views import mod_profile
+    from app.modules.public.mod_applications.views import mod_applications
+    from app.modules.public.mod_apply_for_job.views import mod_apply_for_job
+    from app.modules.public.mod_apply_for_training.views import mod_apply_for_training
+    from app.modules.public.mod_cv.views import mod_cv
+    from app.modules.public.mod_home.views import mod_home
+    from app.modules.public.mod_register.views import mod_register
+    from app.modules.public.mod_jobs.views import mod_jobs
+    from app.modules.public.mod_profile.views import mod_profile
 
     # Register public interface blueprint(s)
     app.register_blueprint(mod_profile)

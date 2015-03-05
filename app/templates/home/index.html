@@ -1,329 +1,108 @@
-{% extends "home/layout.html" %}
-
+{% extends "base/layout_for_all.html" %}
 {% block body %}
-<!-- Search -->
-<div id="search">
-  <div class="inner">
-    <form id="search-form" action="/" class="search-bar-home">
-      <div class="seach-head"><img src="{{ url_for('static', filename='images/list-ico.png') }}"  alt=""/><span> I am a </span></div>
-      <select id="search-select" class="select">
-            <option selected="selected" value="Student">Student</option>
-            <option value="Professional">Professional</option>
-            <option value="Internal Deloitte Employee">Internal Deloitte</option>
-      </select>
-      <label class="in">looking for</label>
-      <select id="search-select" class="select">
-        <option selected="selected" value="Training">Training</option>
-        <option value="Job Opportunity">Job Opportunity</option>
-      </select>
-      <input type="text" placeholder="Industry / Role" class="textfield-with-callback"/>
-      <input type="submit" value="Search" id="search-submit" class="pull-right"/>
-    </form>
-    <div id="more-options"></div>
-    <div class="clear"></div>
-    <!-- Clear Line -->
-    
-    <div id="options"></div>
-  </div>
-</div>
-<!-- /Search --> 
+<div id="page-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 page-content">
+					<div class="title-lines">
+						<h3>Latest Jobs</h3>
+					</div>
 
-<!-- Content -->
-<div id="content"> 
-  
-  <!-- Banner Area -->
-  <section class="header-banner">
-    <div class="inner"> 
-      <!-- Panel 3 -->
-      <div id="login-panel">
-        <div class="left">
-          <div class="first">
-            <div class="counter">
-              <ul id="counter">
-                <li class="unvis">0</li>
-                <li>7</li>
-                <li class="border"></li>
-                <li>9</li>
-                <li>4</li>
-                <li>5</li>
-              </ul>
-              <div class="counter-label">Jobs</div>
-            </div>
-            <div id="find-job-buttom"><a>Register Now</a></div>
-          </div>
-          <div class="second">
-            <div class="form">
-              <form id="login-1" action="/">
-                <input type="text" placeholder="Email" class="textfield"/>
-                <input type="password" placeholder="Password" class="textfield"/>
-                <input type="submit" value="Sign In" id="login-submit"/>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="right">
-          <div class="first">
-            <div id="post-job-buttom"><a>Post a Job</a></div>
-          </div>
-          <div class="second">
-            <div class="form">
-              <form id="login-2" action="index.html">
-                <input type="text" placeholder="Email" class="textfield"/>
-                <input type="password" placeholder="Password" class="textfield"/>
-                <input type="submit" value="Sign In" id="login-submit-2"/>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /Panel 3 --> 
-    </div>
-  </section>
-  <!-- /Banner Area -->
-  <div class="clear"></div>
-  <div class="inner"> 
-    <!-- Content Inner -->
-    <div class="content-inner"> 
-      
-      <!-- Content Center -->
-      <div class="content-center frontpage">
-        <!--Latest Jobs Block-->
-        <div id="latest-job">
-          <div class="heading-l">
-            <h2> Latest Jobs </h2>
-          </div>
-          <div class="latest-job-wrapper">
-            <div class="block-content dott-flexslider box-1">
-              <ul class="slides">
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-                <li>
-                  <div class="company-logo"><a href="#"><img src="{{ url_for('static', filename='images/job-thumb.jpg') }}"  alt=""/></a>
-                    <div class="nav-buttons">
-                      <ul>
-                        <li class="search"><a><i class="fa fa-search"></i></a></li>
-                        <li class="link"><a href="../applications/job.html"><i class="fa fa-link"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="company-text">
-                    <div class="title"><a href="#">Front-End Developer at Envato</a>
-                      <div class="location">Sydney, Australia</div>
-                    </div>
-                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. <a>Read More</a></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!--/Latest Jobs Block-->
-        <div class="clear"></div>
-      </div>
-      <!-- /Content Center --> 
-      
-      <!-- Content Right -->
-      <div class="content-right">
-        <div id="social-like" class="block background">
-          <h2 class="title-1">Share Us With Your Friends</h2>
-          <div class="block-content">
-            <div class="social-like linkedin"><a class="like-button" href="#">LinkedIn</a><span class="count">500</span></div>
-            <div class="social-like motibu"><a class="like-button" href="#">Motibu</a><span class="count">2.7K</span></div>
-            <div class="social-like facebook"><a class="like-button" href="#">Facebook</a><span class="count">1.3K</span></div>
-            <div class="social-like twitter"><a class="like-button" href="#">Twitter</a><span class="count">868</span></div>
-          </div>
-        </div>
-        <div id="advertising" class="block border">
-          <div class="block-content"> <img src="{{ url_for('static', filename='img/300x250.png') }}"  alt="sidebarad"/>
-            <!-- <div class="advertising-test">300x250<br/>
-              Ad Banner</div>--> 
-          </div>
-        </div>
-        <div id="poll" class="block background">
-          <h2 class="title-1">5 Tips to pass your interview!</h2>
-          <!--<iframe width="260" height="150" src="http://www.youtube.com/embed/wqGfDdJDONI?wmode=transparent" frameborder="0" allowfullscreen></iframe>-->
-          <div class="ad-wrapper"> <img src="{{ url_for('static', filename='images/sb-video.jpg') }}"  alt="sb-video"/> </div>
-          <h2 class="title-1">The Poll</h2>
-          <div class="block-content">
-            <form id="poll-form" action="index.html">
-              <ul id="radio-checkbox-list">
-                <li>
-                  <input id="poll_choice_1" type="radio" name="poll-choice" value="1" />
-                  <label for="poll_choice_1" >Definitely Yes</label>
-                </li>
-                <li>
-                  <input id="poll_choice_2" type="radio" name="poll-choice" value="2"/>
-                  <label for="poll_choice_2">Rather Yes</label>
-                </li>
-                <li>
-                  <input id="poll_choice_3" type="radio" name="poll-choice" value="3"/>
-                  <label for="poll_choice_3">I’m Not Sure</label>
-                </li>
-                <li>
-                  <input id="poll_choice_4" type="radio" name="poll-choice" value="4"/>
-                  <label for="poll_choice_4">Rather Not</label>
-                </li>
-                <li>
-                  <input id="poll_choice_5" type="radio" name="poll-choice" value="5" />
-                  <label for="poll_choice_5">No Way!</label>
-                </li>
-              </ul>
-              <button class="btn blue">Vote Now</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- /Content Right -->
-      
-      <div class="clear"></div>
-      <!-- Clear Line --> 
-      
-    </div>
-    <!-- /Content Inner --> 
-    
-  </div>
-</div>
-<!-- /Content --> 
+					<div class="latest-jobs-section white-container">
+						<div class="flexslider clearfix">
+							<ul class="slides">
+								<li>
+									<div class="image">
+										<img src="{{ url_for('static', filename='img/content/face-0.png') }}" alt="">
+										<a href="#" class="btn btn-default fa fa-search"></a>
+										<a href="#" class="btn btn-default fa fa-link"></a>
+									</div>
+
+									<div class="content">
+										<h6>Front-End Developer at Envato</h6>
+										<span class="location">Sydney, Australia</span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, hic corrupti nobis consequuntur nam praesentium dolorem quo accusamus laborum ab. <a href="#" class="read-more">Read More</a></p>
+									</div>
+								</li>
+
+								<li>
+									<div class="image">
+										<img src="{{ url_for('static', filename='img/content/face-2.png') }}" alt="">
+										<a href="#" class="btn btn-default fa fa-search"></a>
+										<a href="#" class="btn btn-default fa fa-link"></a>
+									</div>
+
+									<div class="content">
+										<h6>Front-End Developer at Envato</h6>
+										<span class="location">Sydney, Australia</span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, hic corrupti nobis consequuntur nam praesentium dolorem quo accusamus laborum ab. <a href="#" class="read-more">Read More</a></p>
+									</div>
+								</li>
+
+								<li>
+									<div class="image">
+										<img src="{{ url_for('static', filename='img/content/face-4.png') }}" alt="">
+										<a href="#" class="btn btn-default fa fa-search"></a>
+										<a href="#" class="btn btn-default fa fa-link"></a>
+									</div>
+
+									<div class="content">
+										<h6>Front-End Developer at Envato</h6>
+										<span class="location">Sydney, Australia</span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, hic corrupti nobis consequuntur nam praesentium dolorem quo accusamus laborum ab. <a href="#" class="read-more">Read More</a></p>
+									</div>
+								</li>
+
+								<li>
+									<div class="image">
+										<img src="{{ url_for('static', filename='img/content/face-6.png') }}" alt="">
+										<a href="#" class="btn btn-default fa fa-search"></a>
+										<a href="#" class="btn btn-default fa fa-link"></a>
+									</div>
+
+									<div class="content">
+										<h6>Front-End Developer at Envato</h6>
+										<span class="location">Sydney, Australia</span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, hic corrupti nobis consequuntur nam praesentium dolorem quo accusamus laborum ab. <a href="#" class="read-more">Read More</a></p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div> <!-- end .latest-jobs-section -->
+				</div> <!-- end .page-content -->
+
+				<div class="col-sm-4 page-sidebar">
+					<aside>
+						<div class="widget sidebar-widget white-container social-widget">
+							<h5 class="widget-title">Share Us</h5>
+
+							<div class="widget-content">
+								<div class="row row-p5">
+									<div class="col-xs-6 col-md-3 share-box facebook">
+										<div class="count">86</div>
+										<a href="#">Facebook</a>
+									</div>
+
+									<div class="col-xs-6 col-md-3 share-box twitter">
+										<div class="count">2.2k</div>
+										<a href="#">Twitter</a>
+									</div>
+
+									<div class="col-xs-6 col-md-3 share-box google">
+										<div class="count">324</div>
+										<a href="#">Google +</a>
+									</div>
+
+									<div class="col-xs-6 col-md-3 share-box linkedin">
+										<div class="count">1.5k</div>
+										<a href="#">LinkedIn</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</aside>
+				</div> <!-- end .page-sidebar -->
+			</div>
+		</div> <!-- end .container -->
+	</div> <!-- end #page-content -->
 {% endblock %}

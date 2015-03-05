@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Homepage - Careers</title>
+
+	<!-- Stylesheets -->
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/flexslider.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+
+	<!--[if IE 9]>
+		<script src="{{ url_for('static', filename='js/media.match.min.js') }}"></script>
+	<![endif]-->
+</head>
+
+<body>
+<div id="main-wrapper">
+
+	<header id="header" class="header-style-1">
+		<div class="header-top-bar">
+			<div class="container">
+
+				<!-- Header Language -->
+				<div class="header-language clearfix">
+					<ul>
+						<li class="active"><a href="#">En</a></li>
+						<li><a href="#">Al</a></li>
+					</ul>
+				</div> <!-- end .header-language -->
+
+				<!-- Bookmarks -->
+				<a href="#" class="btn btn-link bookmarks">Bookmarks</a>
+
+				<!-- Header Register -->
+				<div class="header-register">
+					<a href="#" class="btn btn-link">Register</a>
+					<div>
+						<form action="#">
+							<input type="text" class="form-control" placeholder="Username">
+							<input type="email" class="form-control" placeholder="Email">
+							<input type="password" class="form-control" placeholder="Password">
+							<input type="submit" class="btn btn-default" value="Register">
+						</form>
+					</div>
+				</div> <!-- end .header-register -->
+
+				<!-- Header Login -->
+				<div class="header-login">
+					<a href="#" class="btn btn-link">Login</a>
+					<div>
+						<form action="#">
+							<input type="text" class="form-control" placeholder="Username">
+							<input type="password" class="form-control" placeholder="Password">
+							<input type="submit" class="btn btn-default" value="Login">
+							<a href="#" class="btn btn-link">Forgot Password?</a>
+						</form>
+					</div>
+				</div> <!-- end .header-login -->
+
+			</div> <!-- end .container -->
+		</div> <!-- end .header-top-bar -->
+
+		<div class="header-nav-bar">
+			<div class="container">
+
+				<!-- Logo -->
+				<div class="css-table logo">
+					<div class="css-table-cell">
+						<a href="../">
+							<img src="{{ url_for('static', filename='img/header-logo.png') }}" alt="">
+						</a> <!-- end .logo -->
+					</div>
+				</div>
+
+				<!-- Mobile Menu Toggle -->
+				<a href="#" id="mobile-menu-toggle"><span></span></a>
+
+				<!-- Primary Nav -->
+				<nav>
+					<ul class="primary-nav">
+						<li class="active">
+							<a href="../">Home</a>
+						</li>
+                        <li>
+							<a href="/trainings">Trainings</a>
+						</li>
+						<li class="has-submenu">
+							<a href="/jobs">Jobs</a>
+							<ul>
+								<li><a href="/jobs">Jobs Listings</a></li>
+								<li><a href="/job">Jobs Details</a></li>
+							</ul>
+						</li>
+						<li class="has-submenu">
+							<a href="/applications/applicants">Candidates</a>
+							<ul>
+								<li><a href="/applications/applicants">Candidates Listings</a></li>
+								<li><a href="/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
+								<li><a href="/applications/applicants">Candidates Details</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div> <!-- end .container -->
+
+			<div id="mobile-menu-container" class="container">
+				<div class="login-register"></div>
+				<div class="menu"></div>
+			</div>
+		</div> <!-- end .header-nav-bar -->
+
+		<div class="header-search-bar">
+			<div class="container">
+				<form>
+					<div class="basic-form clearfix">
+						<a href="#" class="toggle"><span></span></a>
+
+						<div class="hsb-input-1">
+							<input type="text" class="form-control" placeholder="I'm looking for a ...">
+						</div>
+
+						<div class="hsb-text-1">in</div>
+
+						<div class="hsb-container">
+							<div class="hsb-input-2">
+								<input type="text" class="form-control" placeholder="Location">
+							</div>
+
+							<div class="hsb-select">
+								<select class="form-control">
+									<option value="0">Select Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="hsb-submit">
+							<input type="submit" class="btn btn-default btn-block" value="Search">
+						</div>
+					</div>
+
+					<div class="advanced-form">
+						<div class="container">
+							<div class="row">
+								<label class="col-md-3">Distance</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="200" data-current="100"></div>
+										<div class="last-value"><span>100</span> km</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Rating</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="100" data-current="20"></div>
+										<div class="last-value">&gt; <span>20</span> %</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Days Published</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="60" data-current="30"></div>
+										<div class="last-value">&lt; <span>30</span></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Location</label>
+
+								<div class="col-md-9">
+									<input type="text" class="form-control" placeholder="Switzerland">
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Industry</label>
+
+								<div class="col-md-9">
+									<select class="form-control">
+										<option value="">Select Industry</option>
+										<option value="">Option 1</option>
+										<option value="">Option 2</option>
+										<option value="">Option 3</option>
+										<option value="">Option 4</option>
+										<option value="">Option 5</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> <!-- end .header-search-bar -->
+
+		<div class="header-banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="header-banner-box register">
+							<div class="counter-container">
+								<ul class="counter clearfix">
+									<li class="zero">0</li>
+									<li>3</li>
+									<li>5</li>
+									<li>1</li>
+									<li>0</li>
+									<li>9</li>
+								</ul>
+
+								<div><span>Jobs</span></div>
+							</div>
+
+							<a href="#" class="btn btn-default">Register Now</a>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="header-banner-box post-job">
+							<img src="{{ url_for('static', filename='img/verified.png') }}" alt="">
+
+							<a href="#" class="btn btn-red">Post a Job</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end .header-banner -->
+	</header> <!-- end #header -->
+    {% block body %}
+
+        {% endblock %}
+
+
+    	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-4">
+					<div class="widget">
+						<div class="widget-content">
+							<img class="logo" src="{{ url_for('static', filename='img/header-logo.png') }}" alt="">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, sunt illum dolore dolor vel perferendis nisi sequi laudantium porro blanditiis!</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 col-md-4">
+					<div class="widget">
+						<h6 class="widget-title">Navigation</h6>
+
+						<div class="widget-content">
+							<div class="row">
+								<div class="col-xs-6 col-sm-12 col-md-6">
+									<ul class="footer-links">
+										<li><a href="#">Home</a></li>
+										<li><a href="#">Jobs</a></li>
+										<li><a href="#">Candidates</a></li>
+										<li><a href="#">Partners</a></li>
+									</ul>
+								</div>
+
+								<div class="col-xs-6 col-sm-12 col-md-6">
+									<ul class="footer-links">
+										<li><a href="#">About Us</a></li>
+										<li><a href="#">Contact Us</a></li>
+										<li><a href="#">Terms &amp; Conditions</a></li>
+										<li><a href="#">Privacy Policy</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 col-md-2">
+					<div class="widget">
+						<h6 class="widget-title">Follow Us</h6>
+
+						<div class="widget-content">
+							<ul class="footer-links">
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Twitter</a></li>
+								<li><a href="#">Facebook</a></li>
+								<li><a href="#">Youtube</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3 col-md-2">
+					<div class="widget">
+						<h6 class="widget-title">Popular Jobs</h6>
+
+						<div class="widget-content">
+							<ul class="footer-links">
+								<li><a href="#">Web Developer</a></li>
+								<li><a href="#">Web Designer</a></li>
+								<li><a href="#">UX Engineer</a></li>
+								<li><a href="#">Account Manager</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="copyright">
+			<div class="container">
+				<p>&copy; Copyright 2014 <a href="#">HCT</a> | All Rights Reserved | Made in Kosovo by <a href="http://www.assemblio.com">Assemblio</a></p>
+
+				<ul class="footer-social">
+					<li><a href="#" class="fa fa-facebook"></a></li>
+					<li><a href="#" class="fa fa-twitter"></a></li>
+					<li><a href="#" class="fa fa-linkedin"></a></li>
+					<li><a href="#" class="fa fa-google-plus"></a></li>
+					<li><a href="#" class="fa fa-pinterest"></a></li>
+					<li><a href="#" class="fa fa-dribbble"></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer> <!-- end #footer -->
+
+</div> <!-- end #main-wrapper -->
+
+<!-- Scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"><\/script>')</script>
+<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
+<script src="{{ url_for('static', filename='js/maplace.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.ba-outside-events.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.responsive-tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.flexslider-min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.fitvids.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-ui-1.10.4.custom.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.inview.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
