@@ -5,17 +5,6 @@ import os
 from flask import Flask
 from flask.ext.pymongo import PyMongo
 
-
-
-
-
-
-
-
-
-
-
-
 # Create MongoDB database object.
 mongo = PyMongo()
 

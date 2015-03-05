@@ -11,3 +11,4 @@ def applicants_listing():
 @mod_applications.route('/applications/applicants')
 def applicants_tab():
     return render_template('applications/candidates.html')
+

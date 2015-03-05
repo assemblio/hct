@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint,render_template
 
 # Define the blueprint:
 mod_register = Blueprint('mod_register', __name__)
@@ -6,4 +6,4 @@ mod_register = Blueprint('mod_register', __name__)
 # Set the route and accepted methods
 @mod_register.route('/register', methods=['GET'])
 def index():
-    return ""
+    return render_template('home/register.html')
