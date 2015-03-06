@@ -11,3 +11,8 @@ def job():
 @mod_jobs.route('/jobs')
 def jobs():
     return render_template('applications/jobs.html')
+
+@mod_jobs.route('/createJob')
+def create():
+    return render_template('applications/createJob.html')
+

@@ -88,8 +88,12 @@
 						<li class="active">
 							<a href="../">Home</a>
 						</li>
-                        <li>
+                         <li class="has-submenu">
 							<a href="/trainings">Trainings</a>
+							<ul>
+								<li><a href="/createTrainings">Create Training</a></li>
+								<li><a href="/trainings">Training List</a></li>
+							</ul>
 						</li>
 						  <li>
 							<a href="/register">Register</a>
@@ -97,6 +101,7 @@
 						<li class="has-submenu">
 							<a href="/jobs">Jobs</a>
 							<ul>
+								<li><a href="/createJob">Create Job</a></li>
 								<li><a href="/jobs">Jobs Listings</a></li>
 								<li><a href="/job">Jobs Details</a></li>
 							</ul>
@@ -122,36 +127,6 @@
 		<div class="header-search-bar">
 			<div class="container">
 				<form>
-					<div class="basic-form clearfix">
-						<a href="#" class="toggle"><span></span></a>
-
-						<div class="hsb-input-1">
-							<input type="text" class="form-control" placeholder="I'm looking for a ...">
-						</div>
-
-						<div class="hsb-text-1">in</div>
-
-						<div class="hsb-container">
-							<div class="hsb-input-2">
-								<input type="text" class="form-control" placeholder="Location">
-							</div>
-
-							<div class="hsb-select">
-								<select class="form-control">
-									<option value="0">Select Category</option>
-									<option value="">Category</option>
-									<option value="">Category</option>
-									<option value="">Category</option>
-									<option value="">Category</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="hsb-submit">
-							<input type="submit" class="btn btn-default btn-block" value="Search">
-						</div>
-					</div>
-
 					<div class="advanced-form">
 						<div class="container">
 							<div class="row">

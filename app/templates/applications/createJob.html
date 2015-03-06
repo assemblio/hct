@@ -1,0 +1,63 @@
+{% extends "base/costum_layout.html" %}
+{% block body %}
+	<div id="page-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 page-content">
+					<div class="white-container create-job">
+						<div>
+							<h2>Create Job:</h2>
+							<section>
+								<h6 class="label">Job title</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<input type="text" class="form-control" placeholder="Job title">
+									</div>
+								</div>
+								<h6 class="label">Date</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<h7 class="label">End Date and Time</h7>
+										<input type="datetime-local" class="form-control">
+									</div>
+								</div>
+
+								<h6 class="label">Location</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<input type="text" class="form-control" placeholder="Adress:"/>
+									</div>
+								</div>
+
+								<h6 class="label">Description</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<textarea type="text" class="form-control" placeholder="Description"/></textArea>
+									</div>
+								</div>
+								<h6 class="label">Requirements</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										<textarea type="text" class="form-control" placeholder="Requirements"/></textArea>
+									</div>
+								</div>
+
+							</section>
+
+						</div>
+
+						<div class="clearfix">
+							<a href="#" class="btn btn-default btn-large pull-right">Add</a>
+						</div>
+					</div>
+				</div> <!-- end .page-content -->
+			</div>
+		</div> <!-- end .container -->
+	</div> <!-- end #page-content -->
+
+	{% endblock %}
