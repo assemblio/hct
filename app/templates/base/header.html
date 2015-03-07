@@ -1,0 +1,192 @@
+<header id="header" class="header-style-1">
+		<div class="header-top-bar">
+			<div class="container">
+
+				<!-- Header Language -->
+				<div class="header-language clearfix">
+					<ul>
+						<li class="active"><a href="#">En</a></li>
+						<li><a href="#">Al</a></li>
+					</ul>
+				</div> <!-- end .header-language -->
+
+				<!-- Bookmarks -->
+
+                {% if current_user.is_authenticated() %}
+                    <a href="/logout" class="btn btn-link bookmarks">Logout</a>
+                    <span class="pull-right">Hi {{ current_user.email }}!</span>
+                    <!-- Header Logout -->
+
+                    <!-- end .header-logout -->
+                {% else %}
+                    <!-- Header Register -->
+                    <div class="header-register">
+                        <a href="#" class="btn btn-link">Register</a>
+                        <div>
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="submit" class="btn btn-default" value="Register">
+                            </form>
+                        </div>
+                    </div> <!-- end .header-register -->
+
+                    <!-- Header Login -->
+                    <div class="header-login">
+                        <a href="#" class="btn btn-link">Login</a>
+                        <div>
+                            <form action="http://0.0.0.0:5000/auth/loginheader" method="POST" name="login_user_form">
+                                {% if current_user.is_authenticated() %}
+                                    {{ form.csrf_token }}
+                                {% else %}
+
+                                {% endif %}
+                                <input class="form-control" id="email" name="email" type="text" value="" placeholder="Email">
+                                <input class="form-control" id="password" name="password" type="password"  value="" placeholder="Password">
+                                <input type="hidden" value="{{ next or '' }}" name=next>
+                                <input id="next" name="next" type="hidden" value="">
+                                <input type="submit" class="btn btn-default" value="Login">
+                                <a href="#" class="btn btn-link">Forgot Password?</a>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end .header-login -->
+
+                {% endif %}
+
+
+			</div> <!-- end .container -->
+		</div> <!-- end .header-top-bar -->
+
+		{% include "base/navigation.html" %}
+
+		<div class="header-search-bar">
+			<div class="container">
+				<form>
+					<div class="basic-form clearfix">
+						<a href="#" class="toggle"><span></span></a>
+
+						<div class="hsb-input-1">
+							<input type="text" class="form-control" placeholder="I'm looking for a ...">
+						</div>
+
+						<div class="hsb-text-1">in</div>
+
+						<div class="hsb-container">
+							<div class="hsb-input-2">
+								<input type="text" class="form-control" placeholder="Location">
+							</div>
+
+							<div class="hsb-select">
+								<select class="form-control">
+									<option value="0">Select Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+									<option value="">Category</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="hsb-submit">
+							<input type="submit" class="btn btn-default btn-block" value="Search">
+						</div>
+					</div>
+
+					<div class="advanced-form">
+						<div class="container">
+							<div class="row">
+								<label class="col-md-3">Distance</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="200" data-current="100"></div>
+										<div class="last-value"><span>100</span> km</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Rating</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="100" data-current="20"></div>
+										<div class="last-value">&gt; <span>20</span> %</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Days Published</label>
+
+								<div class="col-md-9">
+									<div class="range-slider">
+										<div class="slider" data-min="1" data-max="60" data-current="30"></div>
+										<div class="last-value">&lt; <span>30</span></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Location</label>
+
+								<div class="col-md-9">
+									<input type="text" class="form-control" placeholder="Switzerland">
+								</div>
+							</div>
+
+							<div class="row">
+								<label class="col-md-3">Industry</label>
+
+								<div class="col-md-9">
+									<select class="form-control">
+										<option value="">Select Industry</option>
+										<option value="">Option 1</option>
+										<option value="">Option 2</option>
+										<option value="">Option 3</option>
+										<option value="">Option 4</option>
+										<option value="">Option 5</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> <!-- end .header-search-bar -->
+
+		<div class="header-banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="header-banner-box register">
+							<div class="counter-container">
+								<ul class="counter clearfix">
+									<li class="zero">0</li>
+									<li>3</li>
+									<li>5</li>
+									<li>1</li>
+									<li>0</li>
+									<li>9</li>
+								</ul>
+
+								<div><span>Jobs</span></div>
+							</div>
+
+							<a href="#" class="btn btn-default">Register Now</a>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="header-banner-box post-job">
+							<img src="{{ url_for('static', filename='img/verified.png') }}" alt="">
+
+							<a href="#" class="btn btn-red">Post a Job</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end .header-banner -->
+	</header> <!-- end #header -->

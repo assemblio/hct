@@ -12,19 +12,31 @@
 					</ul>
 
 					<div class="white-container sign-up-form">
-						<div>
+                        <form class="form-register" role="form" method="post" action="">
+	    					<div>
 							<h2>1. Fill in your profile</h2>
 
 							<section>
-								<h6 class="bottom-line">You are:</h6>
+                                    <div class="col-sm-4">
+                                          {{ form.email(placeholder="Eame") }}
+                                            <span class="error">
+                                              {% if form.email.errors %}
+                                                {% for error in form.email.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                    </span>
+									</div>
+                                <div>
+                                    <h6 class="bottom-line">You are:</h6>
+                                      {{ form.csrf_token }}
+                                    <div class="radio-inline">
+                                      {{ form.role }}
+                                        </span>
+                                    </div>
+                                </div>
 
-								<div class="radio-inline">
-									<label><input type="radio"> Employee</label>
-								</div>
 
-								<div class="radio-inline">
-									<label><input type="radio"> Recruiter</label>
-								</div>
 							</section>
 
 							<section>
@@ -34,11 +46,24 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Name">
+                                          {{ form.name(placeholder="Name") }}
+                                            <span class="error">
+                                              {% if form.name.errors %}
+                                                {% for error in form.name.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                    </span>
 									</div>
 
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Surname">
+                                          {{ form.surname(placeholder="Surname") }}
+                                            <span class="error">
+                                              {% if form.surname.errors %}
+                                                {% for error in form.surname.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 								</div>
 
@@ -46,9 +71,13 @@
 
 								<div class="row">
 									<div class="col-sm-12">
-										<input type="text" class="month-input" placeholder="MM">
-										<input type="text" class="day-input" placeholder="DD">
-										<input type="text" class="year-input" placeholder="YYYY">
+                                          {{ form.date_of_birth(placeholder="Date of birth") }}
+                                            <span class="error">
+                                              {% if form.date_of_birth.errors %}
+                                                {% for error in form.date_of_birth.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 								</div>
 
@@ -56,15 +85,33 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Mobile">
+										{{ form.phone_mobile(placeholder="Mobile") }}
+                                            <span class="error">
+                                              {% if form.phone_mobile.errors %}
+                                                {% for error in form.phone_mobile.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Work">
+										{{ form.phone_work(placeholder="Work") }}
+                                            <span class="error">
+                                              {% if form.phone_work.errors %}
+                                                {% for error in form.phone_work.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Fax">
+										{{ form.fax(placeholder="Fax") }}
+                                            <span class="error">
+                                              {% if form.fax.errors %}
+                                                {% for error in form.fax.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 								</div>
 
@@ -72,11 +119,23 @@
 
 								<div class="row">
 									<div class="col-sm-6">
-										<input type="text" class="form-control" placeholder="Address 1">
+										{{ form.address1(placeholder="Addres 1") }}
+                                            <span class="error">
+                                              {% if form.address1.errors %}
+                                                {% for error in form.address1.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 
 									<div class="col-sm-6">
-										<input type="text" class="form-control" placeholder="Address 2">
+										{{ form.address2(placeholder="Addres 2") }}
+                                            <span class="error">
+                                              {% if form.address2.errors %}
+                                                {% for error in form.address2.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 								</div>
 
@@ -110,43 +169,59 @@
 									<div class="col-sm-3">
 										<input type="text" class="form-control" placeholder="ZIP Code">
 									</div>
-								</div>
-							</section>
+                                    </div>
+                                </section>
 
-							<section>
-								<h6 class="bottom-line">Expected Salary:</h6>
+                                <section>
+                                    <h6 class="bottom-line">Expected Salary:</h6>
 
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="range-slider clearfix">
-											<div class="slider" data-min="100" data-max="100000" data-current-min="500" data-current-max="50000"></div>
-											<div class="first-value">$ <span>500</span></div>
-											<div class="last-value">$ <span>50000</span></div>
-										</div>
-									</div>
-								</div>
-							</section>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="range-slider clearfix">
+                                                <div class="slider" data-min="100" data-max="100000" data-current-min="500" data-current-max="50000"></div>
+                                                <div class="first-value">$ <span>500</span></div>
+                                                <div class="last-value">$ <span>50000</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
 
-							<section>
-								<h6 class="bottom-line">Set Password:</h6>
+                                <section>
+                                    <h6 class="bottom-line">Set Password:</h6>
 
-								<div class="row">
-									<div class="col-sm-4">
-										<input type="password" class="form-control" placeholder="Password">
-									</div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                              {{ form.password(placeholder="password") }}
+                                                <span class="error">
+                                                  {% if form.password.errors %}
+                                                    {% for error in form.password.errors %}
+                                                      {{ error }}
+                                                    {% endfor %}
+                                                  {% endif %}
+                                                </span>
+                                              </p>
+                                              <p>
 
-									<div class="col-sm-4">
-										<input type="password" class="form-control" placeholder="Repeat Password">
-									</div>
-								</div>
-							</section>
-						</div>
+                                        </div>
 
-						<hr class="mt60">
+                                        <div class="col-sm-4">
+                                              {{ form.confirm(placeholder="confirm") }}
+                                                <span class="error">
+                                                  {% if form.confirm.errors %}
+                                                    {% for error in form.confirm.errors %}
+                                                      {{ error }}
+                                                    {% endfor %}
+                                                  {% endif %}
+                                                </span>
+                                              </p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <button class="btn" type="submit">Register!</button>
+                              <br><br>
+                        </form>
 
-						<div class="clearfix">
-							<a href="#" class="btn btn-default btn-large pull-right">Continue to Step 2</a>
-						</div>
 					</div>
 				</div> <!-- end .page-content -->
 			</div>

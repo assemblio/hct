@@ -5,8 +5,9 @@ from flask import Blueprint
 mod_home = Blueprint('mod_home', __name__)
 
 # Set the route and accepted methods
-@mod_home.route('/', methods=['GET', 'POST'])
+@mod_home.route('/')
 def index():
+
     return render_template('home/index.html')
 
 @mod_home.route('/about-us')

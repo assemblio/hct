@@ -1,0 +1,59 @@
+		<div class="header-nav-bar">
+			<div class="container">
+
+				<!-- Logo -->
+				<div class="css-table logo">
+					<div class="css-table-cell">
+						<a href="../">
+							<img src="{{ url_for('static', filename='img/header-logo.png') }}" alt="">
+						</a> <!-- end .logo -->
+					</div>
+				</div>
+
+				<!-- Mobile Menu Toggle -->
+				<a href="#" id="mobile-menu-toggle"><span></span></a>
+
+				<!-- Primary Nav -->
+				<nav>
+					<ul class="primary-nav">
+						<li class="active">
+							<a href="../">Home</a>
+						</li>
+                         <li class="has-submenu">
+							<a href="/trainings">Trainings</a>
+							<ul>
+                                {% if current_user.is_authenticated() %}
+                                     <li><a href="/createTrainings">Create Training</a></li>
+                                {% endif %}
+
+								<li><a href="/trainings">Training List</a></li>
+							</ul>
+						</li>
+						  <li>
+							<a href="/auth/register">Register</a>
+						</li>
+						<li class="has-submenu">
+							<a href="/jobs">Jobs</a>
+							<ul>
+								<li><a href="/createJob">Create Job</a></li>
+								<li><a href="/jobs">Jobs Listings</a></li>
+								<li><a href="/job">Jobs Details</a></li>
+							</ul>
+						</li>
+						<li class="has-submenu">
+							<a href="/applications/applicants">Candidates</a>
+							<ul>
+								<li><a href="/applications/applicants">Candidates Listings</a></li>
+								<li><a href="/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
+								<li><a href="/applications/applicants">Candidates Details</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div> <!-- end .container -->
+
+			<div id="mobile-menu-container" class="container">
+				<div class="login-register"></div>
+				<div class="menu"></div>
+			</div>
+		</div> <!-- end .header-nav-bar -->

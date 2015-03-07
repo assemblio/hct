@@ -8,10 +8,12 @@ __pycache__/
 *.*~
 *.pyc
 .idea/
-config-template.cfg
+config.cfg
 
 # Distribution / packaging
 .Python
+/logs
+/log
 /venv
 env/
 build/

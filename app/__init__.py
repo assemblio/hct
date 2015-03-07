@@ -1,25 +1,32 @@
 import ConfigParser
 from logging.handlers import RotatingFileHandler
+import datetime
 
 import os
 from flask import Flask
-from flask.ext.pymongo import PyMongo
+from flask.ext.security import Security, MongoEngineUserDatastore
+from flask.ext.mongoengine import MongoEngine, MongoEngineSessionInterface
+from flask_mail import Mail
+from flask.ext.login import LoginManager
 
-# Create MongoDB database object.
-mongo = PyMongo()
-
+# Create the Flask app.
+app = Flask(__name__)
+app.config.from_object(__name__)
+db = MongoEngine()
+mail = Mail(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 def create_app():
-    ''' Create the Flask app.
-    '''
-    # Create the Flask app.
-    app = Flask(__name__)
 
     # Load application configurations
     load_config(app)
-
     # Configure logging.
     configure_logging(app)
+
+    # Create MongoEngine instance
+    db.init_app(app)
+
 
     # Import Admin modules
     from app.modules.admin.mod_roles_permissions.views import mod_roles_permissions
@@ -31,7 +38,7 @@ def create_app():
     from app.modules.public.mod_apply_for_training.views import mod_apply_for_training
     from app.modules.public.mod_cv.views import mod_cv
     from app.modules.public.mod_home.views import mod_home
-    from app.modules.public.mod_register.views import mod_register
+    from app.modules.public.mod_authentication.views import mod_authentication
     from app.modules.public.mod_jobs.views import mod_jobs
     from app.modules.public.mod_profile.views import mod_profile
 
@@ -43,18 +50,14 @@ def create_app():
     app.register_blueprint(mod_apply_for_training)
     app.register_blueprint(mod_cv)
     app.register_blueprint(mod_home)
-    app.register_blueprint(mod_register)
+    app.register_blueprint(mod_authentication)
 
     # Register Admin interface blueprints(s)
     app.register_blueprint(mod_roles_permissions)
     app.register_blueprint(mod_users)
 
-    # Init app for use with this PyMongo
-    # http://flask-pymongo.readthedocs.org/en/latest/#flask_pymongo.PyMongo.init_app
-    mongo.init_app(app, config_prefix='MONGO')
 
     return app
-
 
 def load_config(app):
     ''' Reads the config file and loads configuration properties into the Flask app.
@@ -75,8 +78,24 @@ def load_config(app):
     # Set up config properties
     app.config['SERVER_PORT'] = config.get('Application', 'SERVER_PORT')
     app.config['BASE_PATH'] = config.get('Application', 'BASE_PATH')
+    app.config['SECURITY_PASSWORD_SALT'] = config.get('Application', 'SECURITY_PASSWORD_SALT')
+    app.config['SECURITY_REGISTERABLE'] = config.get('Application', 'SECURITY_REGISTERABLE')
 
-    app.config['MONGO_DBNAME'] = config.get('Mongo', 'DB_NAME')
+    # Config MONGODB
+    app.config['MONGODB_SETTINGS'] = {
+        'db': config.get('MONGODB_SETTINGS', 'MONGODB_DATABASE'),
+        'host': config.get('MONGODB_SETTINGS', 'MONGODB_HOST'),
+        'port': int(config.get('MONGODB_SETTINGS', 'MONGODB_PORT'))
+    }
+
+    # Setup Mail settings
+    app.config['MAIL_DEFAULT_SENDER'] = config.get('Mail', 'MAIL_DEFAULT_SENDER')
+    app.config['MAIL_SERVER'] = config.get('Mail', 'MAIL_SERVER')
+    app.config['MAIL_PORT'] = config.get('Mail', 'MAIL_DEFAULT_SENDER')
+    app.config['MAIL_USE_TLS'] = config.get('Mail', 'MAIL_PORT')
+    app.config['MAIL_USE_SSL'] = config.get('Mail', 'MAIL_USE_SSL')
+    app.config['MAIL_USERNAME'] = config.get('Mail', 'MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = config.get('Mail', 'MAIL_PASSWORD')
 
     # Logging path might be relative or starts from the root.
     # If it's relative then be sure to prepend the path with the application's root directory path.
@@ -89,7 +108,7 @@ def load_config(app):
     app.config['LOG_LEVEL'] = config.get('Logging', 'LEVEL').upper()
 
     # Set the secret key, keep this really secret. We need this for session manager.
-    # Check out sectopm "How to generate good secret keys" in http://flask.pocoo.org/docs/quickstart/
+    # Check out section "How to generate good secret keys" in http://flask.pocoo.org/docs/quickstart/
     app.secret_key = config.get('Application', 'SECRET_KEY')
 
 
@@ -114,4 +133,10 @@ def configure_logging(app):
     # First log informs where we are logging to. Bit silly but serves  as a confirmation that logging works.
     # FIXME: Logging isn't working, figure out why.
     app.logger.info('Logging to: %s', log_path)
+
+
+# Setup Flask-Security
+from app.modules.models.models import User,Role
+user_datastore = MongoEngineUserDatastore(db, User, Role)
+security = Security(app, user_datastore)
 
