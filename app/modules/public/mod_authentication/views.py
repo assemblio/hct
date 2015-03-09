@@ -24,7 +24,7 @@ def index():
     ).save()
 
     user_datastore = MongoEngineUserDatastore(db, User, Role)
-    user_datastore.add_role_to_user(user, "User")
+    #user_datastore.add_role_to_user(user, "User")
 
     return render_template('home/register.html', form=form)
 

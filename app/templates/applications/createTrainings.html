@@ -5,31 +5,40 @@
 			<div class="row">
 				<div class="col-sm-12 page-content">
 					<div class="white-container create-training-form">
+					<form class="form" role="form" method="post" action="">
 						<div>
 							<h2>Create Training:</h2>
 							<section>
+								{{ form.csrf_token }}
 								<h6 class="label">Training title</h6>
-
-								<div class="row">
+									<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Training title">
+										 {{ form.title(placeholder="Training title") }}
+                                            <span class="error">
+                                              {% if form.title.errors %}
+                                                {% for error in form.title.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+										</div>
 									</div>
-								</div>
+
 								<h6 class="label">Date</h6>
 
 								<div class="row">
 									<div class="col-sm-4">
 										<h7 class="label">Start Date and Time</h7>
-										<input type="datetime-local" class="form-control">
+										
+										{{ form.startDate(placeholder="Start Date" , type="datetime-local", class = "form-control") }}
 									</div>
 
 									<div class="col-sm-4">
 										<h7 class="label">End Date and Time</h7>
-										<input type="datetime-local" class="form-control">
+										{{ form.endDate(placeholder="End Date" , type="datetime-local", class = "form-control") }}
 									</div>
 									<div class="col-sm-2">
 										<h7 class="label">Space</h7>
-										<input type="number" class="form-control">
+										{{ form.space(placeholder="Space") }}
 									</div>
 								</div>
 
@@ -37,11 +46,11 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Name"/>
+										{{ form.instructorName(placeholder="Name") }}
 									</div>
 
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Surname"/>
+										{{ form.instructorSurname(placeholder="Surname") }}
 									</div>
 
 								</div>
@@ -50,7 +59,7 @@
 
 								<div class="row">
 									<div class="col-sm-8">
-										<textarea type="text" class="form-control" placeholder="Agenda"/></textArea>
+										{{ form.agenda(placeholder="Agenda") }}
 									</div>
 								</div>
 
@@ -58,25 +67,24 @@
 
 								<div class="row">
 									<div class="col-sm-8">
-										<textarea type="text" class="form-control" placeholder="Description"/></textArea>
+										{{ form.description(placeholder="Agenda") }}
 									</div>
 								</div>
 								<h6 class="label">Requirements</h6>
 
 								<div class="row">
 									<div class="col-sm-8">
-										<textarea type="text" class="form-control" placeholder="Requirements"/></textArea>
+										{{ form.requirements(placeholder="Description") }}
 									</div>
 								</div>
-
-
 							</section>
-
 						</div>
-
 						<div class="clearfix">
-							<a href="#" class="btn btn-default btn-large pull-right">Add</a>
+						
+							<button class="btn btn-default btn-large pull-right" type="submit">Add</button>
+							
 						</div>
+					</form>
 					</div>
 				</div> <!-- end .page-content -->
 			</div>
