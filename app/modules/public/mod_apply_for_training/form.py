@@ -1,17 +1,18 @@
 from flask_wtf import Form
 from wtforms import StringField, DateTimeField, TextAreaField
-from wtforms.validators import DataRequired, Email, Length, EqualTo
-
+from wtforms.validators import DataRequired, Length
+import datetime
 class RegisterTraining(Form):
     title = StringField(
         'title',
         validators=[DataRequired(), Length(min=6, max=40)])
 
     startDate = DateTimeField(
-        'startDate',
+        'startDate',format="%Y-%m-%dT%H:%M:%S",
         validators=[DataRequired()])
+
     endDate = DateTimeField(
-        'endDate',
+        'endDate', format="%Y-%m-%dT%H:%M:%S",
         validators=[DataRequired()])
 
     space = StringField(
