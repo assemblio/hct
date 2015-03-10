@@ -6,6 +6,7 @@ class Role(db.Document, RoleMixin):
     description = db.StringField(max_length=255)
 
 class User(db.Document, UserMixin):
+    username = db.StringField(max_length=255)
     email = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
     active = db.BooleanField(default=True)
@@ -14,7 +15,6 @@ class User(db.Document, UserMixin):
     role = db.StringField(max_length=255)
     name = db.StringField(max_length=255)
     surname = db.StringField(max_length=255)
-    date_of_birth = db.DateTimeField()
     phone = db.StringField()
     address1 = db.StringField()
     address2 = db.StringField()
