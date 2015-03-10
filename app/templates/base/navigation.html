@@ -29,9 +29,11 @@
 								<li><a href="/trainings">Training List</a></li>
 							</ul>
 						</li>
-						  <li>
-							<a href="/auth/register">Register</a>
-						</li>
+                        {% if not current_user.is_authenticated() %}
+						    <li>
+							    <a href="/auth/register">Register</a>
+						    </li>
+                        {% endif %}
 						<li class="has-submenu">
 							<a href="/jobs">Jobs</a>
 							<ul>

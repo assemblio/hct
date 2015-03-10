@@ -24,9 +24,8 @@ def create_app():
     # Configure logging.
     configure_logging(app)
 
-    # Create MongoEngine instance
+    # Instantiate MongoEngine instance
     db.init_app(app)
-
 
     # Import Admin modules
     from app.modules.admin.mod_roles_permissions.views import mod_roles_permissions
@@ -136,7 +135,7 @@ def configure_logging(app):
 
 
 # Setup Flask-Security
-from app.modules.models.models import User,Role
+from app.modules.public.mod_authentication.user_registration.model import User,Role
 user_datastore = MongoEngineUserDatastore(db, User, Role)
-security = Security(app, user_datastore)
+security_ = Security(app, user_datastore)
 
