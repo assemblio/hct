@@ -33,6 +33,7 @@ def create():
     #user_datastore.add_role_to_user(user, "User")
 
     return render_template('applications/createTrainings.html', form=form)
+<<<<<<< HEAD
 '''
 @mod_apply_for_training.route('/display-training', methods=['GET'])
 def display():
@@ -42,6 +43,9 @@ def display():
         mimetype='application/json')
     return render_template('applications/createTrainings.html', form=form)
 '''
+=======
+
+>>>>>>> bbb3a7bb4359497dee68665484ab8b878d121d6b
 
 
 

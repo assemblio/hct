@@ -5,6 +5,7 @@
 			<div class="row">
 				<div class="col-sm-12 page-content">
 					<div class="white-container create-job">
+						<form class="form" role="form" method="post" action="">
 						<div>
 							<h2>Create Job:</h2>
 							<section>
@@ -12,7 +13,13 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Job title">
+									{{ form.title(placeholder="Job title") }}
+                                            <span class="error">
+                                              {% if form.title.errors %}
+                                                {% for error in form.title.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 								</div>
 								<h6 class="label">Date</h6>
@@ -20,7 +27,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<h7 class="label">End Date and Time</h7>
-										<input type="datetime-local" class="form-control">
+										{{ form.date(placeholder="Date" , type="datetime-local", class = "form-control") }}
 									</div>
 								</div>
 
@@ -28,7 +35,7 @@
 
 								<div class="row">
 									<div class="col-sm-4">
-										<input type="text" class="form-control" placeholder="Adress:"/>
+										{{ form.title(placeholder="Adress") }}
 									</div>
 								</div>
 
@@ -36,14 +43,14 @@
 
 								<div class="row">
 									<div class="col-sm-6">
-										<textarea type="text" class="form-control" placeholder="Description"/></textArea>
+										{{ form.description(placeholder="Description") }}
 									</div>
 								</div>
 								<h6 class="label">Requirements</h6>
 
 								<div class="row">
 									<div class="col-sm-6">
-										<textarea type="text" class="form-control" placeholder="Requirements"/></textArea>
+										{{ form.requirements(placeholder="Requirements") }}
 									</div>
 								</div>
 
@@ -51,9 +58,10 @@
 
 						</div>
 
-						<div class="clearfix">
-							<a href="#" class="btn btn-default btn-large pull-right">Add</a>
-						</div>
+							<div class="clearfix">
+								<button class="btn btn-default btn-large pull-right" type="submit">Add</button>
+							</div>
+						</form>
 					</div>
 				</div> <!-- end .page-content -->
 			</div>

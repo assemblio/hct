@@ -2,6 +2,7 @@ from flask_wtf import Form
 from wtforms import PasswordField, RadioField, StringField, DateTimeField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 
+
 from app.modules.public.mod_authentication.user_registration.model import User
 
 

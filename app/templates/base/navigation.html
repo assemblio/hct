@@ -37,7 +37,10 @@
 						<li class="has-submenu">
 							<a href="/jobs">Jobs</a>
 							<ul>
-								<li><a href="/createJob">Create Job</a></li>
+								{% if current_user.is_authenticated() %}
+                                
+								<li><a href="/create-job">Create Job</a></li>
+								{% endif %}
 								<li><a href="/jobs">Jobs Listings</a></li>
 								<li><a href="/job">Jobs Details</a></li>
 							</ul>
