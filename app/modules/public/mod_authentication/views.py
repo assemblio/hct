@@ -38,7 +38,7 @@ def index():
         user.save()
         user_datastore = MongoEngineUserDatastore(db, User, Role)
         default_role = user_datastore.find_role("User")
-        user_datastore.add_role_to_user(user, default_role)
+        #user_datastore.add_role_to_user(user, default_role)
         login_user(user)
         return render_template('home/welcome.html', form=form)
 

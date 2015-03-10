@@ -6,11 +6,11 @@ class CreateJob(Form):
     title = StringField(
         'title',
         validators=[DataRequired(), Length(min=6, max=40)])
-
+    '''
     date = DateTimeField(
         'date',
-        validators=[DataRequired(), Length(min=10, max=40)])
-
+        validators=[DataRequired()])
+    '''
     location = StringField(
         'location',
         validators=[DataRequired(), Length(min=6, max=40)])
@@ -24,11 +24,7 @@ class CreateJob(Form):
         validators=[DataRequired(), Length(min=6, max=100)])
 
     def validate(self):
-        initial_validation = super(RegisterForm, self).validate()
+        initial_validation = super(CreateJob, self).validate()
         if not initial_validation:
-            return False
-        user = User.objects(email=self.email.data)
-        if user:
-            self.email.errors.append("Email already registered")
             return False
         return True
