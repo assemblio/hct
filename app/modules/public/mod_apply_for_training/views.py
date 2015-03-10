@@ -32,15 +32,7 @@ def create():
     #user_datastore.add_role_to_user(user, "User")
 
     return render_template('applications/createTrainings.html', form=form)
-'''
-@mod_apply_for_training.route('/display-training', methods=['GET'])
-def display():
-		json = db.training.find()
-    	resp = Response(
-        response=json_util.dumps(json),
-        mimetype='application/json')
-    return render_template('applications/createTrainings.html', form=form)
-'''
+
 
 
 
