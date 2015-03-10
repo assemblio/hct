@@ -143,16 +143,8 @@
 				</div> <!-- end .page-sidebar -->
 
 				<div class="col-sm-8 page-content">
-					<div class="clearfix mb30 hidden-xs">
-						<a href="#" class="btn btn-gray pull-left">Back to Listings</a>
-						<div class="pull-right">
-							<a href="#" class="btn btn-gray">Previous</a>
-							<a href="#" class="btn btn-gray">Next</a>
-						</div>
-					</div>
-
 					<div class="candidates-item candidates-single-item">
-						<h6 class="title"><a href="#">John Doe</a></h6>
+						<h6 class="title"><a href="#">{{ username.name }} {{ username.surname }}</a></h6>
 						<span class="meta">24 Years Old - Sydney, AU</span>
 
 						<ul class="top-btns">
@@ -443,4 +435,4 @@
 			</div>
 		</div> <!-- end .container -->
 	</div> <!-- end #page-content -->
-
+{% endblock %}
