@@ -20,6 +20,7 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
+                                            </span>
 										</div>
 									</div>
 
@@ -29,16 +30,37 @@
 									<div class="col-sm-4">
 										<h7 class="label">Start Date and Time</h7>
 										
-										{{ form.startDate(placeholder="Start Date" , type="datetime-local", class = "form-control datepicker") }}
+										{{ form.startDate(placeholder="Start Date" , type="date", class = "form-control datepicker") }}
+                                        <span class="error">
+                                              {% if form.startDate.errors %}
+                                                {% for error in form.startDate.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 
 									<div class="col-sm-4">
 										<h7 class="label">End Date and Time</h7>
-										{{ form.endDate(placeholder="End Date" , type="datetime-local", class = "form-control") }}
+										{{ form.endDate(placeholder="End Date" , type="date", class = "form-control") }}
+                                        <span class="error">
+                                              {% if form.endDate.errors %}
+                                                {% for error in form.endDate.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 									<div class="col-sm-2">
 										<h7 class="label">Space</h7>
 										{{ form.space(placeholder="Space") }}
+                                        <span class="error">
+                                              {% if form.space.errors %}
+                                                {% for error in form.space.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 
@@ -47,10 +69,24 @@
 								<div class="row">
 									<div class="col-sm-4">
 										{{ form.instructorName(placeholder="Name") }}
+                                        <span class="error">
+                                              {% if form.instructorName.errors %}
+                                                {% for error in form.instructorName.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 
 									<div class="col-sm-4">
 										{{ form.instructorSurname(placeholder="Surname") }}
+                                        <span class="error">
+                                              {% if form.instructorSurname.errors %}
+                                                {% for error in form.instructorSurname.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 
 								</div>
@@ -60,6 +96,13 @@
 								<div class="row">
 									<div class="col-sm-8">
 										{{ form.agenda(placeholder="Agenda") }}
+                                        <span class="error">
+                                              {% if form.agenda.errors %}
+                                                {% for error in form.agenda.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 
@@ -68,6 +111,13 @@
 								<div class="row">
 									<div class="col-sm-8">
 										{{ form.description(placeholder="Description") }}
+                                        <span class="error">
+                                              {% if form.description.errors %}
+                                                {% for error in form.description.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 								<h6 class="label">Requirements</h6>
@@ -75,6 +125,13 @@
 								<div class="row">
 									<div class="col-sm-8">
 										{{ form.requirements(placeholder="Requirements") }}
+                                        <span class="error">
+                                              {% if form.requirements.errors %}
+                                                {% for error in form.requirements.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 							</section>
