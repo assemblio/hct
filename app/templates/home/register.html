@@ -203,18 +203,19 @@
 
                                 <section>
                                     <h6 class="bottom-line">Expected Salary:</h6>
-
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="range-slider clearfix">
-                                                <div class="slider" data-min="100" data-max="100000" data-current-min="500" data-current-max="50000"></div>
-                                                <div class="first-value">$ <span>500</span></div>
-                                                <div class="last-value">$ <span>50000</span></div>
-                                            </div>
+                                        <div class="col-sm-6">
+                                            {{ form.expected_salary(placeholder="Expected Salary ") }}
+                                            <span class="error">
+                                              {% if form.expected_salary.errors %}
+                                                {% for error in form.expected_salary.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+
                                         </div>
                                     </div>
                                 </section>
-
                              <button class="btn-default" type="submit">Register!</button>
                             </div>
 
