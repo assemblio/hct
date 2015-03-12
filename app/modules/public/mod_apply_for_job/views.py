@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 from flask.ext.security import roles_required, login_required
 from .form import CreateJob
 from .model import Job
+from bson import ObjectId
 # Define the blueprint:
 mod_apply_for_job = Blueprint('mod_apply_for_job', __name__)
 
@@ -11,6 +12,12 @@ mod_apply_for_job = Blueprint('mod_apply_for_job', __name__)
 def index():
     jobs = Job.objects()
     return render_template('applications/jobs.html', jobs=jobs)
+
+
+@mod_apply_for_job.route('/job/<string:job_id>')
+def job(job_id):
+    jobs = Job.objects.get(id=ObjectId(job_id))
+    return render_template('applications/jobs-single.html', jobs=jobs)
 
 
 @mod_apply_for_job.route('/create-job', methods=['GET', 'POST'])
