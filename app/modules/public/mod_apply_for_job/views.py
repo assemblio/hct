@@ -34,5 +34,6 @@ def create():
     if form.validate_on_submit():
         job.save()
     # user_datastore.add_role_to_user(user, "User")
+        return redirect('/jobs')
     return render_template('applications/createJob.html', form=form)
 
