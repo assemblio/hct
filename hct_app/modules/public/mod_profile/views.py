@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from flask.ext.security import current_user
-from app.modules.public.mod_authentication.user_registration.model import User
+from hct_app.modules.public.mod_authentication.user_registration.model import User
 
 # Define the blueprint:
 mod_profile = Blueprint('mod_profile', __name__)

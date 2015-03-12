@@ -2,7 +2,7 @@ __author__ = 'partini'
 
 from itsdangerous import URLSafeTimedSerializer
 
-from app import app
+from hct_app import app
 
 
 def generate_confirmation_token(email):

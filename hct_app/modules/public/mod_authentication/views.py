@@ -2,10 +2,10 @@ from flask import Blueprint, render_template, flash, request, url_for, redirect
 from user_registration.form import LoginForm, RegisterForm
 from flask.ext.security import MongoEngineUserDatastore, \
     login_user, login_required, logout_user
-from app.modules.public.mod_authentication.user_registration.model \
+from hct_app.modules.public.mod_authentication.user_registration.model \
     import User, Role
 from mongoengine import DoesNotExist
-from app import db, user_datastore
+from hct_app import db, user_datastore
 from .utils import Utils
 
 # Create Utils instance

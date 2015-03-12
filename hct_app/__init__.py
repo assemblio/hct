@@ -5,12 +5,7 @@ from flask import Flask
 from flask.ext.security import Security, MongoEngineUserDatastore
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
-from app.modules.public.mod_authentication.user_registration.model\
-    import User, Role
-
-
-# Create the MongoDB instance
-db = MongoEngine()
+from hct_app.modules.public.mod_authentication.user_registration.model import User, Role
 
 # Create the Flask app.
 app = Flask(__name__)
@@ -21,12 +16,17 @@ login_manager = LoginManager()
 # Init login manager
 login_manager.init_app(app)
 
+# Create the MongoDB instance
+database = MongoEngine()
+
 # Setup Flask-Security
-user_datastore = MongoEngineUserDatastore(db, User, Role)
+user_datastore = MongoEngineUserDatastore(database, User, Role)
 security_ = Security(app, user_datastore)
 
 
 def create_app():
+    # Create the MongoDB instance
+    db = MongoEngine()
 
     # Load application configurations
     load_config(app)
@@ -37,24 +37,22 @@ def create_app():
     # Instantiate MongoEngine instance
     db.init_app(app)
 
-    # Create user roles
-    create_user_roles()
-
     # Import Admin modules
-    from app.modules.admin.mod_roles_permissions.views\
+    from hct_app.modules.admin.mod_roles_permissions.views\
         import mod_roles_permissions
-    from app.modules.admin.mod_users.views import mod_users
+    from hct_app.modules.admin.mod_users.views import mod_users
 
     # Import public interface modules
-    from app.modules.public.mod_applications.views import mod_applications
-    from app.modules.public.mod_apply_for_job.views import mod_apply_for_job
-    from app.modules.public.mod_apply_for_training.views \
+    from hct_app.modules.public.mod_applications.views import mod_applications
+    from hct_app.modules.public.mod_apply_for_job.views import mod_apply_for_job
+    from hct_app.modules.public.mod_apply_for_training.views \
         import mod_apply_for_training
-    from app.modules.public.mod_cv.views import mod_cv
-    from app.modules.public.mod_home.views import mod_home
-    from app.modules.public.mod_authentication.views import mod_authentication
-    from app.modules.public.mod_jobs.views import mod_jobs
-    from app.modules.public.mod_profile.views import mod_profile
+    from hct_app.modules.public.mod_cv.views import mod_cv
+    from hct_app.modules.public.mod_home.views import mod_home
+    from hct_app.modules.public.mod_authentication.views\
+        import mod_authentication
+    from hct_app.modules.public.mod_jobs.views import mod_jobs
+    from hct_app.modules.public.mod_profile.views import mod_profile
 
     # Register public interface blueprint(s)
     app.register_blueprint(mod_profile)
@@ -113,20 +111,6 @@ def load_config(app):
         'port': int(config.get('MONGODB_SETTINGS', 'MONGODB_PORT'))
     }
 
-    # Setup Mail settings
-    app.config['MAIL_DEFAULT_SENDER'] = config.get(
-        'Mail',
-        'MAIL_DEFAULT_SENDER'
-    )
-    '''
-    app.config['MAIL_SERVER'] = config.get('Mail', 'MAIL_SERVER')
-    app.config['MAIL_PORT'] = config.get('Mail', 'MAIL_DEFAULT_SENDER')
-    app.config['MAIL_USE_TLS'] = config.get('Mail', 'MAIL_PORT')
-    app.config['MAIL_USE_SSL'] = config.get('Mail', 'MAIL_USE_SSL')
-    app.config['MAIL_USERNAME'] = config.get('Mail', 'MAIL_USERNAME')
-    app.config['MAIL_PASSWORD'] = config.get('Mail', 'MAIL_PASSWORD')
-    '''
-
     # Logging path might be relative or starts from the root.
     # If it's relative then be sure to prepend the path
     # with the application's root directory path.
@@ -170,9 +154,8 @@ def configure_logging(app):
 
 
 def create_user_roles():
-    '''
-    Create the roles using the flask-security plugin.
-    '''
+    # Create the roles using the flask-security plugin.
+
     # Create User role
     if not user_datastore.find_role('User'):
         # Create the user role
@@ -194,3 +177,5 @@ def create_user_roles():
             username="admin",
             password="admin"
         )
+# Create roles
+create_user_roles()
