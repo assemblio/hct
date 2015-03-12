@@ -16,10 +16,19 @@
 				<!-- Primary Nav -->
 				<nav>
 					<ul class="primary-nav">
+                        {% if request.endpoint =='mod_home.index' %}
 						<li class="active">
+                            {% else %}
+                        <li>
+                        {% endif %}
 							<a href="../">Home</a>
 						</li>
-                         <li class="has-submenu">
+                        {% if request.blueprint =='mod_apply_for_training' %}
+                            <li class="has-submenu active">
+
+                             {% else %}
+                             <li class="has-submenu">
+                        {% endif %}
 							<a href="/trainings">Trainings</a>
 							<ul>
                                 {% if current_user.is_authenticated() %}
@@ -29,12 +38,21 @@
 								<li><a href="/trainings">Training List</a></li>
 							</ul>
 						</li>
+
                         {% if not current_user.is_authenticated() %}
-						    <li>
+                            {% if request.blueprint == 'mod_authentication' %}
+						    <li class="active">
+                                {% else %}
+                                <li>
+                            {% endif %}
 							    <a href="/auth/register">Register</a>
 						    </li>
                         {% endif %}
-						<li class="has-submenu">
+                        {% if request.blueprint =='mod_apply_for_job' %}
+						<li class="has-submenu active">
+                            {% else %}
+                        <li class="has-submenu">
+                        {% endif %}
 							<a href="/jobs">Jobs</a>
 							<ul>
 								{% if current_user.is_authenticated() %}
@@ -51,9 +69,6 @@
 								<li><a href="/applications/applicants">Candidates Listings</a></li>
 								<li><a href="/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
 								<li><a href="/applications/applicants">Candidates Details</a></li>
-                                {% if current_user.is_authenticated() %}
-                                <li><a href="/profile">My profile</a></li>
-                                {% endif %}
 							</ul>
 						</li>
 					</ul>
