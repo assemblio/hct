@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 from flask.ext.security import roles_required, login_required
 from .form import RegisterTraining
 from .model import Training
+from bson import ObjectId
 
 # Define the blueprint:
 mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
@@ -11,6 +12,11 @@ mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
 def index():
     trainings = Training.objects()
     return  render_template('applications/trainings.html', trainings=trainings)
+
+@mod_apply_for_training.route('/training/<string:training_id>')
+def training(training_id):
+    training = Training.objects.get(id=ObjectId(training_id))
+    return render_template('applications/training.html', training=training)
 
 @mod_apply_for_training.route('/create-training', methods=['GET', 'POST'])
 @login_required

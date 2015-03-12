@@ -105,38 +105,7 @@
 				</div> <!-- end .page-sidebar -->
 
 				<div class="col-sm-8 page-content">
-					
-					<div class="title-lines">
-						<h3 class="mt0">Trainings</h3>
-					</div>
 
-					<div class="clearfix mb30">
-						<ul class="jobs-view-toggle pull-left">
-							<li><a href="#" data-layout="with-thumb" class="btn btn-gray fa fa-th-list active"></a></li>
-							<li><a href="#" data-layout="" class="btn btn-gray fa fa-list"></a></li>
-							<li><a href="#" data-layout="compact" class="btn btn-gray fa fa-align-justify"></a></li>
-						</ul>
-
-						<select class="form-control pull-left">
-							<option value="">Sort By</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-						</select>
-
-						<ul class="pagination pull-right">
-							<li><a href="#" class="fa fa-angle-left"></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" class="fa fa-angle-right"></a></li>
-						</ul>
-					</div>
-
-					{% for training in trainings %}
 					<div class="jobs-item with-thumb">
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
@@ -144,49 +113,24 @@
 						<h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
 						<span class="meta">Envato, Sydney, AU</span>
 
-						<ul class="top-btns">
-							<li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
-							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
-							<li><a href="#" class="btn btn-gray fa fa-link"></a></li>
-						</ul>
 
-						<p class="description">{{training['description']}} <a href="#" class="read-more">Read More</a></p>
+						<p class="description">{{training['description']}}</p>
 
-						<div class="content">
+						<div class="training-content">
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
 
 							<h5>Required Skills</h5>
-
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">Web Design</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
-
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">Development</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
-
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">UI/UX</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
+                            <ul>
+                                <li>Work Permit</li>
+								<li>Web Design</li>
+								<li>Development</li>
+								<li>Magento Certified</li>
+								<li>UI/UX</li>
+                            </ul>
 
 							<h5>Additional Requirements</h5>
 
-							<ul class="additional-requirements clearfix">
+							<ul class="aditional-requirements">
 								<li>Work Permit</li>
 								<li>5 Years Experience</li>
 								<li>MBA</li>
@@ -197,7 +141,7 @@
 							<hr>
 
 							<div class="clearfix">
-								<a href="#" class="btn btn-default pull-left">Apply for this Job</a>
+								<a href="#" class="btn btn-default pull-left">Apply for this Training</a>
 
 								<ul class="social-icons pull-right">
 									<li><span>Share</span></li>
@@ -207,19 +151,6 @@
 								</ul>
 							</div>
 						</div>
-					</div>
-					{% endfor %}
-
-					<div class="clearfix">
-						<ul class="pagination pull-right">
-							<li><a href="#" class="fa fa-angle-left"></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" class="fa fa-angle-right"></a></li>
-						</ul>
 					</div>
 				</div> <!-- end .page-content -->
 			</div>
