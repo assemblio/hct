@@ -51,6 +51,9 @@
 								<li><a href="/applications/applicants">Candidates Listings</a></li>
 								<li><a href="/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
 								<li><a href="/applications/applicants">Candidates Details</a></li>
+                                {% if current_user.is_authenticated() %}
+                                <li><a href="/profile">My profile</a></li>
+                                {% endif %}
 							</ul>
 						</li>
 					</ul>

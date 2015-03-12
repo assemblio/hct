@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 from flask.ext.security import roles_required, login_required
 from .form import RegisterTraining
 from .model import Training
+
 # Define the blueprint:
 mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
 
@@ -29,8 +30,6 @@ def create():
     if form.validate_on_submit():
         training.save()
         return redirect('/trainings')
-    #user_datastore.add_role_to_user(user, "User")
-
     return render_template('applications/createTrainings.html', form=form)
 
 

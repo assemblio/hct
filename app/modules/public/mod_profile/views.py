@@ -11,6 +11,7 @@ def profile():
     print current_user
     return render_template('profile/index.html', current_user=current_user)
 
+
 @mod_profile.route('/profile/<string:request_user>')
 def get_user(request_user):
     user = User.objects.get(username=request_user)
