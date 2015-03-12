@@ -1,26 +1,19 @@
-from hct_app import db
 from flask.ext.security import UserMixin, RoleMixin
 
+import datetime
+from app import db
 
 class Role(db.Document, RoleMixin):
     name = db.StringField(max_length=80, unique=True)
     description = db.StringField(max_length=255)
 
-
 class User(db.Document, UserMixin):
-    username = db.StringField(max_length=255)
     email = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
     active = db.BooleanField(default=True)
     confirmed_at = db.DateTimeField()
     roles = db.ListField(db.ReferenceField(Role), default=[])
-    role = db.StringField(max_length=255)
-    name = db.StringField(max_length=255)
-    surname = db.StringField(max_length=255)
-    phone = db.StringField()
-    address1 = db.StringField()
-    address2 = db.StringField()
-    expected_salary = db.StringField()
+
 
     def is_authenticated(self):
         return True
@@ -36,3 +29,4 @@ class User(db.Document, UserMixin):
 
     def __repr__(self):
         return '<email {}'.format(self.email)
+

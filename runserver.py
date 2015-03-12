@@ -1,6 +1,6 @@
 import argparse
 
-from hct_app import create_app
+from app import create_app
 
 # Create the flask app.
 app = create_app()

@@ -1,4 +1,4 @@
-from hct_app import db
+from app import db
 
 class Job(db.Document):
     title = db.StringField(max_length=255)

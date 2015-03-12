@@ -7,13 +7,14 @@ from flask import render_template, Blueprint, url_for, \
 from flask.ext.login import login_user, logout_user, \
     login_required, current_user
 
-from hct_app.modules.models.models import User
-from hct_app.modules.models.decorators import check_confirmed
+from app.modules.models.models import User
+from app.modules.models.email import send_email
+from app.modules.models.decorators import check_confirmed
 from .forms import LoginForm, RegisterForm, ChangePasswordForm
 from .token import confirm_token, generate_confirmation_token
-from hct_app import db
+from app import db
 
-import hct_app
+import app
 # Define the blueprint:
 mod_users = Blueprint('users', __name__, url_prefix="/users", static_folder='static',template_folder='templates')
 
@@ -40,6 +41,7 @@ def register():
         confirm_url = url_for('users.confirm_email', token=token, _external=True)
         html = render_template('user/activate.html', confirm_url=confirm_url)
         subject = "Please confirm your email"
+        send_email(user.email, subject, html)
         login_user(user)
 
         flash('A confirmation email has been sent via email.', 'success')

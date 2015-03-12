@@ -1,23 +1,15 @@
 from flask import Blueprint, render_template, flash, request, url_for, redirect
 from user_registration.form import LoginForm, RegisterForm
-from flask.ext.security import MongoEngineUserDatastore, \
-    login_user, login_required, logout_user
-from hct_app.modules.public.mod_authentication.user_registration.model \
-    import User, Role
+from flask.ext.security import MongoEngineUserDatastore, login_user, login_required, logout_user
+from app.modules.public.mod_authentication.user_registration.model import User, Role
 from mongoengine import DoesNotExist
-from hct_app import db, user_datastore
+from app import db
 from .utils import Utils
 
 # Create Utils instance
 utils = Utils()
-
 # Define the blueprint:
-mod_authentication = Blueprint(
-    'mod_authentication',
-    __name__,
-    url_prefix="/auth"
-)
-
+mod_authentication = Blueprint('mod_authentication', __name__, url_prefix="/auth")
 
 # Set the route and accepted methods
 @mod_authentication.route('/register', methods=['GET', 'POST'])
@@ -36,6 +28,8 @@ def index():
         phone_work=form.phone_work.data,
         expected_salary=form.expected_salary.data
     )
+    print "before validation"
+    print form.email.data
     try:
         form.email.data == User.objects.get(email=form.email.data)
         print "email exists in the database"
@@ -50,15 +44,11 @@ def index():
 
     return render_template('home/register.html', form=form)
 
-
 @mod_authentication.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
     if form.validate_on_submit():
-        user = User.objects.get(
-            email=form.email.data,
-            password=form.password.data
-        )
+        user = User.objects.get(email=form.email.data, password=form.password.data)
         if user['email'] == form.email.data and user['password'] == form.password.data:
             login_user(user)
             flash('Welcome.', 'success')
@@ -90,27 +80,3 @@ def login_header():
             return render_template('home/login.html')
 
     return render_template('home/login.html', form=form, next=next)
-
-@mod_authentication.route('/registerheader', methods=['GET', 'POST'])
-def register_header():
-    print request.form
-    form = User(request.form)
-    username_f = request.form['username'],
-    email_f = request.form['email'],
-    password_f = request.form['password'],
-    user = User(
-        username=username_f,
-        email=email_f,
-        password=password_f
-    )
-    try:
-        if email_f == User.objects.get(email=request.args.get('email')):
-            flash('Email already exists.', 'success')
-    except DoesNotExist:
-        user.save()
-        default_role = user_datastore.find_role("User")
-        user_datastore.add_role_to_user(user, default_role)
-        login_user(user)
-        return render_template('home/welcome.html')
-
-    return render_template(url_for('mod_authentication.index'), form=form)
