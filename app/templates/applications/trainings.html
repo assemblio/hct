@@ -140,7 +140,7 @@
 					<div class="jobs-item with-thumb">
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
-						<div class="date">27 <span>Jun</span></div>
+						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="#">{{training['title']}}</a></h6>
 						<span class="meta">Envato, Sydney, AU</span>
 
