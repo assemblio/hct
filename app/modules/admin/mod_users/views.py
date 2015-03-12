@@ -8,7 +8,7 @@ from flask.ext.login import login_user, logout_user, \
     login_required, current_user
 
 from app.modules.models.models import User
-from app.modules.models.email import send_email
+#from app.modules.models.email import send_email
 from app.modules.models.decorators import check_confirmed
 from .forms import LoginForm, RegisterForm, ChangePasswordForm
 from .token import confirm_token, generate_confirmation_token
