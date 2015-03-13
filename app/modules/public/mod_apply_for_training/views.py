@@ -29,7 +29,7 @@ def apply_for_training(training_id):
         Training.objects.get(participants=ObjectId(current_user.id))
     except DoesNotExist:
         if training['space'] != 0:
-            Training.objects.get(id=ObjectId(training_id)).update(push__participants=current_user.id, dec__space=1)
+            Training.objects.get(id=ObjectId(training_id)).update(push__participants=ObjectId(current_user.id), dec__space=1)
             User.objects.get(id=ObjectId(current_user.id)).update(push__trainings=ObjectId(training_id))
             return "Succesfully applied"
     return "You already applied for this training"

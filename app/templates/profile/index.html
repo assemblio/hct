@@ -67,74 +67,35 @@
 									</tbody>
 								</table>
 
-								<h5 class="bottom-line">Professional Rating</h5>
+								<h5 class="bottom-line">Jobs i applied for</h5>
 
 								<table>
 									<tbody>
+                                    {% for job in show_jobs %}
 										<tr>
-											<td>Expertise</td>
+											<td>{{job.title}}</td>
 											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
+                                                <a href="{{ config.BASE_PATH}}/job/{{job.id}}">View this job</a>
 											</td>
 										</tr>
+                                    {% endfor %}
 
-										<tr>
-											<td>Knowledge</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
-											</td>
-										</tr>
+									</tbody>
+								</table>
 
-										<tr>
-											<td>Quality</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-												</ul>
-											</td>
-										</tr>
+                                <h5 class="bottom-line">Trainings i am attending</h5>
 
+								<table>
+									<tbody>
+                                    {% for training in show_trainings %}
 										<tr>
-											<td>Price</td>
+											<td>{{training.title}}</td>
 											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
+                                                <a href="{{ config.BASE_PATH}}/training/{{training.id}}">View this training</a>
 											</td>
 										</tr>
+                                    {% endfor %}
 
-										<tr>
-											<td>Services</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
-											</td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
