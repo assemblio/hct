@@ -6,3 +6,4 @@ class Job(db.Document):
     location = db.StringField()
     description = db.StringField()
     requirements = db.StringField()
+    applicants = db.StringField()

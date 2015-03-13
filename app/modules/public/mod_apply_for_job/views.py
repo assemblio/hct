@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template, request, redirect
-from flask.ext.security import roles_required, login_required
+from flask.ext.security import roles_required, login_required, current_user
+from flask.ext.mongoengine import DoesNotExist
 from .form import CreateJob
 from .model import Job
+from app.modules.public.mod_authentication.user_registration.model import User
 from bson import ObjectId
 # Define the blueprint:
 mod_apply_for_job = Blueprint('mod_apply_for_job', __name__)
@@ -19,6 +21,17 @@ def job(job_id):
     jobs = Job.objects.get(id=ObjectId(job_id))
     return render_template('applications/jobs-single.html', jobs=jobs)
 
+@mod_apply_for_job.route('/job/apply/<string:job_id>')
+@login_required
+def apply_for_job(job_id):
+    try:
+        job = Job.objects.get(id=ObjectId(job_id))
+        Job.objects.get(applicants=ObjectId(current_user.id))
+    except DoesNotExist:
+        Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
+        User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
+        return "Succesfully applied for this job."
+    return "You already applied for this job."
 
 @mod_apply_for_job.route('/create-job', methods=['GET', 'POST'])
 @login_required
