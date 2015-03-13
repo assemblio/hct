@@ -24,10 +24,10 @@ def training(training_id):
 @mod_apply_for_training.route('/training/apply/<string:training_id>')
 @login_required
 def apply_for_training(training_id):
-    try:
-        training = Training.objects.get(id=ObjectId(training_id))
-        Training.objects.get(participants=ObjectId(current_user.id))
-    except DoesNotExist:
+    training = Training.objects.get(id=ObjectId(training_id))
+    if not training['participants']:
+        training['participants'] = []
+    if not ObjectId(current_user.id) in training['participants']:
         if training['space'] != 0:
             Training.objects.get(id=ObjectId(training_id)).update(push__participants=ObjectId(current_user.id), dec__space=1)
             User.objects.get(id=ObjectId(current_user.id)).update(push__trainings=ObjectId(training_id))

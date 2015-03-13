@@ -24,10 +24,10 @@ def job(job_id):
 @mod_apply_for_job.route('/job/apply/<string:job_id>')
 @login_required
 def apply_for_job(job_id):
-    try:
-        job = Job.objects.get(id=ObjectId(job_id))
-        Job.objects.get(applicants=ObjectId(current_user.id))
-    except DoesNotExist:
+    job = Job.objects.get(id=ObjectId(job_id))
+    if not job['applicants']:
+        job['applicants'] = []
+    if not ObjectId(current_user.id) in job['applicants']:
         Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
         User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
         return "Succesfully applied for this job."
