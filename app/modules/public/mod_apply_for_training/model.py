@@ -8,6 +8,8 @@ class Training(db.Document):
     instructorName = db.StringField(max_length=255)
     instructorSurname = db.StringField(max_length=255)
     agenda = db.StringField()
+    short_description = db.StringField()
     description = db.StringField()
     requirements = db.StringField()
     participants = db.StringField()
+    target_group = db.StringField()

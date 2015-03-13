@@ -21,6 +21,7 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
+                                                </span>
 									</div>
 								</div>
 								<h6 class="label">Date</h6>
@@ -51,6 +52,22 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+                                <h6 class="label">Short Description</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										{{ form.short_description(placeholder="Short description") }}
+                                        <span class="error">
+                                              {% if form.short_description.errors %}
+                                                {% for error in form.short_description.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 
@@ -65,6 +82,7 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
+                                            </span>
 									</div>
 								</div>
 								<h6 class="label">Requirements</h6>
@@ -78,13 +96,25 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
-									</div>
-
-									<div class="clearfix">
-										<button class="btn btn-default btn-large pull-left" type="submit">Add</button>
+                                            </span>
 									</div>
 								</div>
-
+                                <h6 class="label">Target group</h6>
+                                <div class="row">
+									<div class="col-sm-8">
+										{{ form.target_group }}
+                                        <span class="error">
+                                              {% if form.target_group.errors %}
+                                                {% for error in form.target_group.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+                            <div class="clearfix">
+										<button class="btn btn-default btn-large pull-left" type="submit">Post Job</button>
+									</div>
 							</section>
 
 						</div>

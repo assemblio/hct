@@ -21,23 +21,49 @@
                             {% else %}
                         <li>
                         {% endif %}
-							<a href="../">Home</a>
+							<a href="{{ config.BASE_PATH }}/">Home</a>
 						</li>
                         {% if request.blueprint =='mod_apply_for_training' %}
-                            <li class="has-submenu active">
+                            <li class="active">
 
                              {% else %}
-                             <li class="has-submenu">
+                             <li class="">
                         {% endif %}
-							<a href="/trainings">Trainings</a>
+							<a href="{{ config.BASE_PATH }}/trainings">Trainings</a>
+                        {% if current_user.has_role('Admin') %}
 							<ul>
-                                {% if current_user.is_authenticated() %}
-                                     <li><a href="/create-training">Create Training</a></li>
-                                {% endif %}
+                                     <li><a href="{{ config.BASE_PATH }}/create-training">Create Training</a></li>
+							</ul>
+                        {% endif %}
+						</li>
 
-								<li><a href="/trainings">Training List</a></li>
+
+                        {% if request.blueprint =='mod_apply_for_job' %}
+						<li class="active">
+                            {% else %}
+                        <li class="">
+                        {% endif %}
+
+                        {% if current_user.has_role('Admin') %}
+                        <a href="{{ config.BASE_PATH }}/jobs">Jobs</a>
+                        <ul>
+                            <li><a href="{{ config.BASE_PATH }}/create-job">Create Job</a></li>
+                        </ul>
+                        {% else %}
+                            <a href="{{ config.BASE_PATH }}/jobs">Jobs</a>
+                        {% endif %}
+						</li>
+                        {% if current_user.has_role('Admin') %}
+						<li class="has-submenu">
+							<a href="{{ config.BASE_PATH }}/applications/applicants">Candidates</a>
+
+							<ul>
+								<li><a href="{{ config.BASE_PATH }}/applications/applicants">Candidates Listings</a></li>
+								<li><a href="{{ config.BASE_PATH }}/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
+								<li><a href="{{ config.BASE_PATH }}/applications/applicants">Candidates Details</a></li>
 							</ul>
 						</li>
+                        {% endif %}
 
                         {% if not current_user.is_authenticated() %}
                             {% if request.blueprint == 'mod_authentication' %}
@@ -45,31 +71,10 @@
                                 {% else %}
                                 <li>
                             {% endif %}
-							    <a href="/auth/register">Register</a>
+							    <a href="{{ config.BASE_PATH }}/auth/register">Register</a>
 						    </li>
                         {% endif %}
-                        {% if request.blueprint =='mod_apply_for_job' %}
-						<li class="has-submenu active">
-                            {% else %}
-                        <li class="has-submenu">
-                        {% endif %}
-							<a href="/jobs">Jobs</a>
-							<ul>
-								{% if current_user.is_authenticated() %}
-                                
-								<li><a href="/create-job">Create Job</a></li>
-								{% endif %}
-								<li><a href="/jobs">Jobs Listings</a></li>
-							</ul>
-						</li>
-						<li class="has-submenu">
-							<a href="/applications/applicants">Candidates</a>
-							<ul>
-								<li><a href="/applications/applicants">Candidates Listings</a></li>
-								<li><a href="/applications/applicants-sidebar">Candidates Listings Sidebar</a></li>
-								<li><a href="/applications/applicants">Candidates Details</a></li>
-							</ul>
-						</li>
+
 					</ul>
 				</nav>
 			</div> <!-- end .container -->

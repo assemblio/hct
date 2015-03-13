@@ -6,69 +6,12 @@
 				<div class="col-sm-4 page-sidebar">
 					<aside>
 						<div class="white-container mb0">
-							<div class="widget sidebar-widget jobs-search-widget">
-								<h5 class="widget-title">Search</h5>
-
-								<div class="widget-content">
-									<span>I'm looking for a ...</span>
-
-									<select class="form-control mt10 mb10">
-										<option value="0">Training</option>
-										<option value="">Job</option>
-			
-									</select>
-
-									<span>in</span>
-
-									<input type="text" class="form-control mt15 mb15" placeholder="Location">
-
-									<input type="submit" class="btn btn-default" value="Search">
-								</div>
-							</div>
-
 							<div class="widget sidebar-widget jobs-filter-widget">
 								<h5 class="widget-title">Filter Results</h5>
 
 								<div class="widget-content">
-									<h6>By Region</h6>
 
-									<div>
-										<ul class="filter-list">
-											<li>
-												<a href="#">Asia <span>(1234)</span></a>
-												<ul>
-													<li>
-														<a href="#">Asia <span>(1234)</span></a>
-														<ul>
-															<li><a href="#">Asia <span>(1234)</span></a></li>
-															<li><a href="#">Africa <span>(5678)</span></a></li>
-															<li><a href="#">Europe <span>(910)</span></a></li>
-															<li><a href="#">North America <span>(347)</span></a></li>
-															<li><a href="#">Central America <span>(52)</span></a></li>
-															<li><a href="#">South America <span>(117)</span></a></li>
-															<li><a href="#">Oceania <span>(736)</span></a></li>
-														</ul>
-													</li>
-													<li><a href="#">Africa <span>(5678)</span></a></li>
-													<li><a href="#">Europe <span>(910)</span></a></li>
-													<li><a href="#">North America <span>(347)</span></a></li>
-													<li><a href="#">Central America <span>(52)</span></a></li>
-													<li><a href="#">South America <span>(117)</span></a></li>
-													<li><a href="#">Oceania <span>(736)</span></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Africa <span>(5678)</span></a></li>
-											<li><a href="#">Europe <span>(910)</span></a></li>
-											<li><a href="#">North America <span>(347)</span></a></li>
-											<li><a href="#">Central America <span>(52)</span></a></li>
-											<li><a href="#">South America <span>(117)</span></a></li>
-											<li><a href="#">Oceania <span>(736)</span></a></li>
-										</ul>
-
-										<a href="#" class="toggle"></a>
-									</div>
-
-									<h6>By Industry</h6>
+    								<h6>By Industry</h6>
 
 									<div>
 										<ul class="filter-list">
@@ -142,30 +85,21 @@
 						<div class="clearfix visible-xs"></div>
 						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
-						<span class="meta">Envato, Sydney, AU</span>
+						<span class="meta">Prishtine, Kosove</span><br>
+                        <span class="meta"></span>
 
 						<ul class="top-btns">
-							<li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
+							<li>Space left: {{ training['space']}}</li>
 							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-link"></a></li>
 						</ul>
 
-						<p class="description">{{training['description']}} <a href="#" class="read-more">Read More</a></p>
+						<p class="description"> <a href="#" class="read-more">Read More</a></p>
 
 						<div class="content">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
-
+							<p>{{training['description']}}</p>
 							<h5>Required Skills</h5>
-                                <ul class="clearfix">
-								<li>Development</li>
-								<li>UI/UX</li>
-								<li>MBA</li>
-								<li>Magento Certified</li>
-								<li>Perfect Written &amp; Spoken English</li>
-								<li>UI/UX</li>
-								<li>Perfect Written &amp; Spoken English</li>
-                                <li>Development</li><li>Development</li>
-							</ul>
+                            <p>{{training['requirements']}}</p>
 
 
 

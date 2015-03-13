@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, DateField, TextAreaField
+from wtforms import StringField, DateField, TextAreaField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, Length, EqualTo
 
 class CreateJob(Form):
@@ -13,13 +13,29 @@ class CreateJob(Form):
         'location',
         validators=[DataRequired(), Length(max=40)])
 
+    short_description = TextAreaField(
+        'Short description.',
+        validators=[DataRequired(), Length(min=100, max=300)])
+
     description = TextAreaField(
-        'description',
-        validators=[DataRequired(), Length(max=500)])
+        'Description',
+        validators=[DataRequired(), Length(min=300, max=500)])
 
     requirements = TextAreaField(
         'requirements',
         validators=[DataRequired(), Length(max=500)])
+
+    target_group = SelectMultipleField(
+        'Target Group!',
+        choices=[
+            ('students', 'Students'),
+            ('employees', 'Employees'),
+            ('delemployees', 'Deloitte Employees'),
+            ('nondelemployees', 'Non Deloitte Employees')
+        ],
+        option_widget=widgets.CheckboxInput(),
+        widget=widgets.ListWidget(prefix_label=False)
+        )
 
     def validate(self):
         initial_validation = super(CreateJob, self).validate()

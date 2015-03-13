@@ -30,44 +30,6 @@
 								<h5 class="widget-title">Filter Results</h5>
 
 								<div class="widget-content">
-									<h6>By Region</h6>
-
-									<div>
-										<ul class="filter-list">
-											<li>
-												<a href="#">Asia <span>(1234)</span></a>
-												<ul>
-													<li>
-														<a href="#">Asia <span>(1234)</span></a>
-														<ul>
-															<li><a href="#">Asia <span>(1234)</span></a></li>
-															<li><a href="#">Africa <span>(5678)</span></a></li>
-															<li><a href="#">Europe <span>(910)</span></a></li>
-															<li><a href="#">North America <span>(347)</span></a></li>
-															<li><a href="#">Central America <span>(52)</span></a></li>
-															<li><a href="#">South America <span>(117)</span></a></li>
-															<li><a href="#">Oceania <span>(736)</span></a></li>
-														</ul>
-													</li>
-													<li><a href="#">Africa <span>(5678)</span></a></li>
-													<li><a href="#">Europe <span>(910)</span></a></li>
-													<li><a href="#">North America <span>(347)</span></a></li>
-													<li><a href="#">Central America <span>(52)</span></a></li>
-													<li><a href="#">South America <span>(117)</span></a></li>
-													<li><a href="#">Oceania <span>(736)</span></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Africa <span>(5678)</span></a></li>
-											<li><a href="#">Europe <span>(910)</span></a></li>
-											<li><a href="#">North America <span>(347)</span></a></li>
-											<li><a href="#">Central America <span>(52)</span></a></li>
-											<li><a href="#">South America <span>(117)</span></a></li>
-											<li><a href="#">Oceania <span>(736)</span></a></li>
-										</ul>
-
-										<a href="#" class="toggle"></a>
-									</div>
-
 									<h6>By Industry</h6>
 
 									<div>
@@ -111,32 +73,22 @@
 						<div class="clearfix visible-xs"></div>
 						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
-						<span class="meta">Envato, Sydney, AU</span>
+						<span class="meta">Prishtine, Kosove</span>
 
 
-						<p class="description">{{training['description']}}</p>
+						<p class="description"></p>
 
 						<div class="training-content">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
+							<p>{{training['description']}}</p>
 
 							<h5>Required Skills</h5>
                             <ul>
-                                <li>Work Permit</li>
+                                {{training['requirements']}}
 								<li>Web Design</li>
 								<li>Development</li>
 								<li>Magento Certified</li>
 								<li>UI/UX</li>
                             </ul>
-
-							<h5>Additional Requirements</h5>
-
-							<ul class="aditional-requirements">
-								<li>Work Permit</li>
-								<li>5 Years Experience</li>
-								<li>MBA</li>
-								<li>Magento Certified</li>
-								<li>Perfect Written &amp; Spoken English</li>
-							</ul>
 
 							<hr>
 
