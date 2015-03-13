@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, DateField, TextAreaField
+from wtforms import StringField, DateField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Length
 
 
@@ -16,9 +16,9 @@ class RegisterTraining(Form):
         'endDate', format="%Y-%m-%d",
         validators=[DataRequired()])
 
-    space = StringField(
+    space = IntegerField(
         'space',
-        validators=[DataRequired(), Length(max=40)])
+        validators=[DataRequired()])
 
     instructorName = StringField(
         'instructorName',

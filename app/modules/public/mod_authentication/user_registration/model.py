@@ -19,6 +19,7 @@ class User(db.Document, UserMixin):
     address1 = db.StringField()
     address2 = db.StringField()
     expected_salary = db.StringField()
+    trainings = db.StringField()
 
 
     def is_authenticated(self):

@@ -3,8 +3,7 @@ from logging.handlers import RotatingFileHandler
 import os
 from flask import Flask
 from flask.ext.security import Security, MongoEngineUserDatastore
-from flask.ext.mongoengine import MongoEngine, MongoEngineSessionInterface, DoesNotExist
-from flask_mail import Mail
+from flask.ext.mongoengine import MongoEngine, DoesNotExist
 from flask.ext.login import LoginManager
 
 # Create the Flask app.
@@ -28,14 +27,11 @@ def create_app():
     # Load application configurations
     load_config(app)
 
-
-
     # Configure logging.
     configure_logging(app)
 
     # Instantiate MongoEngine instance
     db.init_app(app)
-
 
     # Create role "User" and "Admin"
     # Create the "admin" user with "admin" password
