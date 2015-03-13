@@ -183,7 +183,7 @@
 					<div class="jobs-item with-thumb">
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-00.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
-						<div class="date">27 <span>Jun</span></div>
+						<div class="date">{{ job['date'].strftime('%d') }}<span>{{job['date'].strftime('%d')}}</span></div>
 						<h6 class="title"><a href="/job/{{job.id}}">{{job['title']}}</a></h6>
 						<span class="meta">Envato, Sydney, AU</span>
 
@@ -199,37 +199,21 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
 
 							<h5>Required Skills</h5>
+                                <ul class="clearfix">
+								<li>Development</li>
+								<li>UI/UX</li>
+								<li>MBA</li>
+								<li>Magento Certified</li>
+								<li>Perfect Written &amp; Spoken English</li>
+								<li>UI/UX</li>
+								<li>Perfect Written &amp; Spoken English</li>
+							</ul>
 
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">Web Design</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
 
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">Development</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
-
-							<div class="progress-bar toggle" data-progress="60">
-								<a href="#" class="progress-bar-toggle"></a>
-								<h6 class="progress-bar-title">UI/UX</h6>
-								<div class="progress-bar-inner"><span></span></div>
-								<div class="progress-bar-content">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-								</div>
-							</div>
 
 							<h5>Additional Requirements</h5>
 
-							<ul class="additional-requirements clearfix">
+							<ul class="clearfix">
 								<li>Work Permit</li>
 								<li>5 Years Experience</li>
 								<li>MBA</li>

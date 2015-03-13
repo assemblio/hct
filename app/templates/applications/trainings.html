@@ -137,7 +137,7 @@
 					</div>
 
 					{% for training in trainings %}
-					<div class="jobs-item with-thumb">
+					<div class="training-item with-thumb">
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
 						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
