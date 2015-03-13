@@ -123,23 +123,6 @@
 									<div class="radio"><label><input type="radio"> Full-Time</label></div>
 									<div class="radio"><label><input type="radio"> Part-Time</label></div>
 									<div class="radio"><label><input type="radio"> Freelance</label></div>
-
-									<h6>Date Posted</h6>
-
-									<div class="range-slider clearfix">
-										<div class="slider" data-min="1" data-max="60"></div>
-										<div class="first-value"><span>1</span> days</div>
-										<div class="last-value"><span>60</span> days</div>
-									</div>
-
-									<h6>Salary Range</h6>
-
-									<div class="range-slider clearfix">
-										<div class="slider" data-min="1" data-max="100000"></div>
-										<div class="first-value">$ <span>1</span></div>
-										<div class="last-value">$ <span>100000</span></div>
-									</div>
-
 									<input type="submit" class="btn btn-default mt30" value="Filter">
 								</div>
 							</div>
@@ -181,20 +164,24 @@
 					</div>
                     {% for job in jobs %}
 					<div class="jobs-item with-thumb">
+
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-00.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
-						<div class="date">{{ job['date'].strftime('%d') }}<span>{{job['date'].strftime('%d')}}</span></div>
+						<div class="date">{{job['date'].strftime('%d')}}<span>{{job['date'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="/job/{{job.id}}">{{job['title']}}</a></h6>
 						<span class="meta">Envato, Sydney, AU</span>
+                        <div><a href="#" class="btn btn-gray pull-right ">Applied</a></div>
+
+
 
 						<ul class="top-btns">
 							<li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-link"></a></li>
+
 						</ul>
 
 						<p class="description">{{job['description']}}<a href="#" class="read-more">Read More</a></p>
-
 						<div class="content">
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
 
