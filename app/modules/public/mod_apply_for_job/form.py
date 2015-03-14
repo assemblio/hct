@@ -37,6 +37,21 @@ class CreateJob(Form):
         widget=widgets.ListWidget(prefix_label=False)
         )
 
+    industry = SelectMultipleField(
+        'Industry!',
+        choices=[
+            ('administration', 'Administration'),
+            ('manufactoring', 'Manufactoring'),
+            ('healthcare', 'Healthcare'),
+            ('it', 'IT'),
+            ('marketing', 'Marketing'),
+            ('transportation', 'Transportation')
+        ],
+        option_widget=widgets.CheckboxInput(),
+        widget=widgets.ListWidget(prefix_label=False)
+        )
+
+
     def validate(self):
         initial_validation = super(CreateJob, self).validate()
         if not initial_validation:

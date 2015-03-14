@@ -25,25 +25,51 @@ def index():
         phone_work=form.phone_work.data,
         expected_salary=form.expected_salary.data
     )
-    try:
-        form.email.data == User.objects.get(email=form.email.data)
-    except DoesNotExist:
-        user.save()
-        default_role = user_datastore.find_role('User')
-        user_datastore.add_role_to_user(user, default_role)
-        login_user(user)
-        return render_template('home/welcome.html', form=form)
+    if form.validate_on_submit():
+        try:
+            form.email.data == User.objects.get(email=form.email.data)
+        except DoesNotExist:
+            user.save()
+            default_role = user_datastore.find_role('User')
+            user_datastore.add_role_to_user(user, default_role)
+            login_user(user)
+            return render_template('home/welcome.html', form=form)
+
+    return render_template('home/register.html', form=form)
+
+@mod_authentication.route('/registerheader', methods=['GET', 'POST'])
+def register_header():
+    form = RegisterForm(request.form)
+    next_url = request.form['next-on-register'].data
+    user = User(
+        name=form['name'].data,
+        username=form['username'].data,
+        email=form['email'].data,
+        password=form['password'].data
+    )
+    if request.method == "POST":
+        try:
+            form['email'].data == User.objects.get(email=form['email'].data)
+        except DoesNotExist:
+            user.save()
+            default_role = user_datastore.find_role('User')
+            user_datastore.add_role_to_user(user, default_role)
+            login_user(user)
+            return redirect(url_for(next_url))
 
     return render_template('home/register.html', form=form)
 
 @mod_authentication.route('/login', methods=['GET', 'POST'])
 def login():
+
     form = LoginForm(request.form)
+    next_url = request.form['next-on-login'].data
+    print next_url
     if form.validate_on_submit():
         user = User.objects.get(email=form.email.data, password=form.password.data)
         if user['email'] == form.email.data and user['password'] == form.password.data:
             login_user(user)
-            return redirect(url_for('mod_home.index'))
+            return redirect(url_for(next_url))
         else:
             return render_template('home/login.html', form=form)
     return render_template('home/login.html', form=form)
@@ -57,12 +83,15 @@ def logout():
 @mod_authentication.route('/loginheader', methods=['POST','GET'])
 def login_header():
     form = LoginForm(request.form)
+    next_url = request.form['next-on-login']
     if request.method == 'POST':
         user = User.objects.get(email=form.email.data)
         if user['email'] == form.email.data and user['password'] == form.password.data:
             login_user(user)
-            return redirect(url_for('mod_home.index'))
+            flash('Welcome.', 'success')
+            return redirect(url_for(next_url))
         else:
+            flash('Invalid email and/or password.', 'danger')
             return render_template('home/login.html')
 
-    return render_template('home/login.html', form=form, next=next)
+    return render_template('home/login.html', form=form)

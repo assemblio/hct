@@ -23,6 +23,7 @@ var LG_MD = window.matchMedia('(min-width:992px)');
 
 
 
+
 // Touch
 var dragging = false;
 
@@ -884,12 +885,12 @@ if ($.fn.flexslider && $('.compare-price-slider').length > 0) {
 }
 
 
-
 $(window).load(function () {
 
 	// Add body loaded class for fade transition
 	addClassWhenLoaded();
 	clearTimeout(pageLoaded);
+
 
 });
 

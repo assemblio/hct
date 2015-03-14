@@ -1,148 +1,177 @@
 {% extends "base/costum_layout.html" %}
 {% block body %}
-	<div id="page-content">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 page-sidebar">
-					<aside>
-						<div class="white-container mb0">
-							<div class="widget sidebar-widget jobs-filter-widget">
-								<h5 class="widget-title">Filter Results</h5>
+<div id="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 page-sidebar">
+                <aside>
+                    <div class="white-container mb0">
+                        <div class="widget sidebar-widget jobs-filter-widget">
+                            <h5 class="widget-title">Filter Results</h5>
 
-								<div class="widget-content">
+                            <div class="widget-content">
 
-    								<h6>By Industry</h6>
+                                <h6>By Industry</h6>
 
-									<div>
-										<ul class="filter-list">
-											<li><a href="#">Administration <span>(75)</span></a></li>
-											<li><a href="#">Manufactoring <span>(3741)</span></a></li>
-											<li><a href="#">Healthcare &amp; Science <span>(115)</span></a></li>
-											<li><a href="#">Media &amp; Creative <span>(347)</span></a></li>
-											<li><a href="#">Transportation <span>(52)</span></a></li>
-										</ul>
+                                <div>
+                                    <ul class="filter-list">
+                                        <li><a href="#">Administration <span>(75)</span></a></li>
+                                        <li><a href="#">Manufactoring <span>(3741)</span></a></li>
+                                        <li><a href="#">Healthcare &amp; Science <span>(115)</span></a></li>
+                                        <li><a href="#">Media &amp; Creative <span>(347)</span></a></li>
+                                        <li><a href="#">Transportation <span>(52)</span></a></li>
+                                    </ul>
 
-										<a href="#" class="toggle"></a>
-									</div>
+                                    <a href="#" class="toggle"></a>
+                                </div>
 
-									<h6>By Type</h6>
+                                <h6>By Type</h6>
 
-									<div>
-										<ul class="filter-list">
-											<li><a href="#">Banking/Finance <span>(300)</span></a></li>
-											<li><a href="#">Administration <span>(758)</span></a></li>
-											<li><a href="#">Art/Design/Creative <span>(20)</span></a></li>
-											<li><a href="#">Customer Service <span>(165)</span></a></li>
-											<li><a href="#">Education/Training <span>(11)</span></a></li>
-											<li><a href="#">Banking/Finance <span>(9)</span></a></li>
-										</ul>
+                                <div>
+                                    <ul class="filter-list">
+                                        <li><a href="#">Banking/Finance <span>(300)</span></a></li>
+                                        <li><a href="#">Administration <span>(758)</span></a></li>
+                                        <li><a href="#">Art/Design/Creative <span>(20)</span></a></li>
+                                        <li><a href="#">Customer Service <span>(165)</span></a></li>
+                                        <li><a href="#">Education/Training <span>(11)</span></a></li>
+                                        <li><a href="#">Banking/Finance <span>(9)</span></a></li>
+                                    </ul>
 
-										<a href="#" class="toggle"></a>
-									</div>
+                                    <a href="#" class="toggle"></a>
+                                </div>
 
-									<input type="submit" class="btn btn-default mt30" value="Filter">
-								</div>
-							</div>
-						</div>
-					</aside>
-				</div> <!-- end .page-sidebar -->
+                                <input type="submit" class="btn btn-default mt30" value="Filter">
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div> <!-- end .page-sidebar -->
 
-				<div class="col-sm-8 page-content">
-					
-					<div class="title-lines">
-						<h3 class="mt0">Trainings</h3>
-					</div>
+            <div class="col-sm-8 page-content">
 
-					<div class="clearfix mb30">
-						<ul class="jobs-view-toggle pull-left">
-							<li><a href="#" data-layout="with-thumb" class="btn btn-gray fa fa-th-list active"></a></li>
-							<li><a href="#" data-layout="" class="btn btn-gray fa fa-list"></a></li>
-							<li><a href="#" data-layout="compact" class="btn btn-gray fa fa-align-justify"></a></li>
-						</ul>
+                <div class="title-lines">
+                    <h3 class="mt0">Trainings</h3>
+                </div>
 
-						<select class="form-control pull-left">
-							<option value="">Sort By</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-						</select>
+                <div class="clearfix mb30">
+                    <ul class="jobs-view-toggle pull-left">
+                        <li><a href="#" data-layout="with-thumb" class="btn btn-gray fa fa-th-list active"></a></li>
+                        <li><a href="#" data-layout="" class="btn btn-gray fa fa-list"></a></li>
+                        <li><a href="#" data-layout="compact" class="btn btn-gray fa fa-align-justify"></a></li>
+                    </ul>
 
-						<ul class="pagination pull-right">
-							<li><a href="#" class="fa fa-angle-left"></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" class="fa fa-angle-right"></a></li>
-						</ul>
-					</div>
+                    <select class="form-control pull-left">
+                        <option value="">Sort By</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                    </select>
 
-					{% for training in trainings %}
-					<div class="jobs-item with-thumb">
-						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
-						<div class="clearfix visible-xs"></div>
-						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
-						<h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
-						<span class="meta">Prishtine, Kosove</span><br>
-                        <span class="meta"></span>
+                    <ul class="pagination pull-right">
+                        <li><a href="#" class="fa fa-angle-left"></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" class="fa fa-angle-right"></a></li>
+                    </ul>
+                </div>
 
-						<ul class="top-btns">
-							<li>Space left: {{ training['space']}}</li>
-							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
-							<li><a href="#" class="btn btn-gray fa fa-link"></a></li>
-						</ul>
+                {% for training in trainings %}
+                <div class="jobs-item with-thumb">
+                    <div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
+                    <div class="clearfix visible-xs"></div>
+                    <div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
+                    <h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
+                    <span class="meta">Prishtine, Kosove</span><br>
+                    <div class="apply">
+                        {% if current_user.is_authenticated() %}
+                            {% if training['participants'] and current_user.id in training['participants'] %}
+                            <a href="#" class="btn btn-gray pull-right ">Applied</a>
+                            {% else %}
+                            <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
+                            {% endif %}
+                        {% else %}
+                        <a name='login' class='login demo btn btn-default pull-right'/>Apply</a>
+                        {% endif %}
+                    </div>
 
-						<p class="description"> <a href="#" class="read-more">Read More</a></p>
+                    <ul class="top-btns">
+                        <li>Space left: {{ training['space']}}</li>
+                        <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
+                        <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
+                    </ul>
 
-						<div class="content">
-							<p>{{training['description']}}</p>
-							<h5>Required Skills</h5>
-                            <p>{{training['requirements']}}</p>
+                    <p class="description"> <a href="#" class="read-more">Read More</a></p>
 
+                    <div class="content">
+                        <p>{{training['description']}}</p>
+                        <h5>Required Skills</h5>
+                        <p>{{training['requirements']}}</p>
+                        <h5>Additional Requirements</h5>
+                        <hr>
 
+                        <div class="clearfix">
 
-							<h5>Additional Requirements</h5>
+                            <ul class="social-icons pull-right">
+                                <li><span>Share</span></li>
+                                <li><a href="#" class="btn btn-gray fa fa-facebook"></a></li>
+                                <li><a href="#" class="btn btn-gray fa fa-twitter"></a></li>
+                                <li><a href="#" class="btn btn-gray fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
 
-							<ul class="additional-requirements clearfix">
-								<li>Work Permit</li>
-								<li>5 Years Experience</li>
-								<li>MBA</li>
-								<li>Magento Certified</li>
-								<li>Perfect Written &amp; Spoken English</li>
-							</ul>
+                <div id="login-modal-content">
+                    <div id="login-modal-title">Register</div>
+                    <div class="close"><a href="#" class="login-close">x</a></div>
+                    <div id="login-modal-data">
 
-							<hr>
+                        <section class="col-md-5">
+                            <h4>Login!  or </h4>
+                            <form action="{{config.BASE_PATH}}/auth/loginheader" method="POST" name="login_user_form">
+                                <input class="form-control" id="email" name="email" type="text" value="" placeholder="Email">
+                                <input class="form-control" id="password" name="password" type="password"  value="" placeholder="Password">
+                                <input id="next-on-login" name="next-on-login" type="hidden" value="{{endpoint}}">
+                                <input type="submit" class="btn btn-default" value="Login">
+                                <a href="#" class="btn btn-link">Forgot Password?</a>
+                            </form>
+                        </section>
 
-							<div class="clearfix">
-								<a href="#" class="btn btn-default pull-left">Apply for this Job</a>
+                        <section class="col-md-5">
+                            <h4>Please, register first!</h4>
+                            <form action="{{config.BASE_PATH}}/auth/registerheader" class="form-register" role="form" method="post" name="register_user_form">
+                                <input type="name" name="name" class="form-control"  value="" placeholder="Name">
+                                <input type="username" name="username" class="form-control"  value="" placeholder="Username">
+                                <input type="email" name="email" class="form-control" value=""  placeholder="Email">
+                                <input type="password" name="password" class="form-control" value=""  placeholder="Password">
+                                <input type="hidden" name="next-on-register" id="next-on-register" value="{{endpoint}}">
+                                <input type="submit" class="btn btn-default" value="Register">
+                            </form>
+                        </section>
 
-								<ul class="social-icons pull-right">
-									<li><span>Share</span></li>
-									<li><a href="#" class="btn btn-gray fa fa-facebook"></a></li>
-									<li><a href="#" class="btn btn-gray fa fa-twitter"></a></li>
-									<li><a href="#" class="btn btn-gray fa fa-google-plus"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
+                        <button class="login-close">Close</button>
+                    </div>
+                </div>
 
-					<div class="clearfix">
-						<ul class="pagination pull-right">
-							<li><a href="#" class="fa fa-angle-left"></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#" class="fa fa-angle-right"></a></li>
-						</ul>
-					</div>
-				</div> <!-- end .page-content -->
-			</div>
-		</div> <!-- end .container -->
-	</div> <!-- end #page-content -->
+                <div class="clearfix">
+                    <ul class="pagination pull-right">
+                        <li><a href="#" class="fa fa-angle-left"></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#" class="fa fa-angle-right"></a></li>
+                    </ul>
+                </div>
+            </div> <!-- end .page-content -->
+        </div>
+    </div> <!-- end .container -->
+</div> <!-- end #page-content -->
 
-	{% endblock %}
+{% endblock %}

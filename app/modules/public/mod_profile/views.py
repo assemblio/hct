@@ -13,14 +13,15 @@ mod_profile = Blueprint('mod_profile', __name__)
 def profile():
     jobs_applied = current_user['jobs_applied']
     show_jobs = []
-    for job in jobs_applied:
-        show_jobs.append(Job.objects.get(id=job))
-
+    if jobs_applied:
+        for job in jobs_applied:
+            show_jobs.append(Job.objects.get(id=job))
 
     trainings = current_user['trainings']
     show_trainings = []
-    for training in trainings:
-        show_trainings.append(Training.objects.get(id=training))
+    if trainings:
+        for training in trainings:
+            show_trainings.append(Training.objects.get(id=training))
     return render_template('profile/index.html', current_user=current_user, show_jobs=show_jobs, show_trainings= show_trainings)
 
 

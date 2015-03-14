@@ -30,8 +30,7 @@ def apply_for_job(job_id):
     if not ObjectId(current_user.id) in job['applicants']:
         Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
         User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
-        return "Succesfully applied for this job."
-    return "You already applied for this job."
+        return redirect('/jobs')
 
 @mod_apply_for_job.route('/create-job', methods=['GET', 'POST'])
 @login_required

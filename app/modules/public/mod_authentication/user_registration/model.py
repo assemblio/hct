@@ -4,6 +4,7 @@ from flask.ext.security import UserMixin, RoleMixin
 class Role(db.Document, RoleMixin):
     name = db.StringField(max_length=80, unique=True)
     description = db.StringField(max_length=255)
+    next = db.StringField()
 
 class User(db.Document, UserMixin):
     username = db.StringField(max_length=255)
@@ -21,6 +22,7 @@ class User(db.Document, UserMixin):
     expected_salary = db.StringField()
     trainings = db.StringField()
     jobs_applied = db.StringField()
+    next = db.StringField()
 
 
     def is_authenticated(self):

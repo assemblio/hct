@@ -99,6 +99,21 @@
                                             </span>
 									</div>
 								</div>
+
+                                <h6 class="label">Industry</h6>
+                                <div class="row">
+									<div class="col-sm-8">
+										{{ form.industry }}
+                                        <span class="error">
+                                              {% if form.industry.errors %}
+                                                {% for error in form.industry.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
                                 <h6 class="label">Target group</h6>
                                 <div class="row">
 									<div class="col-sm-8">
@@ -112,6 +127,7 @@
                                             </span>
 									</div>
 								</div>
+
                             <div class="clearfix">
 										<button class="btn btn-default btn-large pull-left" type="submit">Post Job</button>
 									</div>

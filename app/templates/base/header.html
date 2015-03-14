@@ -1,110 +1,111 @@
 <header id="header" class="header-style-1">
-		<div class="header-top-bar">
-			<div class="container">
+    <div class="header-top-bar">
+        <div class="container">
 
-				<!-- Header Language -->
-				<div class="header-language clearfix">
-					<ul>
-						<li class="active"><a href="#">En</a></li>
-						<li><a href="#">Al</a></li>
-					</ul>
-				</div> <!-- end .header-language -->
+            <!-- Header Language -->
+            <div class="header-language clearfix">
+                <ul>
+                    <li class="active"><a href="#">En</a></li>
+                    <li><a href="#">Al</a></li>
+                </ul>
+            </div> <!-- end .header-language -->
 
-				<!-- Bookmarks -->
+            <!-- Bookmarks -->
 
-                {% if current_user.is_authenticated() %}
-                    <span class="pull-right">
-                        <a href="/logout" class="btn btn-link bookmarks">Logout</a>
-                        <a href="/profile" class="btn btn-link bookmarks">My profile</a>
-                    </span>
-                {% else %}
-                    <!-- Header Register -->
-                    <div class="header-register">
-                        <a href="#" class="btn btn-link" name="register_user_form">Register</a>
-                        <div>
-                            <form action="http://0.0.0.0:5000/auth/registerheader" method="POST">
-                                <input type="text" class="form-control" placeholder="Username">
-                                <input type="email" class="form-control" placeholder="Email">
-                                <input type="password" class="form-control" placeholder="Password">
-                                <input type="submit" class="btn btn-default" value="Register">
-                            </form>
+            {% if current_user.is_authenticated() %}
+                <span class="pull-right">
+                    <span class="btn btn-link bookmarks">Hi {{ current_user.name }}!</span>
+                <a href="/logout" class="btn btn-link bookmarks">Logout</a>
+
+                <a href="/profile" class="btn btn-link bookmarks">My profile</a>
+                </span>
+            {% else %}
+            <!-- Header Register -->
+            <div class="header-register">
+                <a href="#" class="btn btn-link" name="register_user_form">Register</a>
+                <div>
+                    <form action="{{config.BASE_PATH}}/auth/registerheader" method="POST">
+                        <input type="name" name="name" class="form-control"  value="" placeholder="Name">
+                        <input type="username" name="username" class="form-control"  value="" placeholder="Username">
+                        <input type="email" name="email" class="form-control" value=""  placeholder="Email">
+                        <input type="password" name="password" class="form-control" value=""  placeholder="Password">
+                        <input type="hidden" name="next-on-register" id="next-on-register" value="{{endpoint}}">
+                        <input type="submit" class="btn btn-default" value="Register">
+                    </form>
+                </div>
+            </div> <!-- end .header-register -->
+
+            <!-- Header Login -->
+            <div class="header-login">
+                <a href="#" class="btn btn-link">Login</a>
+                <div>
+                    <form action="{{config.BASE_PATH}}/auth/loginheader" method="POST" name="login_user_form">
+                        {% if current_user.is_authenticated() %}
+                        {{ form.csrf_token }}
+                        {% else %}
+
+                        {% endif %}
+                        <input class="form-control" id="email" name="email" type="text" value="" placeholder="Email">
+                        <input class="form-control" id="password" name="password" type="password"  value="" placeholder="Password">
+                        <input type="hidden" name="next-on-login" value="{{request.endpoint}}">
+                        <input type="submit" class="btn btn-default" value="Login">
+                        <a href="#" class="btn btn-link">Forgot Password?</a>
+                    </form>
+                </div>
+            </div>
+            <!-- end .header-login -->
+
+            {% endif %}
+
+
+        </div> <!-- end .container -->
+    </div> <!-- end .header-top-bar -->
+
+    {% include "base/navigation.html" %}
+    {% if request.endpoint =='mod_home.index' %}
+    <div class="header-search-bar">
+
+        <div class="container">
+
+            <form>
+                <div class="basic-form">
+
+                    <div class="iamalookingfor">
+                        <div class="col-md-3">
+                            <p class="pull-right">I am a..</p>
                         </div>
-                    </div> <!-- end .header-register -->
+                        <div class="col-md-3">
 
-                    <!-- Header Login -->
-                    <div class="header-login">
-                        <a href="#" class="btn btn-link">Login</a>
-                        <div>
-                            <form action="http://0.0.0.0:5000/auth/loginheader" method="POST" name="login_user_form">
-                                {% if current_user.is_authenticated() %}
-                                    {{ form.csrf_token }}
-                                {% else %}
+                            <select class="form-control">
+                                <option value="student">Student</option>
+                                <option value="employer">Employer</option>
+                                <option value="employee">Employee</option>
+                                <option value="demployeer">Deloitte Employeer</option>
+                                <option value="demployee">Deloitte Employee</option>
+                            </select>
+                        </div>
 
-                                {% endif %}
-                                <input class="form-control" id="email" name="email" type="text" value="" placeholder="Email">
-                                <input class="form-control" id="password" name="password" type="password"  value="" placeholder="Password">
-                                <input id="next" name="next" type="hidden" value="">
-                                <input type="submit" class="btn btn-default" value="Login">
-                                <a href="#" class="btn btn-link">Forgot Password?</a>
-                            </form>
+                        <div class="col-md-3">
+                            <select class="form-control">
+                                <option value="0">Job Opportunity</option>
+                                <option value="">Training</option>
+                                <option value="">Deloitte Job Opportunity</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-default btn-block" value="Search">
                         </div>
                     </div>
-                    <!-- end .header-login -->
 
-                {% endif %}
+                </div>
+            </form>
 
+        </div>
 
-			</div> <!-- end .container -->
-		</div> <!-- end .header-top-bar -->
-
-		{% include "base/navigation.html" %}
-{% if request.endpoint =='mod_home.index' %}
-		<div class="header-search-bar">
-
-			<div class="container">
-
-				    <form>
-                        <div class="basic-form">
-
-                            <div class="iamalookingfor">
-                                <div class="col-md-3">
-                                    <p class="pull-right">I am a..</p>
-                                </div>
-                                <div class="col-md-3">
-
-                                        <select class="form-control">
-                                            <option value="student">Student</option>
-                                            <option value="employer">Employer</option>
-                                            <option value="employee">Employee</option>
-                                            <option value="demployeer">Deloitte Employeer</option>
-                                            <option value="demployee">Deloitte Employee</option>
-                                        </select>
-                                </div>
-
-                                <div class="col-md-3">
-                                        <select class="form-control">
-                                            <option value="0">Job Opportunity</option>
-                                            <option value="">Training</option>
-                                            <option value="">Deloitte Job Opportunity</option>
-                                        </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="submit" class="btn btn-default btn-block" value="Search">
-                                </div>
-                            </div>
-
-                        </div>
-				    </form>
-
-			</div>
-
-		</div> <!-- end .header-search-bar -->
+    </div> <!-- end .header-search-bar -->
     {% endif %}
-		<div class="header-banner">
-			<div class="container">
-                {% if request.endpoint =='mod_home.index' %}
-                {% include "base/header_banner.html" %}
-                {% endif %}
-			</div>
-		</div> <!-- end .header-banner -->
-	</header> <!-- end #header -->
+
+    {% if request.endpoint =='mod_home.index' %}
+        {% include "base/header_banner.html" %}
+    {% endif %}
+</header> <!-- end #header -->

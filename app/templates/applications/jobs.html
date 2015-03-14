@@ -103,10 +103,10 @@
 						<h6 class="title"><a href="/job/{{job.id}}">{{job['title']}}</a></h6>
 						<span class="meta">{{job['location']}}, Kosove</span>
                         <div class="apply">
-                            {% if current_user.id in job['applicants'] %}
+                            {% if job['applicants'] and current_user.id in job['applicants'] %}
                             <a href="#" class="btn btn-gray pull-right ">Applied</a>
                             {% else %}
-                            <a href="/job/apply/{{job.id}}" class="btn btn-default pull-left">Apply for this Job</a>
+                            <a href="/job/apply/{{job.id}}" class="btn btn-default pull-right">Apply for this Job</a>
                             {% endif %}
                         </div>
 

@@ -9,4 +9,5 @@ class Job(db.Document):
     requirements = db.StringField()
     applicants = db.StringField()
     target_group = db.StringField()
+    industry = db.StringField()
 
