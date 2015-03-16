@@ -90,7 +90,7 @@
                         {% if current_user.is_authenticated() %}
                             {% if training['participants'] and current_user.id in training['participants'] %}
                             <a href="#" class="btn btn-gray pull-right ">Applied</a>
-                            {% else %}
+                            {% elif training['space'] != 0 %}
                             <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
                             {% endif %}
                         {% else %}
@@ -99,7 +99,11 @@
                     </div>
 
                     <ul class="top-btns">
+                        {% if training['space'] == 0 %}
+                           <li> No more space! </li>
+                        {% else %}
                         <li>Space left: {{ training['space']}}</li>
+                        {% endif %}
                         <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
                         <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
                     </ul>

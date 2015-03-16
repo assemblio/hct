@@ -55,7 +55,7 @@ def register_header():
             default_role = user_datastore.find_role('User')
             user_datastore.add_role_to_user(user, default_role)
             login_user(user)
-            return redirect(url_for(next_url))
+            return redirect(next_url)
 
     return render_template('home/register.html', form=form)
 
@@ -69,7 +69,7 @@ def login():
         user = User.objects.get(email=form.email.data, password=form.password.data)
         if user['email'] == form.email.data and user['password'] == form.password.data:
             login_user(user)
-            return redirect(url_for(next_url))
+            return redirect(next_url)
         else:
             return render_template('home/login.html', form=form)
     return render_template('home/login.html', form=form)
@@ -89,7 +89,7 @@ def login_header():
         if user['email'] == form.email.data and user['password'] == form.password.data:
             login_user(user)
             flash('Welcome.', 'success')
-            return redirect(url_for(next_url))
+            return redirect(next_url)
         else:
             flash('Invalid email and/or password.', 'danger')
             return render_template('home/login.html')
