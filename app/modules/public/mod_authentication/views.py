@@ -40,7 +40,7 @@ def index():
 @mod_authentication.route('/registerheader', methods=['GET', 'POST'])
 def register_header():
     form = RegisterForm(request.form)
-    next_url = request.form['next-on-register'].data
+    next_url = request.form['next-on-register']
     user = User(
         name=form['name'].data,
         username=form['username'].data,
@@ -63,7 +63,7 @@ def register_header():
 def login():
 
     form = LoginForm(request.form)
-    next_url = request.form['next-on-login'].data
+    next_url = request.form['next-on-login']
     print next_url
     if form.validate_on_submit():
         user = User.objects.get(email=form.email.data, password=form.password.data)
