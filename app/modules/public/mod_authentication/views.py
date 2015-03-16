@@ -6,7 +6,12 @@ from mongoengine import DoesNotExist
 from app import user_datastore
 
 # Define the blueprint:
-mod_authentication = Blueprint('mod_authentication', __name__, url_prefix="/auth")
+mod_authentication = Blueprint(
+    'mod_authentication',
+    __name__,
+    url_prefix="/auth"
+)
+
 
 # Set the route and accepted methods
 @mod_authentication.route('/register', methods=['GET', 'POST'])
@@ -51,6 +56,7 @@ def index():
 
     return render_template('home/register.html', form=form)
 
+
 @mod_authentication.route('/registerheader', methods=['GET', 'POST'])
 def register_header():
     form = RegisterForm(request.form)
@@ -73,6 +79,7 @@ def register_header():
 
     return render_template('home/register.html', form=form)
 
+
 @mod_authentication.route('/login', methods=['GET', 'POST'])
 def login():
 
@@ -88,11 +95,13 @@ def login():
             return render_template('home/login.html', form=form)
     return render_template('home/login.html', form=form)
 
+
 @mod_authentication.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('mod_public_user.login'))
+
 
 @mod_authentication.route('/loginheader', methods=['POST', 'GET'])
 def login_header():
@@ -112,16 +121,18 @@ def login_header():
 
 
 @mod_authentication.route('/register1', methods=['POST', 'GET'])
-def second():
+def register_education():
     form = RegisterForm(request.form)
     return render_template('home/register1.html', form=form)
 
+
 @mod_authentication.route('/register2', methods=['POST', 'GET'])
-def third():
+def register_experience():
     form = RegisterForm(request.form)
     return render_template('home/register2.html', form=form)
 
+
 @mod_authentication.route('/register3', methods=['POST', 'GET'])
-def forth():
+def register_summary():
     form = RegisterForm(request.form)
     return render_template('home/register3.html', form=form)
