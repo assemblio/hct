@@ -71,7 +71,17 @@
                                 {% else %}
                                 <li>
                             {% endif %}
-							    <a href="{{ config.BASE_PATH }}/auth/register">Register</a>
+
+                            <li has-submenu><a href="{{ config.BASE_PATH }}/auth/register">Register</a>
+                            <ul>
+                            <li><a href="{{ config.BASE_PATH }}/auth/register1">Register1</a></li>
+                            <li><a href="{{ config.BASE_PATH }}/auth/register2">Register2</a></li>
+                            <li><a href="{{ config.BASE_PATH }}/auth/register3">Register3</a></li>
+
+                            </ul>
+                            </li>
+
+
 						    </li>
                         {% endif %}
 

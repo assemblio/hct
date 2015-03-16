@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import PasswordField, RadioField, StringField, DateTimeField
+from wtforms import PasswordField, RadioField, StringField, DateField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 
 
@@ -13,7 +13,7 @@ class LoginForm(Form):
 
 class RegisterForm(Form):
     username = StringField(
-    'username',
+        'username',
     validators=[DataRequired(), Length(min=6, max=40)])
 
     email = StringField(
@@ -65,6 +65,59 @@ class RegisterForm(Form):
     expected_salary = StringField(
         'expected_salary',
         validators=[DataRequired(), Length(min=6, max=40)])
+
+    school = StringField(
+        'school',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    fieldOfStudy = StringField(
+        'fieldOfStudy',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    schoolDegree = StringField(
+        'schoolDegree',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    startDateSchool = DateField(
+        'startDateSchool', format="%Y-%m-%d",
+        validators=[DataRequired()])
+
+    endDateSchool = DateField(
+        'endDateSchool', format="%Y-%m-%d",
+        validators=[DataRequired()])
+
+    schoolDescription = TextAreaField(
+        'schoolDescription',
+        validators=[DataRequired(), Length(min=10, max=500)])
+
+    companyName = StringField(
+        'companyName',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    startDateWork = DateField(
+        'startDateSchool', format="%Y-%m-%d",
+        validators=[DataRequired()])
+
+    endDateWork = DateField(
+        'endDateWork', format="%Y-%m-%d",
+        validators=[DataRequired()])
+
+    workPosition = StringField(
+        'companyName',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    companyLocation = StringField(
+        'companyLocation',
+        validators=[DataRequired(), Length(min=6, max=40)])
+
+    experienceDescription = TextAreaField(
+        'experienceDescription',
+        validators=[DataRequired(), Length(min=10, max=600)])
+
+    cvSummary = TextAreaField(
+        'cvSummary',
+        validators=[DataRequired(), Length(min=10, max=1600)])
+
 
     def validate(self):
         initial_validation = super(RegisterForm, self).validate()

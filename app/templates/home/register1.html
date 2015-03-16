@@ -1,0 +1,115 @@
+{% extends "base/costum_layout.html" %}
+{% block body %}
+	<div id="page-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 page-content">
+					<ul class="form-steps four clearfix">
+						<li class="completed">Step 1</li>
+						<li class="active">Step 2</li>
+						<li>Step 3</li>
+						<li>Step 4</li>
+					</ul>
+
+					<div class="white-container sign-up-form">
+                        <form class="form-register" role="form" method="post" action="">
+	    					<div>
+							<h2>Fill in your profile</h2>
+                            <h5>Add academic achivement</h5>
+                                <section>
+                                    <div class="row">
+                                    <h6 class="label">School</h6>
+                                            <div class="col-sm-4">
+                                                  {{ form.school(placeholder="school") }}
+                                                    <span class="error">
+                                                      {% if form.school.errors %}
+                                                        {% for error in form.school.errors %}
+                                                          {{ error }}
+                                                        {% endfor %}
+                                                      {% endif %}
+                                                    </span>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                  {{ form.fieldOfStudy(placeholder="fieldOfStudy") }}
+                                                    <span class="error">
+                                                      {% if form.fieldOfStudy.errors %}
+                                                        {% for error in form.fieldOfStudy.errors %}
+                                                          {{ error }}
+                                                        {% endfor %}
+                                                      {% endif %}
+                                                    </span>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                  {{ form.schoolDegree(placeholder="Degree") }}
+                                                    <span class="error">
+                                                      {% if form.schoolDegree.errors %}
+                                                        {% for error in form.schoolDegree.errors %}
+                                                          {{ error }}
+                                                        {% endfor %}
+                                                      {% endif %}
+                                                    </span>
+                                            </div>
+                                    </div>
+                                </section>
+                                <section>
+                                <h6 class="label">Date</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<h7 class="label">Start Date</h7>
+
+										{{ form.startDateSchool(placeholder="Start Date" , type="date", class = "form-control datepicker") }}
+                                        <span class="error">
+                                              {% if form.startDateSchool.errors %}
+                                                {% for error in form.startDateSchool.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+
+									<div class="col-sm-4">
+										<h7 class="label">End Date</h7>
+										{{ form.endDateSchool(placeholder="End Date" , type="date", class = "form-control") }}
+                                        <span class="error">
+                                              {% if form.endDateSchool.errors %}
+                                                {% for error in form.endDateSchool.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+                                </section>
+                                <section>
+                                    <h6 class="label">Description</h6>
+
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            {{ form.schoolDescription(placeholder="Description",rows=5)}}
+                                            <span class="error">
+                                                  {% if form.schoolDescription.errors %}
+                                                    {% for error in form.schoolDescription.errors %}
+                                                      {{ error }}
+                                                    {% endfor %}
+                                                  {% endif %}
+                                                </span>
+                                        </div>
+                                    </div>
+                                    </section>
+
+                             <button class="btn-default btn-large pull-left" type="submit">Register!</button>
+                             <a href="home/register1.html" class="btn-default btn-large pull-right" type="submit">Next >></a>
+                            </div>
+                            <br><br>
+
+                        </form>
+
+					</div>
+				</div> <!-- end .page-content -->
+			</div>
+		</div> <!-- end .container -->
+	</div> <!-- end #page-content -->
+
+	{% endblock %}

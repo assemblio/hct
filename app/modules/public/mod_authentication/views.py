@@ -23,7 +23,21 @@ def index():
         #date_of_birth=form.date_of_birth.data,
         phone_mobile=form.phone_mobile.data,
         phone_work=form.phone_work.data,
-        expected_salary=form.expected_salary.data
+        expected_salary=form.expected_salary.data,
+        school=form.school.data,
+        fieldOfStudy=form.fieldOfStudy.data,
+        schoolDegree=form.schoolDegree.data,
+        startDateSchool=form.startDateSchool.data,
+        endDateSchool=form.endDateSchool.data,
+        schoolDescription=form.schoolDescription.data,
+        companyName=form.companyName.data,
+        startDateWork=form.startDateWork.data,
+        endDateWork=form.endDateWork.data,
+        workPosition=form.workPosition.data,
+        companyLocation=form.companyLocation.data,
+        experienceDescription=form.experienceDescription.data
+
+
     )
     if form.validate_on_submit():
         try:
@@ -80,7 +94,7 @@ def logout():
     logout_user()
     return redirect(url_for('mod_public_user.login'))
 
-@mod_authentication.route('/loginheader', methods=['POST','GET'])
+@mod_authentication.route('/loginheader', methods=['POST', 'GET'])
 def login_header():
     form = LoginForm(request.form)
     next_url = request.form['next-on-login']
@@ -95,3 +109,19 @@ def login_header():
             return render_template('home/login.html')
 
     return render_template('home/login.html', form=form)
+
+
+@mod_authentication.route('/register1', methods=['POST', 'GET'])
+def second():
+    form = RegisterForm(request.form)
+    return render_template('home/register1.html', form=form)
+
+@mod_authentication.route('/register2', methods=['POST', 'GET'])
+def third():
+    form = RegisterForm(request.form)
+    return render_template('home/register2.html', form=form)
+
+@mod_authentication.route('/register3', methods=['POST', 'GET'])
+def forth():
+    form = RegisterForm(request.form)
+    return render_template('home/register3.html', form=form)

@@ -23,6 +23,20 @@ class User(db.Document, UserMixin):
     trainings = db.StringField()
     jobs_applied = db.StringField()
     next = db.StringField()
+    school = db.StringField()
+    fieldOfStudy = db.StringField()
+    schoolDegree = db.StringField()
+    startDateSchool = db.DateTimeField()
+    endDateSchool = db.DateTimeField()
+    schoolDescription = db.StringField()
+    companyName = db.StringField()
+    startDateWork = db.DateTimeField()
+    endDateWork = db.DateTimeField()
+    workPosition = db.StringField()
+    companyLocation = db.StringField()
+    experienceDescription =db.StringField()
+    cvSummary = db.StringField()
+
 
 
     def is_authenticated(self):
