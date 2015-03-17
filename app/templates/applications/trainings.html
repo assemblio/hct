@@ -137,10 +137,10 @@
 
                         <section class="col-md-5">
                             <h4>Login!  or </h4>
-                            <form action="{{config.BASE_PATH}}/auth/loginheader" method="POST" name="login_user_form">
+                            <form action="{{url_for('mod_authentication.login')}}" method="POST" name="login_user_form">
                                 <input class="form-control" id="email" name="email" type="text" value="" placeholder="Email">
                                 <input class="form-control" id="password" name="password" type="password"  value="" placeholder="Password">
-                                <input id="next-on-login" name="next-on-login" type="hidden" value="{{request.endpoint}}">
+                                <input id="previous_url" name="previous_url" type="hidden" value="{{request.endpoint}}">
                                 <input type="submit" class="btn btn-default" value="Login">
                                 <a href="#" class="btn btn-link">Forgot Password?</a>
                             </form>
@@ -149,12 +149,12 @@
                         <section class="col-md-5">
                             <h4>Please, register first!</h4>
 
-                            <form action="{{config.BASE_PATH}}/auth/registerheader" class="form-register" role="form" method="post" name="register_user_form">
-                                <input type="name" name="name" class="form-control"  value="" placeholder="Name">
-                                <input type="username" name="username" class="form-control"  value="" placeholder="Username">
+                            <form action="{{url_for('mod_authentication.register')}}" class="form-register" role="form" method="post" name="register_user_form">
+                                <input type="first_name" name="first_name" class="form-control"  value="" placeholder="First Name">
+                                <input type="last_name" name="last_name" class="form-control"  value="" placeholder="Last Name">
                                 <input type="email" name="email" class="form-control" value=""  placeholder="Email">
                                 <input type="password" name="password" class="form-control" value=""  placeholder="Password">
-                                <input type="hidden" name="next-on-register" id="next-on-register" value="{{request.endpoint}}">
+                                <input type="hidden" name="previous_url" value="{{request.endpoint}}">
                                 <input type="submit" class="btn btn-default" value="Register">
                             </form>
                         </section>

@@ -1,22 +1,24 @@
 from app import db
 from flask.ext.security import UserMixin, RoleMixin
 
+
 class Role(db.Document, RoleMixin):
     name = db.StringField(max_length=80, unique=True)
     description = db.StringField(max_length=255)
-    next = db.StringField()
+
 
 class User(db.Document, UserMixin):
-    username = db.StringField(max_length=255)
     email = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
     active = db.BooleanField(default=True)
     confirmed_at = db.DateTimeField()
     roles = db.ListField(db.ReferenceField(Role), default=[])
-    role = db.StringField(max_length=255)
-    name = db.StringField(max_length=255)
-    surname = db.StringField(max_length=255)
-    phone = db.StringField()
+    behaviour = db.StringField(max_length=255)
+    first_name = db.StringField(max_length=255)
+    last_name = db.StringField(max_length=255)
+    phone_mobile = db.StringField()
+    phone_work = db.StringField()
+    fax = db.StringField()
     address1 = db.StringField()
     address2 = db.StringField()
     expected_salary = db.StringField()
@@ -34,10 +36,8 @@ class User(db.Document, UserMixin):
     endDateWork = db.DateTimeField()
     workPosition = db.StringField()
     companyLocation = db.StringField()
-    experienceDescription =db.StringField()
+    experienceDescription = db.StringField()
     cvSummary = db.StringField()
-
-
 
     def is_authenticated(self):
         return True

@@ -8,21 +8,24 @@
 						<div class="widget sidebar-widget white-container candidates-single-widget">
 							<div class="widget-content">
 								<div class="thumb">
-									<img src="img/content/face-6.png" alt="">
+									<img src="{{ url_for('static', filename='img/content/face-6.png') }}" alt="">
 								</div>
+								
+								<h5 class="bottom-line">My Profile</h5>
 
-								<h5 class="bottom-line">Candidate Details</h5>
+								<p>Your profile is not completed yet.</p>
+								<a href="{{url_for('mod_profile.update_personal_info')}}">Click here to complete it.</a>
 
 								<table>
 									<tbody>
 										<tr>
 											<td>Name</td>
-											<td>{{ current_user.name }} {{ current_user.surname }}</td>
+											<td>{{ current_user.first_name }} {{ current_user.last_name }}</td>
 										</tr>
 
 										<tr>
 											<td>Age</td>
-											<td>{{ current_user.ObjectId }}</td>
+											<td></td>
 										</tr>
 
 										<tr>
@@ -31,38 +34,22 @@
 										</tr>
 
 										<tr>
-											<td>Experiance</td>
-											<td>15 Years</td>
+											<td>Phone Mobile</td>
+											<td>{{ current_user.phone_mobile }}</td>
 										</tr>
-
 										<tr>
-											<td>Dgree</td>
-											<td>MBA</td>
-										</tr>
-
-										<tr>
-											<td>Career Lavel</td>
-											<td>Mid-Level</td>
-										</tr>
-
-										<tr>
-											<td>Phone</td>
-											<td>{{ current_user.password }}</td>
+											<td>Phone Work</td>
+											<td>{{ current_user.phone_work }}</td>
 										</tr>
 
 										<tr>
 											<td>Fax</td>
-											<td>(800) 123-4568</td>
+											<td>{{ current_user.fax }}</td>
 										</tr>
 
 										<tr>
 											<td>E-mail</td>
-											<td><a href="mailto:example@example.com">example@example.com</a></td>
-										</tr>
-
-										<tr>
-											<td>Website</td>
-											<td><a href="#">example.com</a></td>
+											<td><a href="mailto:{{ current_user.email }}">{{ current_user.email }}</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -105,7 +92,7 @@
 
 				<div class="col-sm-8 page-content">
 					<div class="candidates-item candidates-single-item">
-						<h6 class="title"><a href="#">{{ current_user.name }} {{ current_user.surname }}</a></h6>
+						<h6 class="title"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a></h6>
 						<span class="meta">24 Years Old - Sydney, AU</span>
 
 						<ul class="top-btns">

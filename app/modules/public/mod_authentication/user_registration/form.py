@@ -1,5 +1,6 @@
 from flask_wtf import Form
-from wtforms import PasswordField, RadioField, StringField, DateField, TextAreaField
+from wtforms import \
+    PasswordField, RadioField, StringField, DateField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 
 
@@ -12,10 +13,6 @@ class LoginForm(Form):
 
 
 class RegisterForm(Form):
-    username = StringField(
-        'username',
-    validators=[DataRequired(), Length(min=6, max=40)])
-
     email = StringField(
         'email',
         validators=[DataRequired(), Email(message=None), Length(min=6, max=40)])
@@ -30,20 +27,23 @@ class RegisterForm(Form):
             EqualTo('password', message='Passwords must match.')
         ]
     )
-    role = RadioField(
+    behaviour = RadioField(
         'Label',
-        choices=[('employer','Employer'),('recruiter','Recruiter')])
+        choices=[
+        ('employer', 'Employer'),
+        ('recruiter', 'Recruiter')]
+    )
 
-    name = StringField(
-        'name',
+    first_name = StringField(
+        'first_name',
         validators=[DataRequired(), Length(min=6, max=40)])
 
-    surname = StringField(
+    last_name = StringField(
         'email',
         validators=[DataRequired(), Length(min=6, max=40)])
 
     phone_mobile = StringField(
-        'phone',
+        'phone_mobile',
         validators=[DataRequired(), Length(min=6, max=40)])
 
     phone_work = StringField(
@@ -117,7 +117,6 @@ class RegisterForm(Form):
     cvSummary = TextAreaField(
         'cvSummary',
         validators=[DataRequired(), Length(min=10, max=1600)])
-
 
     def validate(self):
         initial_validation = super(RegisterForm, self).validate()

@@ -5,6 +5,7 @@ from flask import Flask
 from flask.ext.security import Security, MongoEngineUserDatastore
 from flask.ext.mongoengine import MongoEngine, DoesNotExist
 from flask.ext.login import LoginManager
+from flask.ext.bcrypt import Bcrypt
 
 # Create the Flask app.
 app = Flask(__name__)
@@ -17,10 +18,14 @@ login_manager = LoginManager()
 # Initiate Login Manager
 login_manager.init_app(app)
 
+# Initiate Bcrypt
+bcrypt = Bcrypt()
+
 # Setup Flask-Security
 from app.modules.public.mod_authentication.user_registration.model import User, Role
 user_datastore = MongoEngineUserDatastore(db, User, Role)
 security_ = Security(app, user_datastore)
+
 
 def create_app():
 
@@ -65,8 +70,8 @@ def create_app():
     app.register_blueprint(mod_roles_permissions)
     app.register_blueprint(mod_users)
 
-
     return app
+
 
 def load_config(app):
     ''' Reads the config file and loads configuration properties into the Flask app.
@@ -143,6 +148,7 @@ def configure_logging(app):
     # FIXME: Logging isn't working, figure out why.
     app.logger.info('Logging to: %s', log_path)
 
+
 def create_user_roles(user_datastore):
     '''
     Create the roles using the flask-security plugin.
@@ -166,18 +172,13 @@ def create_user_roles(user_datastore):
             description='Admin of the system.'
         )
         try:
-            User.objects.get(name="admin")
+            User.objects.get(email="admin@admin.com")
         # Create the admin user
         except DoesNotExist:
             user = user_datastore.create_user(
                 email="admin@admin.com",
-                username="admin",
-                password="admin",
-                name="Admin",
-                surname="Admin"
+                password="$2a$10$o6k9L8RUiYkpaPF/Ym0freJbHzoDGTAxSP9cU8RgneDEGkas/5MSq",
+                first_name="Filan",
+                last_name="Fisteku"
             )
             user_datastore.add_role_to_user(user, role)
-
-
-
-
