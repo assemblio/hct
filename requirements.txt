@@ -1,7 +1,7 @@
 Flask
 Flask-Auth==0.85
 Flask-Admin
-flask-mongoengine==0.1
+flask-mongoengine
 Flask-Login
 Flask-Security==1.7.4
 Flask-RESTful==0.2.12

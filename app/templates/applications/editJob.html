@@ -1,0 +1,146 @@
+{% extends "base/costum_layout.html" %}
+{% block body %}
+	<div id="page-content">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 page-content">
+					<div class="white-container create-job">
+						<form class="form" role="form" method="post" action="">
+                        {{ form.csrf_token }}
+						<div>
+							<h2>Create Job:</h2>
+							<section>
+								<h6 class="label">Job title</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+									{{ form.title(placeholder="Job title") }}
+                                            <span class="error">
+                                              {% if form.title.errors %}
+                                                {% for error in form.title.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                                </span>
+									</div>
+								</div>
+								<h6 class="label">Date</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										<h7 class="label">End Date</h7>
+										{{ form.date(placeholder="End Date" , type="date", class = "form-control") }}
+                                        <span class="error">
+                                              {% if form.date.errors %}
+                                                {% for error in form.date.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+
+									</div>
+								</div>
+
+								<h6 class="label">Location</h6>
+
+								<div class="row">
+									<div class="col-sm-4">
+										{{ form.location(placeholder="Adress") }}
+                                        <span class="error">
+                                              {% if form.location.errors %}
+                                                {% for error in form.location.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+                                <h6 class="label">Short Description</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										{{ form.short_description(placeholder="Short description") }}
+                                        <span class="error">
+                                              {% if form.short_description.errors %}
+                                                {% for error in form.short_description.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+								<h6 class="label">Description</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										{{ form.description(placeholder="Description") }}
+                                        <span class="error">
+                                              {% if form.description.errors %}
+                                                {% for error in form.description.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+								<h6 class="label">Requirements</h6>
+
+								<div class="row">
+									<div class="col-sm-6">
+										{{ form.requirements(placeholder="Requirements") }}
+                                        <span class="error">
+                                              {% if form.requirements.errors %}
+                                                {% for error in form.requirements.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+                                <h6 class="label">Industry</h6>
+                                <div class="row">
+									<div class="col-sm-8">
+										{{ form.industry }}
+                                        <span class="error">
+                                              {% if form.industry.errors %}
+                                                {% for error in form.industry.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+                                <h6 class="label">Target group</h6>
+                                <div class="row">
+									<div class="col-sm-8">
+										{{ form.target_group }}
+                                        <span class="error">
+                                              {% if form.target_group.errors %}
+                                                {% for error in form.target_group.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
+									</div>
+								</div>
+
+                            <div class="clearfix">
+										<button class="btn btn-default btn-large pull-left" type="submit">Save</button>
+									</div>
+							</section>
+
+						</div>
+
+
+						</form>
+					</div>
+				</div> <!-- end .page-content -->
+			</div>
+		</div> <!-- end .container -->
+	</div> <!-- end #page-content -->
+
+	{% endblock %}

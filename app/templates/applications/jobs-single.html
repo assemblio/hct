@@ -5,8 +5,10 @@
 			<div class="row">
 				<div class="col-sm-10 page-content">
 					<div class="clearfix mb30 hidden-xs">
-						<a href="/jobs" class="btn btn-gray pull-left">Back to Jobs</a>
-					</div>
+                        <ul class="list-inline"><li><a href="/jobs" class="btn btn-gray pull-left no-style">Back to Jobs</a></li>
+                       <li><a href="/edit-job/{{jobs.id}}" class="btn btn-gray pull-left">Edit Job</a>
+                       </li>
+				</div>
 
 					<div class="jobs-item jobs-single-item">
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-00.png') }}" alt=""></div>

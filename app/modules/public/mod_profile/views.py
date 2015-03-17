@@ -80,7 +80,7 @@ def update_personal_info():
             set__address2=user_form.address2.data,
             set__expected_salary=user_form.expected_salary.data
         )
-        return redirect(url_for('mod_profile.update_personal_info'))
+        return redirect(url_for('mod_profile.update_education'))
 
 
 @mod_profile.route('/update-education', methods=['POST', 'GET'])
@@ -106,28 +106,71 @@ def update_education():
         else:
             return render_template('home/index.html')
     elif request.method == 'POST':
-        if user_form.validate_on_submit():
-            user_doc.update(
-                set__school=user_form.school.data,
-                set__fieldOfStudy=user_form.fieldOfStudy.data,
-                set__schoolDegree=user_form.schoolDegree.data,
-                set__startDateSchool=user_form.startDateSchool.data,
-                set__endDateSchool=user_form.endDateSchool.data,
-                set__schoolDescription=user_form.schoolDescription.data
+        user_doc.update(
+            set__school=user_form.school.data,
+            set__fieldOfStudy=user_form.fieldOfStudy.data,
+            set__schoolDegree=user_form.schoolDegree.data,
+            set__startDateSchool=user_form.startDateSchool.data,
+            set__endDateSchool=user_form.endDateSchool.data,
+            set__schoolDescription=user_form.schoolDescription.data
             )
 
-        return render_template('home/update_education.html', form=user_form)
+        return redirect(url_for('mod_profile.update_experience'))
 
 
 @mod_profile.route('/update-experience', methods=['POST', 'GET'])
 @login_required
 def update_experience():
-    form = RegisterForm(request.form)
-    return render_template('home/update_experience.html', form=form)
+    user_doc = User.objects.get(email=current_user.email)
+    user_form = RegisterForm()
+
+    if request.method == "GET":
+        if current_user.is_authenticated():
+            user_form.companyName.data = user_doc['companyName']
+            user_form.startDateWork.data = user_doc['startDateWork']
+            user_form.endDateWork.data = user_doc['endDateWork']
+            user_form.workPosition.data = user_doc['workPosition']
+            user_form.companyLocation.data = user_doc['companyLocation']
+            user_form.experienceDescription.data = user_doc['experienceDescription']
+            return render_template(
+                'home/update_experience.html',
+                form=user_form,
+                action=url_for('mod_profile.update_experience'),
+                display_pass_field=True
+            )
+        else:
+            return render_template('home/index.html')
+    elif request.method == "POST":
+        user_doc.update(
+            set__companyName=user_form.companyName.data,
+            set__startDateWork=user_form.startDateWork.data,
+            set__endDateWork=user_form.endDateWork.data,
+            set__workPosition=user_form.workPosition.data,
+            set__companyLocation=user_form.companyLocation.data,
+            set__experienceDescription=user_form.experienceDescription.data
+            )
+        return redirect(url_for('mod_profile.update_summary'))
 
 
 @mod_profile.route('/update-summary', methods=['POST', 'GET'])
 @login_required
 def update_summary():
-    form = RegisterForm(request.form)
-    return render_template('home/update_summary.html', form=form)
+    user_doc = User.objects.get(email=current_user.email)
+    user_form = RegisterForm()
+
+    if request.method == "GET":
+        if current_user.is_authenticated():
+            user_form.cvSummary.data = user_doc['cvSummary']
+            return render_template(
+                'home/update_summary.html',
+                form=user_form,
+                action=url_for('mod_profile.update_summary'),
+                display_pass_field=True
+            )
+        else:
+            return render_template('home/index.html')
+    elif request.method == "POST":
+        user_doc.update(
+            set__cvSummary=user_form.cvSummary.data
+        )
+        return redirect(url_for('mod_profile.profile'))
