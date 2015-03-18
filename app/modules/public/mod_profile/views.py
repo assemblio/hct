@@ -60,6 +60,10 @@ def update_personal_info():
             user_form.address1.data = user_doc['address1']
             user_form.address2.data = user_doc['address2']
             user_form.expected_salary.data = user_doc['expected_salary']
+            user_form.country.data=user_doc['country']
+            user_form.stateProvince.data = user_doc['stateProvince']
+            user_form.city.data = user_doc['city']
+            user_form.zipCode.data = user_doc['zipCode']
             return render_template(
                 'home/personal_info.html',
                 form=user_form,
@@ -80,7 +84,11 @@ def update_personal_info():
             set__fax=user_form.fax.data,
             set__address1=user_form.address1.data,
             set__address2=user_form.address2.data,
-            set__expected_salary=user_form.expected_salary.data
+            set__expected_salary=user_form.expected_salary.data,
+            set__country=user_form.country.data,
+            set__stateProvince=user_form.stateProvince.data,
+            set__city=user_form.city.data,
+            set__zipCode=user_form.zipCode.data
         )
         return redirect(url_for('mod_profile.update_education'))
 

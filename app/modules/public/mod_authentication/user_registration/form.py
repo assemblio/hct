@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import \
-    PasswordField, RadioField, StringField, DateField, TextAreaField
+    PasswordField, RadioField, StringField, DateField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 
 
@@ -108,19 +108,35 @@ class RegisterForm(Form):
 
     workPosition = StringField(
         'companyName',
-        validators=[DataRequired(), Length(min=6, max=40)])
+        validators=[DataRequired(), Length(max=40)])
 
     companyLocation = StringField(
         'companyLocation',
-        validators=[DataRequired(), Length(min=6, max=40)])
+        validators=[DataRequired(), Length(max=40)])
 
     experienceDescription = TextAreaField(
         'experienceDescription',
-        validators=[DataRequired(), Length(min=10, max=600)])
+        validators=[DataRequired(), Length(max=600)])
 
     cvSummary = TextAreaField(
         'cvSummary',
-        validators=[DataRequired(), Length(min=10, max=1600)])
+        validators=[DataRequired(), Length(max=1600)])
+
+    country = StringField(
+        'country',
+        validators=[DataRequired(), Length(max=40)])
+
+    stateProvince = StringField(
+        'stateProvince',
+        validators=[DataRequired(), Length(max=40)])
+
+    city = StringField(
+        'city',
+        validators=[DataRequired(), Length(max=40)])
+
+    zipCode = IntegerField(
+        'zipCode',
+        validators=[DataRequired()])
 
     def validate(self):
         initial_validation = super(RegisterForm, self).validate()

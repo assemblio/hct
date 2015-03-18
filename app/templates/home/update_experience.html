@@ -15,10 +15,10 @@
                         <form class="form-register" role="form" method="post" action="{{url_for('mod_profile.update_experience')}}">
 	    					<div>
 							<h2>Fill in your profile</h2>
-                            <h5>Add experience</h5>
+                            <h5 class="bottom-line">Add experience</h5>
                                 <section>
                                     <div class="row">
-                                    <h6 class="label">Company name</h6>
+                                    <h6 class="label ">Company name</h6>
                                             <div class="col-sm-4">
                                                   {{ form.companyName(placeholder="Company Name") }}
                                                     <span class="error">

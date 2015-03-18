@@ -20,7 +20,7 @@
                                     <div class="row">
                                     <h6 class="label">School</h6>
                                             <div class="col-sm-4">
-                                                  {{ form.school(placeholder="school") }}
+                                                  {{ form.school(placeholder="School") }}
                                                     <span class="error">
                                                       {% if form.school.errors %}
                                                         {% for error in form.school.errors %}
@@ -31,7 +31,7 @@
                                             </div>
 
                                             <div class="col-sm-4">
-                                                  {{ form.fieldOfStudy(placeholder="fieldOfStudy") }}
+                                                  {{ form.fieldOfStudy(placeholder="Field Of Study") }}
                                                     <span class="error">
                                                       {% if form.fieldOfStudy.errors %}
                                                         {% for error in form.fieldOfStudy.errors %}
@@ -59,8 +59,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<h7 class="label">Start Date</h7>
-
-										{{ form.startDateSchool(placeholder="Start Date" , type="date", class = "form-control datepicker") }}
+										{{ form.startDateSchool(type="date", class = "form-control datepicker") }}
                                         <span class="error">
                                               {% if form.startDateSchool.errors %}
                                                 {% for error in form.startDateSchool.errors %}
@@ -72,7 +71,7 @@
 
 									<div class="col-sm-4">
 										<h7 class="label">End Date</h7>
-										{{ form.endDateSchool(placeholder="End Date" , type="date", class = "form-control") }}
+										{{ form.endDateSchool(type="date", class = "form-control") }}
                                         <span class="error">
                                               {% if form.endDateSchool.errors %}
                                                 {% for error in form.endDateSchool.errors %}

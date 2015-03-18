@@ -165,44 +165,56 @@
 									</div>
 								</div>
                             </section>
-                                 <section>
+                            <section>
 								<div class="row">
 									<div class="col-sm-3">
-										<select>
-											<option value="">Country</option>
-											<option value="">1</option>
-											<option value="">2</option>
-											<option value="">3</option>
-											<option value="">4</option>
-											<option value="">5</option>
-										</select>
+                                        {{ form.country(placeholder="Country") }}
+                                        <span class="error">
+                                              {% if form.country.errors %}
+                                                {% for error in form.country.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 
 									<div class="col-sm-3">
-										<select>
-											<option value="">State/Province</option>
-											<option value="">1</option>
-											<option value="">2</option>
-											<option value="">3</option>
-											<option value="">4</option>
-											<option value="">5</option>
-										</select>
+                                        {{ form.stateProvince(placeholder="Province") }}
+                                        <span class="error">
+                                              {% if form.stateProvince.errors %}
+                                                {% for error in form.stateProvince.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
 									</div>
 
 									<div class="col-sm-3">
-										<input type="text" class="form-control" placeholder="City">
+                                           {{ form.city(placeholder="City") }}
+                                        <span class="error">
+                                              {% if form.city.errors %}
+                                                {% for error in form.city.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+
 									</div>
 
 									<div class="col-sm-3">
-										<input type="text" class="form-control" placeholder="ZIP Code">
+                                           {{ form.zipCode(placeholder="Zip Code") }}
+                                        <span class="error">
+                                              {% if form.zipCode.errors %}
+                                                {% for error in form.zipCode.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+
 									</div>
-                                    </div>
+                                </div>
                                 </section>
 
                                 <section>
                                     <h6 class="bottom-line">Expected Salary:</h6>
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             {{ form.expected_salary(placeholder="Expected Salary ") }}
                                             <span class="error">
                                               {% if form.expected_salary.errors %}

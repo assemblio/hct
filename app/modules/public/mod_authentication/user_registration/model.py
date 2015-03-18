@@ -43,6 +43,10 @@ class User(db.Document, UserMixin):
     schoolDescription = db.StringField()
     cvSummary = db.StringField()
     experience = db.EmbeddedDocumentField(Experience)
+    country = db.StringField()
+    stateProvince = db.StringField()
+    city = db.StringField()
+    zipCode = db.IntField()
 
     def is_authenticated(self):
         return True

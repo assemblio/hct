@@ -24,13 +24,14 @@
 										</tr>
 
 										<tr>
-											<td>Age</td>
-											<td></td>
+											<td>Date Of Birth</td>
+											<td>{{current_user.dateOfBirth.strftime('%Y-%m-%d')}}</td>
 										</tr>
 
 										<tr>
 											<td>Location</td>
-											<td>{{ current_user.adress1 }} </td>
+											<td>{{ current_user.address1 }} </td>
+
 										</tr>
 
 										<tr>
@@ -93,7 +94,7 @@
 				<div class="col-sm-8 page-content">
 					<div class="candidates-item candidates-single-item">
 						<h6 class="title"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a></h6>
-						<span class="meta">24 Years Old - Sydney, AU</span>
+						<span class="meta">24 Years Old - {{ current_user.country }}</span>
 
 						<ul class="top-btns">
 							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
@@ -107,20 +108,24 @@
 							<li><a href="#" class="btn btn-gray fa fa-pinterest"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-linkedin"></a></li>
 						</ul>
+                        <h5>Summary:</h5>
+                        <p>{{ current_user.cvSummary}}</p>
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae.</p>
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, at nemo inventore temporibus corporis suscipit.</p>
-
+		                <h4>Education</h4>
 						<ul class="list-unstyled">
-							<li><strong>Experience:</strong> 5 Years</li>
-							<li><strong>Degree:</strong> {{ current_user.school}}</li>
-							<li><strong>Career Level:</strong> Mid Career</li>
-						</ul>
+							<li><strong>School :</strong> {{ current_user.school}}</li>
+							<li><strong>Field Study:</strong> {{ current_user.fieldOfStudy}}</li>
+							<li><strong>Degree:</strong> {{ current_user.schoolDegree}}</li>
+                            <li><strong>Time worked here: </strong> {{ current_user.startDateSchool.strftime('%Y/%m/%d')}}<strong>--</strong>{{ current_user.endDateSchool.strftime('%Y/%m/%d')}}</li>
 
-						<h5>Skills</h5>
+						</ul>
+                        <h4>Experience</h4>
+                        <ul class="list-unstyled">
+							<li><strong>Company Name: </strong>{{ current_user.experience.companyName}}</li>
+							<li><strong>Work Position: </strong> {{ current_user.experience.workPosition}}</li>
+							<li><strong>Time worked here: </strong> {{ current_user.experience.startDateWork.strftime('%Y/%m/%d')}}--{{ current_user.experience.endDateWork.strftime('%Y/%m/%d')}}</li>
+						    <li><strong>Description of work:</strong><br> {{ current_user.experience.experienceDescription}}</li>
+                        </ul>
 
 						<div class="progress-bar toggle" data-progress="60">
 							<a href="#" class="progress-bar-toggle"></a>
