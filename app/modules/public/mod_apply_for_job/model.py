@@ -8,6 +8,6 @@ class Job(db.Document):
     description = db.StringField()
     requirements = db.StringField()
     applicants = db.StringField()
-    target_group = db.StringField()
-    industry = db.StringField()
+    target_group = db.ListField()
+    industry = db.ListField()
 

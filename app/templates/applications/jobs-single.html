@@ -22,23 +22,21 @@
 							<li><a href="{{ jobs['title'] }}" class="btn btn-gray fa fa-star"></a></li>
 						</ul>
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae.</p>
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
-
+						<p>{{jobs['short_description']}}</p>
+                        <p>{{jobs['description']}}</p>
+                        <h5>Target group</h5>
 						<ul>
-							<li>Lorem ipsum dolor sit amet.</li>
-							<li>Reiciendis laborum mollitia ad vel?</li>
-							<li>Velit voluptates neque perspiciatis suscipit?</li>
-							<li>Facere, sequi quo iste odio.</li>
-							<li>A culpa libero tempora ut.</li>
+                            {% for target in jobs['target_group'] %}
+							<li>{{target}}</li>
+                            {% endfor %}
+
 						</ul>
 
-						<h5>Required Skills</h5>
+						<h5>Industry</h5>
                         <ul>
-							<li>Web Design</li>
-							<li>UI/UX</li>
-							<li>Development</li>
+                            {% for industry in jobs['industry'] %}
+							<li>{{ industry}}</li>
+                            {% endfor %}
 						</ul>
 
                         <h5>Additional Requirements</h5>
@@ -53,8 +51,14 @@
 
 						<hr>
 
-						<div class="clearfix">
-							<a href="/job/apply/{{jobs.id}}" class="btn btn-default pull-left">Apply for this Job</a>
+
+						<div class="apply">
+                            {% if jobs['applicants'] and current_user.id in jobs['applicants'] %}
+                            <a href="#" class="btn btn-gray">Applied</a>
+                            {% else %}
+                            <a href="/job/apply/{{jobs.id}}" class="btn btn-default ">Apply for this Job</a>
+                            {% endif %}
+
 
 							<ul class="social-icons pull-right">
 								<li><span>Share</span></li>

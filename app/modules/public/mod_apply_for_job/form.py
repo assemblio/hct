@@ -15,11 +15,11 @@ class CreateJob(Form):
 
     short_description = TextAreaField(
         'Short description.',
-        validators=[DataRequired(), Length(min=100, max=300)])
+        validators=[DataRequired(), Length(max=300)])
 
     description = TextAreaField(
         'Description',
-        validators=[DataRequired(), Length(min=300, max=500)])
+        validators=[DataRequired(), Length(max=500)])
 
     requirements = TextAreaField(
         'requirements',
