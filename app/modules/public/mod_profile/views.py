@@ -128,18 +128,27 @@ def update_experience():
 
     if request.method == "GET":
         if current_user.is_authenticated():
-            user_form.companyName.data = experience['companyName']
-            user_form.startDateWork.data = experience['startDateWork']
-            user_form.endDateWork.data = experience['endDateWork']
-            user_form.workPosition.data = experience['workPosition']
-            user_form.companyLocation.data = experience['companyLocation']
-            user_form.experienceDescription.data = experience['experienceDescription']
-            return render_template(
-                'home/update_experience.html',
-                form=user_form,
-                action=url_for('mod_profile.update_experience'),
-                display_pass_field=True
-            )
+            if experience:
+                user_form.companyName.data = experience['companyName']
+                user_form.startDateWork.data = experience['startDateWork']
+                user_form.endDateWork.data = experience['endDateWork']
+                user_form.workPosition.data = experience['workPosition']
+                user_form.companyLocation.data = experience['companyLocation']
+                user_form.experienceDescription.data = experience['experienceDescription']
+                return render_template(
+                    'home/update_experience.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_experience'),
+                    display_pass_field=True
+                )
+            else:
+                return render_template(
+                    'home/update_experience.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_experience'),
+                    display_pass_field=True
+                )
+
         else:
             return render_template('home/index.html')
     elif request.method == "POST":
