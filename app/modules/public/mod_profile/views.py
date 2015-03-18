@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from flask.ext.security import current_user
 from app.modules.public.mod_authentication.user_registration.model\
-    import User
+    import User, Experience
 from app.modules.public.mod_apply_for_job.model import Job
 from app.modules.public.mod_apply_for_training.model import Training
 from app.modules.public.mod_authentication.user_registration.form import\
@@ -122,16 +122,18 @@ def update_education():
 @login_required
 def update_experience():
     user_doc = User.objects.get(email=current_user.email)
+    experience = user_doc['experience']
+    #experience = Experience()
     user_form = RegisterForm()
 
     if request.method == "GET":
         if current_user.is_authenticated():
-            user_form.companyName.data = user_doc['companyName']
-            user_form.startDateWork.data = user_doc['startDateWork']
-            user_form.endDateWork.data = user_doc['endDateWork']
-            user_form.workPosition.data = user_doc['workPosition']
-            user_form.companyLocation.data = user_doc['companyLocation']
-            user_form.experienceDescription.data = user_doc['experienceDescription']
+            user_form.companyName.data = experience['companyName']
+            user_form.startDateWork.data = experience['startDateWork']
+            user_form.endDateWork.data = experience['endDateWork']
+            user_form.workPosition.data = experience['workPosition']
+            user_form.companyLocation.data = experience['companyLocation']
+            user_form.experienceDescription.data = experience['experienceDescription']
             return render_template(
                 'home/update_experience.html',
                 form=user_form,
@@ -141,14 +143,16 @@ def update_experience():
         else:
             return render_template('home/index.html')
     elif request.method == "POST":
-        user_doc.update(
-            set__companyName=user_form.companyName.data,
-            set__startDateWork=user_form.startDateWork.data,
-            set__endDateWork=user_form.endDateWork.data,
-            set__workPosition=user_form.workPosition.data,
-            set__companyLocation=user_form.companyLocation.data,
-            set__experienceDescription=user_form.experienceDescription.data
-            )
+        experience = Experience(
+            companyName=user_form.companyName.data,
+            startDateWork=user_form.startDateWork.data,
+            endDateWork=user_form.endDateWork.data,
+            workPosition=user_form.workPosition.data,
+            companyLocation=user_form.companyLocation.data,
+            experienceDescription=user_form.experienceDescription.data
+        )
+
+        user_doc.update(set__experience=experience)
         return redirect(url_for('mod_profile.update_summary'))
 
 

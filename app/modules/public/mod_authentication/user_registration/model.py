@@ -7,6 +7,15 @@ class Role(db.Document, RoleMixin):
     description = db.StringField(max_length=255)
 
 
+class Experience(db.EmbeddedDocument):
+    companyName = db.StringField()
+    startDateWork = db.DateTimeField()
+    endDateWork = db.DateTimeField()
+    workPosition = db.StringField()
+    companyLocation = db.StringField()
+    experienceDescription = db.StringField()
+
+
 class User(db.Document, UserMixin):
     email = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
@@ -31,13 +40,8 @@ class User(db.Document, UserMixin):
     startDateSchool = db.DateTimeField()
     endDateSchool = db.DateTimeField()
     schoolDescription = db.StringField()
-    companyName = db.StringField()
-    startDateWork = db.DateTimeField()
-    endDateWork = db.DateTimeField()
-    workPosition = db.StringField()
-    companyLocation = db.StringField()
-    experienceDescription = db.StringField()
     cvSummary = db.StringField()
+    experience = db.EmbeddedDocumentField(Experience)
 
     def is_authenticated(self):
         return True
