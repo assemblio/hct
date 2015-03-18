@@ -54,6 +54,53 @@ def create():
         return redirect('/trainings')
     return render_template('applications/createTrainings.html', form=form)
 
+@mod_apply_for_training.route('/training/edit/<string:training_id>')
+@login_required
+def edit_training(training_id):
+    if request.method == "GET":
+        training_form = RegisterTraining()
+        training_doc = Training.objects.get(id=ObjectId(training_id))
+        if current_user.is_authenticated():
+            training_form.title.data = training_doc['title']
+            training_form.startDate = training_doc['startDate']
+            training_form.endDate = training_doc['endDate']
+            training_form.space.data = training_doc['space']
+            training_form.instructorName.data = training_doc['instructorName']
+            training_form.instructorSurname.data = training_doc['instructorSurname']
+            training_form.agenda.data = training_doc['agenda']
+            training_form.short_description.data = training_doc['short_description']
+            training_form.description.data = training_doc['description']
+            training_form.requirements.data = training_doc['requirements']
+            training_form.target_group.data = training_doc['target_group']
+            return render_template(
+                'applications/editTraining.html',
+                form=training_form,
+                #action=url_for('mod_apply_for_job.edit_job'),
+                display_pass_field=True
+            )
+        else:
+            return render_template('home/trainings.html')
+    elif request.method == "POST":
+        training_form = RegisterTraining()
+        training_doc = Training.objects.get(id=ObjectId(training_id))
+        training_doc.update(
+            set__title=training_form.title.data,
+            set__startDate=training_form.startDate.data,
+            set__endDate=training_form.endDate.data,
+            set__space=training_form.space.data,
+            set__instructorName=training_form.instructorName.data,
+            set__instructorSurname=training_form.instructorSurname.data,
+            set__agenda=training_form.agenda.data,
+            set__short_description=training_form.short_description.data,
+            set__description=training_form.description.data,
+            set__requirements=training_form.requirements.data,
+            set__target_group=training_form.target_group.data
+        )
+        return redirect('/training/'+training_id)
+
+
+
+
 
 
 

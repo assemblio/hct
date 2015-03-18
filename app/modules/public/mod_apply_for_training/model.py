@@ -12,4 +12,4 @@ class Training(db.Document):
     description = db.StringField()
     requirements = db.StringField()
     participants = db.StringField()
-    target_group = db.StringField()
+    target_group = db.ListField()

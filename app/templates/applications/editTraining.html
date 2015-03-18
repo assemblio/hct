@@ -29,8 +29,8 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<h7 class="label">Start Date and Time</h7>
-										
-										{{ form.startDate(placeholder="Start Date" , type="date", class = "form-control datepicker") }}
+
+										{{ form.startDates }}
                                         <span class="error">
                                               {% if form.startDate.errors %}
                                                 {% for error in form.startDate.errors %}
@@ -42,7 +42,7 @@
 
 									<div class="col-sm-4">
 										<h7 class="label">End Date and Time</h7>
-										{{ form.endDate(placeholder="End Date" , type="date", class = "form-control datepicker") }}
+										{{ form.endDate }}
                                         <span class="error">
                                               {% if form.endDate.errors %}
                                                 {% for error in form.endDate.errors %}
@@ -166,7 +166,7 @@
 							</section>
                             <div class="clearfix">
 
-                                    <button class="btn btn-default btn-large" type="submit">Post training</button>
+                                    <button class="btn btn-default btn-large" type="submit">Save</button>
 
                                 </div>
 						</div>

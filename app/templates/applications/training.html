@@ -93,8 +93,22 @@
 							<hr>
 
 							<div class="clearfix">
-								<a href="/training/apply/{{training['id']}}" class="btn btn-default pull-left">Apply for this Training</a>
-
+                                <ul class="list-inline">
+                                    <li><div class="apply">
+                                        {% if current_user.is_authenticated() %}
+                                            {% if training['participants'] and current_user.id in training['participants'] %}
+                                            <a href="#" class="btn btn-gray pull-right ">Applied</a>
+                                            {% elif training['space'] != 0 %}
+                                            <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
+                                            {% endif %}
+                                        {% else %}
+                                        <a name='login' class='login demo btn btn-default pull-right'/>Apply</a>
+                                        {% endif %}
+                                        </div>
+                                        </li>
+                                    <li><a href="/training/edit/{{training.id}}" class="btn btn-default pull-left">Edit training</a>
+                                    </li>
+                                </ul>
 								<ul class="social-icons pull-right">
 									<li><span>Share</span></li>
 									<li><a href="#" class="btn btn-gray fa fa-facebook"></a></li>

@@ -41,7 +41,10 @@ def create():
         date=form.date.data,
         location=form.location.data,
         description=form.description.data,
-        requirements=form.requirements.data
+        requirements=form.requirements.data,
+        target_group=form.target_group.data,
+        industry=form.industry.data
+
     )
     if form.validate_on_submit():
         job.save()
@@ -71,7 +74,7 @@ def edit_job(job_id):
                 display_pass_field=True
             )
         else:
-            return render_template('home/profile.html')
+            return render_template('home/jobs.html')
     elif request.method == "POST":
         job_form = CreateJob()
         job_doc = Job.objects.get(id=ObjectId(job_id))
@@ -82,7 +85,7 @@ def edit_job(job_id):
             set__short_description=job_form.short_description.data,
             set__description=job_form.description.data,
             set__requirements=job_form.requirements.data,
-            #set__target_group=job_form.target_group.data,
+            set__target_group=job_form.target_group.data,
             set__industry=job_form.industry.data
         )
         return redirect('/job/'+job_id)
