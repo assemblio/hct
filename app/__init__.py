@@ -43,8 +43,11 @@ def create_app():
     create_user_roles(user_datastore)
 
     # Import Admin modules
-    from app.modules.admin.mod_roles_permissions.views import mod_roles_permissions
-    from app.modules.admin.mod_users.views import mod_users
+    from app.modules.admin.home.views import admin_home
+    from app.modules.admin.applicants.views import admin_applicants
+    from app.modules.admin.users.views import admin_users
+    from app.modules.admin.jobs.views import admin_jobs
+    from app.modules.admin.reports.views import admin_reports
 
     # Import public interface modules
     from app.modules.public.mod_applications.views import mod_applications
@@ -67,8 +70,11 @@ def create_app():
     app.register_blueprint(mod_authentication)
 
     # Register Admin interface blueprints(s)
-    app.register_blueprint(mod_roles_permissions)
-    app.register_blueprint(mod_users)
+    app.register_blueprint(admin_home)
+    app.register_blueprint(admin_applicants)
+    app.register_blueprint(admin_users)
+    app.register_blueprint(admin_jobs)
+    app.register_blueprint(admin_reports)
 
     return app
 

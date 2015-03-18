@@ -11,12 +11,15 @@
             </div> <!-- end .header-language -->
 
             <!-- Bookmarks -->
+            
 
             {% if current_user.is_authenticated() %}
                 <span class="pull-right">
                     <span class="btn btn-link bookmarks">Hi {{ current_user.first_name }} {{ current_user.last_name }}!</span>
                 <a href="/logout" class="btn btn-link bookmarks">Logout</a>
-
+                {% if current_user.has_role('Admin') %}
+                    <a href="/admin" class="btn btn-link bookmarks">Admin</a>
+                {% endif %}
                 <a href="/profile" class="btn btn-link bookmarks">My profile</a>
                 </span>
             {% else %}
