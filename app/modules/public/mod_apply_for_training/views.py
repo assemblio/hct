@@ -6,6 +6,7 @@ from .model import Training
 from app.modules.public.mod_authentication.user_registration.model import User
 from bson import ObjectId
 from flask.ext.mongoengine import DoesNotExist
+import datetime
 
 # Define the blueprint:
 mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
@@ -54,7 +55,7 @@ def create():
         return redirect('/trainings')
     return render_template('applications/createTrainings.html', form=form)
 
-@mod_apply_for_training.route('/training/edit/<string:training_id>')
+@mod_apply_for_training.route('/training/edit/<string:training_id>', methods=['GET','POST'])
 @login_required
 def edit_training(training_id):
     if request.method == "GET":
@@ -62,8 +63,8 @@ def edit_training(training_id):
         training_doc = Training.objects.get(id=ObjectId(training_id))
         if current_user.is_authenticated():
             training_form.title.data = training_doc['title']
-            training_form.startDate = training_doc['startDate']
-            training_form.endDate = training_doc['endDate']
+            training_form.startDate.data = training_doc['startDate']
+            training_form.endDate.data = training_doc['endDate']
             training_form.space.data = training_doc['space']
             training_form.instructorName.data = training_doc['instructorName']
             training_form.instructorSurname.data = training_doc['instructorSurname']
@@ -75,7 +76,6 @@ def edit_training(training_id):
             return render_template(
                 'applications/editTraining.html',
                 form=training_form,
-                #action=url_for('mod_apply_for_job.edit_job'),
                 display_pass_field=True
             )
         else:
