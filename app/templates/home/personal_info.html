@@ -72,7 +72,7 @@
                                 </div>
 								<h6 class="bottom-line">Personal Info:</h6>
 
-								<h6 class="label">Name</h6>
+								<h6 class="label">Name <span class="pull-right">Date of birth</span></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
@@ -94,6 +94,17 @@
                                                   {{ error }}
                                                 {% endfor %}
                                               {% endif %}
+									</div>
+                                	<div class="col-sm-4">
+
+										{{ form.dateOfBirth(placeholder="Date Of Birth" , type="date", class = "form-control datepicker") }}
+                                        <span class="error">
+                                              {% if form.dateOfBirth.errors %}
+                                                {% for error in form.dateOfBirth.errors %}
+                                                  {{ error }}
+                                                {% endfor %}
+                                              {% endif %}
+                                            </span>
 									</div>
 								</div>
 
@@ -205,7 +216,7 @@
                                 </section>
                                 <section>
                                     <div class="row">
-                                        <button class="btn-default btn-large pull-left" type="submit">Register!</button>
+                                        <button class="btn-default btn-large pull-left" type="submit">Save</button>
                                         <a href="{{url_for('mod_profile.update_education')}}" class="btn-default btn-large pull-right">Next >></a>
                                     </div>
                                 </section>

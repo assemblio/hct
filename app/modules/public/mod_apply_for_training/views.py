@@ -57,6 +57,7 @@ def create():
 
 @mod_apply_for_training.route('/training/edit/<string:training_id>', methods=['GET','POST'])
 @login_required
+@roles_required('Admin')
 def edit_training(training_id):
     if request.method == "GET":
         training_form = RegisterTraining()

@@ -52,6 +52,7 @@ def update_personal_info():
         if current_user.is_authenticated():
             user_form.first_name.data = user_doc['first_name']
             user_form.last_name.data = user_doc['last_name']
+            user_form.dateOfBirth.data = user_doc['dateOfBirth']
             user_form.email.data = user_doc['email']
             user_form.phone_mobile.data = user_doc['phone_mobile']
             user_form.phone_work.data = user_doc['phone_work']
@@ -72,6 +73,7 @@ def update_personal_info():
             set__email=user_form.email.data,
             set__first_name=user_form.first_name.data,
             set__last_name=user_form.last_name.data,
+            set__dateOfBirth=user_form.dateOfBirth.data,
             set__password=user_form.first_name.data,
             set__phone_mobile=user_form.phone_mobile.data,
             set__phone_work=user_form.phone_work.data,

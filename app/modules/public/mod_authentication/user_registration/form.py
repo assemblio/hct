@@ -42,6 +42,10 @@ class RegisterForm(Form):
         'email',
         validators=[DataRequired(), Length(min=6, max=40)])
 
+    dateOfBirth = DateField(
+        'startDateSchool', format="%Y-%m-%d",
+        validators=[DataRequired()])
+
     phone_mobile = StringField(
         'phone_mobile',
         validators=[DataRequired(), Length(min=6, max=40)])

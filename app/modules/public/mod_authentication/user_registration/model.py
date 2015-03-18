@@ -16,6 +16,7 @@ class User(db.Document, UserMixin):
     behaviour = db.StringField(max_length=255)
     first_name = db.StringField(max_length=255)
     last_name = db.StringField(max_length=255)
+    dateOfBirth =db.DateTimeField()
     phone_mobile = db.StringField()
     phone_work = db.StringField()
     fax = db.StringField()
