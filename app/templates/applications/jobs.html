@@ -102,6 +102,9 @@
 						<div class="date">{{job['date'].strftime('%d')}}<span>{{job['date'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="/job/{{job.id}}">{{job['title']}}</a></h6>
 						<span class="meta">{{job['location']}}, Kosove</span>
+                        <div class="description">{{job['short_description']}}</div>
+
+
                         <div class="apply">
                             {% if job['applicants'] and current_user.id in job['applicants'] %}
                             <a href="#" class="btn btn-gray pull-right ">Applied</a>
@@ -116,14 +119,28 @@
 
 						<p class="description"><a href="#" class="read-more">Read More</a></p>
 						<div class="content">
-							<p>{{job['description']}}</p>
+                            <div >{{job['description']}}</div>
+
 							<h5>Required Skills</h5>
-                                <ul class="clearfix">
-								{{job['requirements']}}
-							</ul>
 
+							<div>{{job['requirements']}}</div>
+
+
+                            <h5>Target group</h5>
+						    <ul>
+                            {% for target in job['target_group'] %}
+							<li>{{target}}</li>
+                            {% endfor %}
+
+						    </ul>
+
+                            <h5>Industry</h5>
+                            <ul>
+                                {% for industry in job['industry'] %}
+                                <li>{{ industry}}</li>
+                                {% endfor %}
+                            </ul>
 							<hr>
-
 							<div class="clearfix">
 
 

@@ -74,11 +74,13 @@
 						<div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
 						<h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
 						<span class="meta">Prishtine, Kosove</span>
+                
 
 
 						<p class="description"></p>
 
 						<div class="training-content">
+                            <p>{{training['short_description']}}</p>
 							<p>{{training['description']}}</p>
 
 							<h5>Required Skills</h5>
@@ -88,6 +90,13 @@
 								<li>Development</li>
 								<li>Magento Certified</li>
 								<li>UI/UX</li>
+                            </ul>
+
+                            <h5>Target group</h5>
+                            <ul>
+                                {% for target in training['target_group'] %}
+                                <li>{{ target}}</li>
+                                {% endfor %}
                             </ul>
 
 							<hr>
