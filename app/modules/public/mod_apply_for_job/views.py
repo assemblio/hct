@@ -65,7 +65,7 @@ def edit_job(job_id):
             job_form.short_description.data = job_doc['short_description']
             job_form.description.data = job_doc['description']
             job_form.requirements.data = job_doc['requirements']
-            #job_form.target_group.data = job_doc['target_group']
+            job_form.target_group.data = job_doc['target_group']
             job_form.industry.data = job_doc['industry']
             return render_template(
                 'applications/editJob.html',

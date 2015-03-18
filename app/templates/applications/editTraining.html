@@ -150,9 +150,9 @@
 									</div>
 								</div>
                                 <h6 class="label">Target group</h6>
-                                <div class="row">
+                                <div class="row ">
 									<div class="col-sm-8">
-										{{ form.target_group }}
+										{{ form.target_group (class="list-unstyled") }}
                                         <span class="error">
                                               {% if form.target_group.errors %}
                                                 {% for error in form.target_group.errors %}

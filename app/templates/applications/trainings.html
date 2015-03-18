@@ -116,6 +116,12 @@
                         <p>{{training['requirements']}}</p>
                         <h5>Additional Requirements</h5>
                         <hr>
+                        <h5>Target group</h5>
+                            <ul>
+                                {% for target in training['target_group'] %}
+                                <li>{{ target}}</li>
+                                {% endfor %}
+                            </ul>
 
                         <div class="clearfix">
 
