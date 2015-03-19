@@ -44,7 +44,7 @@ def create_app():
 
     # Import Admin modules
     from app.modules.admin.home.views import admin_home
-    from app.modules.admin.applicants.views import admin_applicants
+    from app.modules.admin.trainings.views import admin_trainings
     from app.modules.admin.users.views import admin_users
     from app.modules.admin.jobs.views import admin_jobs
     from app.modules.admin.reports.views import admin_reports
@@ -71,7 +71,7 @@ def create_app():
 
     # Register Admin interface blueprints(s)
     app.register_blueprint(admin_home)
-    app.register_blueprint(admin_applicants)
+    app.register_blueprint(admin_trainings)
     app.register_blueprint(admin_users)
     app.register_blueprint(admin_jobs)
     app.register_blueprint(admin_reports)

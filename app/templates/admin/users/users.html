@@ -17,7 +17,23 @@
 						<h3 class="mt0">Users</h3>
 					</div>
 					<!-- end .page-content -->
-							<table class="table table-striped">
+							<div class="pagination">
+			                    <ul class="pagination pull-right">
+			                        <li><a href="#" class="fa fa-angle-left"></a></li>
+			                        		{%- for page in pagination.iter_pages() %}
+									            {% if page %}
+													
+									                {% if page != pagination.page %}
+			                        					<li><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
+			                        				{% else %}
+			                        					<li>{{ page }}</li>
+			                        				{% endif %}
+									            {% endif %}
+									        {%- endfor %}
+			                        <li><a href="#" class="fa fa-angle-right"></a></li>
+			                    </ul>
+			                </div>
+							<table class="table table-hover">
 							  <tr>
 							    <th>Firstname</th>
 							    <th>Lastname</th> 
@@ -28,7 +44,7 @@
 							    <th>Actions</th>
 							  </tr>
 							  {% for user in pagination.items %}
-							  <tr>
+							  <tr onclick="document.location = '{{config.BASE_PATH}}/profile/{{ user.id }}';">
 							    <td>{{user.first_name}}</td>
 							    <td>{{user.last_name}}</td> 
 							    <td>{{user.education.schoolDegree}}</td>
@@ -36,21 +52,23 @@
 							  </tr>
 							  {% endfor %}
 							</table>
-						    <div class=pagination>
-						        {%- for page in pagination.iter_pages() %}
-						            {% if page %}
-										
-						                {% if page != pagination.page %}
-						                    <a href="http://0.0.0.0:5000/admin/users?page={{ page }}">{{ page }}</a>
-						                    </li>
-						                {% else %}
-						                    <strong>{{ page }}</strong>
-						                {% endif %}
-						            {% else %}
-						                <span class=ellipsis>...</span>
-						            {% endif %}
-						        {%- endfor %}
-						    </div>
+					<div class="pagination">
+	                    <ul class="pagination pull-right">
+	                        <li><a href="#" class="fa fa-angle-left"></a></li>
+	                        		{%- for page in pagination.iter_pages() %}
+							            {% if page %}
+											
+							                {% if page != pagination.page %}
+	                        					<li class="active"><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
+	                        				{% else %}
+	                        					<li>{{ page }}</li>
+	                        				{% endif %}
+							            {% endif %}
+							        {%- endfor %}
+	                        <li><a href="#" class="fa fa-angle-right"></a></li>
+	                    </ul>
+	                </div>
+                
 				</div> 
 			</div>
 		</div> <!-- end .container -->
