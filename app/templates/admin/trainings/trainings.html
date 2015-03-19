@@ -13,9 +13,11 @@
 
 				<div class="col-sm-8 page-content">
 
+
 					<div class="title-lines">
-						<h3 class="mt0">Users</h3>
+						<h3 class="mt0">Trainings</h3>
 					</div>
+					<!-- end .page-content -->
 					<div class="pagination">
 			                    <ul class="pagination pull-right">
 			                        <li><a href="#" class="fa fa-angle-left"></a></li>
@@ -32,8 +34,7 @@
 			                        <li><a href="#" class="fa fa-angle-right"></a></li>
 			                    </ul>
 			                </div>
-					
-						<table class="table table-hover">
+						<table class="table table-striped">
 							  <tr>
 							    <th>Title</th>
 							    <th>Date</th> 
@@ -42,16 +43,16 @@
 							    
 
 							  </tr>
-							  {% for job in pagination.items %}
+							  {% for training in pagination.items %}
 							  <tr>
-							    <td>{{job.title}}</td>
-							    <td>{{job.date}}</td> 
-							    <td>{{job.location}}</td>
-							    <td>{{job.industry}}</td
+							    <td>{{training.title}}</td>
+							    <td>{{training.date}}</td> 
+							    <td>{{training.location}}</td>
+							    <td>{{training.industry}}</td
 							  </tr>
 							  {% endfor %}
 							</table>
-						   <div class="pagination">
+						<div class="pagination">
 			                    <ul class="pagination pull-right">
 			                        <li><a href="#" class="fa fa-angle-left"></a></li>
 			                        		{%- for page in pagination.iter_pages() %}

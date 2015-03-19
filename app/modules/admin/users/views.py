@@ -14,6 +14,5 @@ def index():
     else:
         page = int(request.args.get('page'))
     useri = User.objects.all()
-    #page = request.get('page')
     pagination = useri.paginate(page=page, per_page=10)
     return render_template('admin/users/users.html', pagination=pagination)
