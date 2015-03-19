@@ -8,12 +8,17 @@ from bson import ObjectId
 # Define the blueprint:
 mod_apply_for_job = Blueprint('mod_apply_for_job', __name__)
 
-# Set the route and accepted methods
 
-@mod_apply_for_job.route('/jobs')
+# Set the route and accepted methods
+@mod_apply_for_job.route('/jobs', methods=['GET'])
 def index():
-    jobs = Job.objects()
-    return render_template('applications/jobs.html', jobs=jobs)
+    if not request.args.get('page'):
+        page = 1
+    else:
+        page = int(request.args.get('page'))
+    jobs = Job.objects.all()
+    pagination = jobs.paginate(page=page, per_page=10)
+    return render_template('applications/jobs.html', pagination=pagination)
 
 
 @mod_apply_for_job.route('/job/<string:job_id>')
