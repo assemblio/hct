@@ -101,18 +101,26 @@ def update_education():
     user_form = RegisterForm()
     if request.method == 'GET':
         if current_user.is_authenticated():
-            user_form.school.data = current_user.education['school']
-            user_form.fieldOfStudy.data = current_user.education['fieldOfStudy']
-            user_form.schoolDegree.data = current_user.education['schoolDegree']
-            user_form.startDateSchool.data = current_user.education['startDateSchool']
-            user_form.endDateSchool.data = current_user.education['endDateSchool']
-            user_form.schoolDescription.data = current_user.education['schoolDescription']
-            return render_template(
-                'home/update_education.html',
-                form=user_form,
-                action=url_for('mod_profile.update_education'),
-                display_pass_field=True
-            )
+            if current_user.education:
+                user_form.school.data = current_user.education['school']
+                user_form.fieldOfStudy.data = current_user.education['fieldOfStudy']
+                user_form.schoolDegree.data = current_user.education['schoolDegree']
+                user_form.startDateSchool.data = current_user.education['startDateSchool']
+                user_form.endDateSchool.data = current_user.education['endDateSchool']
+                user_form.schoolDescription.data = current_user.education['schoolDescription']
+                return render_template(
+                    'home/update_education.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_education'),
+                    display_pass_field=True
+                )
+            else:
+                return render_template(
+                    'home/update_education.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_education'),
+                    display_pass_field=True
+                )
 
         else:
             return render_template('home/index.html')

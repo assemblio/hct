@@ -5,10 +5,10 @@
 			<div class="row">
 				<div class="col-sm-12 page-content">
 					<ul class="form-steps four clearfix">
-						<li class="completed">Personal info</li>
+						<li class="completed"><a href="{{url_for('mod_profile.update_personal_info')}}" >Personal info</a></li>
 						<li class="active">Education</li>
-						<li>Experience</li>
-						<li>Summary</li>
+						<li><a href="{{url_for('mod_profile.update_experience')}}">Experience</a></li>
+						<li><a href="{{url_for('mod_profile.update_summary')}}">Summary</a></li>
 					</ul>
 
 					<div class="white-container sign-up-form">
