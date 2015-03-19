@@ -97,6 +97,7 @@
 					<div class="candidates-item candidates-single-item">
 						<h6 class="title"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a></h6>
 						<span class="meta">24 Years Old - {{ current_user.country }}</span>
+                        <time datetime="YYYY-MM-DDThh:mm:ssTZD">now
 
 						<ul class="top-btns">
 							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
@@ -113,7 +114,8 @@
                         <h5>Summary:</h5>
                         <p>{{ current_user.cvSummary}}</p>
 
-		                <h4>Education</h4>
+		                <h4>Education <a href="#" class="btn btn-gray" >Add Education</a></h4>
+
 						<ul class="list-unstyled">
 							<li><strong>School :</strong> {{ current_user.education.school}}</li>
 							<li><strong>Field Study:</strong> {{ current_user.education.fieldOfStudy}}</li>

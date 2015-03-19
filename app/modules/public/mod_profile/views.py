@@ -96,8 +96,6 @@ def update_personal_info():
 @mod_profile.route('/update-education', methods=['POST', 'GET'])
 @login_required
 def update_education():
-
-    #education = user_doc['education']
     user_form = RegisterForm()
     if request.method == 'GET':
         if current_user.is_authenticated():
@@ -136,7 +134,6 @@ def update_education():
             )
         user_doc.update(set__education=education)
         return redirect(url_for('mod_profile.update_experience'))
-
 
 @mod_profile.route('/update-experience', methods=['POST', 'GET'])
 @login_required
