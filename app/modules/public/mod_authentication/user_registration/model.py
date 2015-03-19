@@ -16,6 +16,15 @@ class Experience(db.EmbeddedDocument):
     experienceDescription = db.StringField()
 
 
+class Education(db.EmbeddedDocument):
+    school = db.StringField()
+    fieldOfStudy = db.StringField()
+    schoolDegree = db.StringField()
+    startDateSchool = db.DateTimeField()
+    endDateSchool = db.DateTimeField()
+    schoolDescription = db.StringField()
+
+
 class User(db.Document, UserMixin):
     email = db.StringField(max_length=255)
     password = db.StringField(max_length=255)
@@ -35,18 +44,13 @@ class User(db.Document, UserMixin):
     trainings = db.StringField()
     jobs_applied = db.StringField()
     next = db.StringField()
-    school = db.StringField()
-    fieldOfStudy = db.StringField()
-    schoolDegree = db.StringField()
-    startDateSchool = db.DateTimeField()
-    endDateSchool = db.DateTimeField()
-    schoolDescription = db.StringField()
     cvSummary = db.StringField()
-    experience = db.EmbeddedDocumentField(Experience)
     country = db.StringField()
     stateProvince = db.StringField()
     city = db.StringField()
     zipCode = db.IntField()
+    experience = db.EmbeddedDocumentField(Experience)
+    education = db.EmbeddedDocumentField(Education)
 
     def is_authenticated(self):
         return True
