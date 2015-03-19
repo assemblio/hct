@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from flask.ext.security import current_user
 from app.modules.public.mod_authentication.user_registration.model\
-    import User, Experience
+    import User, Experience, Education
 from app.modules.public.mod_apply_for_job.model import Job
 from app.modules.public.mod_apply_for_training.model import Training
 from app.modules.public.mod_authentication.user_registration.form import\
@@ -95,35 +95,45 @@ def update_personal_info():
 @mod_profile.route('/update-education', methods=['POST', 'GET'])
 @login_required
 def update_education():
-    user_doc = User.objects.get(email=current_user.email)
-    user_form = RegisterForm()
 
+    #education = user_doc['education']
+    user_form = RegisterForm()
     if request.method == 'GET':
         if current_user.is_authenticated():
-            user_form.school.data = user_doc['school']
-            user_form.fieldOfStudy.data = user_doc['fieldOfStudy']
-            user_form.schoolDegree.data = user_doc['schoolDegree']
-            user_form.startDateSchool.data = user_doc['startDateSchool']
-            user_form.endDateSchool.data = user_doc['endDateSchool']
-            user_form.schoolDescription.data = user_doc['schoolDescription']
+            if current_user.education:
+                user_form.school.data = current_user.education['school']
+                user_form.fieldOfStudy.data = current_user.education['fieldOfStudy']
+                user_form.schoolDegree.data = current_user.education['schoolDegree']
+                user_form.startDateSchool.data = current_user.education['startDateSchool']
+                user_form.endDateSchool.data = current_user.education['endDateSchool']
+                user_form.schoolDescription.data = current_user.education['schoolDescription']
+                return render_template(
+                    'home/update_education.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_education'),
+                    display_pass_field=True
+                )
+            else:
+                return render_template(
+                    'home/update_education.html',
+                    form=user_form,
+                    action=url_for('mod_profile.update_education'),
+                    display_pass_field=True
+                )
 
-            return render_template(
-                'home/update_education.html',
-                form=user_form,
-                action=url_for('mod_profile.update_education')
-            )
         else:
             return render_template('home/index.html')
     elif request.method == 'POST':
-        user_doc.update(
-            set__school=user_form.school.data,
-            set__fieldOfStudy=user_form.fieldOfStudy.data,
-            set__schoolDegree=user_form.schoolDegree.data,
-            set__startDateSchool=user_form.startDateSchool.data,
-            set__endDateSchool=user_form.endDateSchool.data,
-            set__schoolDescription=user_form.schoolDescription.data
+        user_doc = User.objects.get(email=current_user.email)
+        education = Education(
+            school=user_form.school.data,
+            fieldOfStudy=user_form.fieldOfStudy.data,
+            schoolDegree=user_form.schoolDegree.data,
+            startDateSchool=user_form.startDateSchool.data,
+            endDateSchool=user_form.endDateSchool.data,
+            schoolDescription=user_form.schoolDescription.data
             )
-
+        user_doc.update(set__education=education)
         return redirect(url_for('mod_profile.update_experience'))
 
 
@@ -132,7 +142,6 @@ def update_education():
 def update_experience():
     user_doc = User.objects.get(email=current_user.email)
     experience = user_doc['experience']
-    #experience = Experience()
     user_form = RegisterForm()
 
     if request.method == "GET":
@@ -157,7 +166,6 @@ def update_experience():
                     action=url_for('mod_profile.update_experience'),
                     display_pass_field=True
                 )
-
         else:
             return render_template('home/index.html')
     elif request.method == "POST":

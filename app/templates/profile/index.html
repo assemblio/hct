@@ -25,7 +25,9 @@
 
 										<tr>
 											<td>Date Of Birth</td>
+                                            {%  if current_user.dateOfBirth %}
 											<td>{{current_user.dateOfBirth.strftime('%Y-%m-%d')}}</td>
+                                            {%  endif %}
 										</tr>
 
 										<tr>
@@ -113,17 +115,17 @@
 
 		                <h4>Education</h4>
 						<ul class="list-unstyled">
-							<li><strong>School :</strong> {{ current_user.school}}</li>
-							<li><strong>Field Study:</strong> {{ current_user.fieldOfStudy}}</li>
-							<li><strong>Degree:</strong> {{ current_user.schoolDegree}}</li>
-                            <li><strong>Time worked here: </strong> {{ current_user.startDateSchool.strftime('%Y/%m/%d')}}<strong>--</strong>{{ current_user.endDateSchool.strftime('%Y/%m/%d')}}</li>
-
+							<li><strong>School :</strong> {{ current_user.education.school}}</li>
+							<li><strong>Field Study:</strong> {{ current_user.education.fieldOfStudy}}</li>
+							<li><strong>Degree:</strong> {{ current_user.education.schoolDegree}}</li>
+                            <li><strong>Period of time:  </strong> {%  if current_user.education.startDateSchool %}{{ current_user.education.startDateSchool.strftime('%Y/%m/%d')}}--{{ current_user.education.endDateSchool.strftime('%Y/%m/%d')}}{% endif %}</li>
+                            <li><strong>Description:</strong> <br>{{ current_user.education.schoolDescription}}</li>
 						</ul>
                         <h4>Experience</h4>
                         <ul class="list-unstyled">
 							<li><strong>Company Name: </strong>{{ current_user.experience.companyName}}</li>
 							<li><strong>Work Position: </strong> {{ current_user.experience.workPosition}}</li>
-							<li><strong>Time worked here: </strong> {{ current_user.experience.startDateWork.strftime('%Y/%m/%d')}}--{{ current_user.experience.endDateWork.strftime('%Y/%m/%d')}}</li>
+							<li><strong>Period of time: </strong>{% if current_user.experience.startDateWork %} {{ current_user.experience.startDateWork.strftime('%Y/%m/%d')}}--{{ current_user.experience.endDateWork.strftime('%Y/%m/%d')}}{% endif %}</li>
 						    <li><strong>Description of work:</strong><br> {{ current_user.experience.experienceDescription}}</li>
                         </ul>
 
