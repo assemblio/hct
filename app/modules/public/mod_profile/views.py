@@ -99,12 +99,13 @@ def update_education():
     if request.method == 'GET':
         if current_user.is_authenticated():
             if current_user.education:
-                user_form.school.data = current_user.education['school']
-                user_form.fieldOfStudy.data = current_user.education['fieldOfStudy']
-                user_form.schoolDegree.data = current_user.education['schoolDegree']
-                user_form.startDateSchool.data = current_user.education['startDateSchool']
-                user_form.endDateSchool.data = current_user.education['endDateSchool']
-                user_form.schoolDescription.data = current_user.education['schoolDescription']
+                for education in current_user.education:
+                    user_form.school.data = education['school']
+                    user_form.fieldOfStudy.data = education['fieldOfStudy']
+                    user_form.schoolDegree.data = education['schoolDegree']
+                    user_form.startDateSchool.data = education['startDateSchool']
+                    user_form.endDateSchool.data = education['endDateSchool']
+                    user_form.schoolDescription.data = education['schoolDescription']
                 return render_template(
                     'home/update_education.html',
                     form=user_form,
@@ -122,17 +123,18 @@ def update_education():
         else:
             return render_template('home/index.html')
     elif request.method == 'POST':
+        user_form_values = RegisterForm(request.form)
         user_doc = User.objects.get(email=current_user.email)
         education = Education(
-            school=user_form.school.data,
-            fieldOfStudy=user_form.fieldOfStudy.data,
-            schoolDegree=user_form.schoolDegree.data,
-            startDateSchool=user_form.startDateSchool.data,
-            endDateSchool=user_form.endDateSchool.data,
-            schoolDescription=user_form.schoolDescription.data
+            school=user_form_values.school.data,
+            fieldOfStudy=user_form_values.fieldOfStudy.data,
+            schoolDegree=user_form_values.schoolDegree.data,
+            startDateSchool=user_form_values.startDateSchool.data,
+            endDateSchool=user_form_values.endDateSchool.data,
+            schoolDescription=user_form_values.schoolDescription.data
             )
-        user_doc.update(set__education=education)
-        return redirect(url_for('mod_profile.update_experience'))
+        user_doc.update(add_to_set__education=education)
+        return redirect(url_for('mod_profile.update_education'))
 
 
 
@@ -141,31 +143,11 @@ def update_education():
 @login_required
 def create_education():
     user_form = RegisterForm()
-    if request.method == 'GET':
-        if current_user.is_authenticated():
-            if current_user.education:
-                user_form.school.data = current_user.education['school']
-                user_form.fieldOfStudy.data = current_user.education['fieldOfStudy']
-                user_form.schoolDegree.data = current_user.education['schoolDegree']
-                user_form.startDateSchool.data = current_user.education['startDateSchool']
-                user_form.endDateSchool.data = current_user.education['endDateSchool']
-                user_form.schoolDescription.data = current_user.education['schoolDescription']
-                return render_template(
-                    'home/create_education.html',
-                    form=user_form,
-                    action=url_for('mod_profile.create_education'),
-                    display_pass_field=True
-                )
-            else:
-                return render_template(
-                    'home/update_education.html',
-                    form=user_form,
-                    action=url_for('mod_profile.create_education'),
-                    display_pass_field=True
-                )
-
-        else:
-            return render_template('home/index.html')
+    if request.method == 'GET' and current_user.is_authenticated():
+        return render_template(
+            'home/create_education.html',
+            form=user_form
+        )
     elif request.method == 'POST':
         user_doc = User.objects.get(email=current_user.email)
         education = Education(
@@ -176,8 +158,11 @@ def create_education():
             endDateSchool=user_form.endDateSchool.data,
             schoolDescription=user_form.schoolDescription.data
             )
-        user_doc.save(set__education=education)
-        return redirect(url_for('mod_profile.create_experience'))
+        user_doc.update(push__education=education)
+        return redirect(url_for('mod_profile.profile'))
+    else:
+        return render_template('home/index.html')
+
 
 
 @mod_profile.route('/update-experience', methods=['POST', 'GET'])

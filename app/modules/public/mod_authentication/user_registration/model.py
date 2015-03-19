@@ -50,7 +50,7 @@ class User(db.Document, UserMixin):
     city = db.StringField()
     zipCode = db.IntField()
     experience = db.EmbeddedDocumentField(Experience)
-    education = db.EmbeddedDocumentField(Education)
+    education = db.ListField(db.EmbeddedDocumentField(Education))
 
     def is_authenticated(self):
         return True

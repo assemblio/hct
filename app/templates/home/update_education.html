@@ -10,7 +10,7 @@
 						<li><a href="{{url_for('mod_profile.update_experience')}}">Experience</a></li>
 						<li><a href="{{url_for('mod_profile.update_summary')}}">Summary</a></li>
 					</ul>
-
+                    {%  for education in current_user.education %}
 					<div class="white-container sign-up-form">
                         <form class="form-register" role="form" method="post" action="{{url_for('mod_profile.update_education')}}">
 	    					<div>
@@ -18,9 +18,10 @@
                             <h5>Add academic achivement</h5>
                                 <section>
                                     <div class="row">
+
                                     <h6 class="label">School</h6>
                                             <div class="col-sm-4">
-                                                  {{ form.school(placeholder="School") }}
+                                                  {{ form.school(placeholder="School", value=education.school) }}
                                                     <span class="error">
                                                       {% if form.school.errors %}
                                                         {% for error in form.school.errors %}
@@ -31,7 +32,7 @@
                                             </div>
 
                                             <div class="col-sm-4">
-                                                  {{ form.fieldOfStudy(placeholder="Field Of Study") }}
+                                                  {{ form.fieldOfStudy(placeholder="Field Of Study", value=education.fieldOFStudy) }}
                                                     <span class="error">
                                                       {% if form.fieldOfStudy.errors %}
                                                         {% for error in form.fieldOfStudy.errors %}
@@ -42,7 +43,7 @@
                                             </div>
 
                                             <div class="col-sm-4">
-                                                  {{ form.schoolDegree(placeholder="Degree") }}
+                                                  {{ form.schoolDegree(placeholder="Degree",value=education.schoolDegree) }}
                                                     <span class="error">
                                                       {% if form.schoolDegree.errors %}
                                                         {% for error in form.schoolDegree.errors %}
@@ -59,7 +60,7 @@
 								<div class="row">
 									<div class="col-sm-4">
 										<h7 class="label">Start Date</h7>
-										{{ form.startDateSchool(type="date", class = "form-control datepicker") }}
+										{{ form.startDateSchool(type="date", class = "form-control datepicker", value=education.startDateSchool) }}
                                         <span class="error">
                                               {% if form.startDateSchool.errors %}
                                                 {% for error in form.startDateSchool.errors %}
@@ -71,7 +72,7 @@
 
 									<div class="col-sm-4">
 										<h7 class="label">End Date</h7>
-										{{ form.endDateSchool(type="date", class = "form-control") }}
+										{{ form.endDateSchool(type="date", class = "form-control",value=education.endDateSchool) }}
                                         <span class="error">
                                               {% if form.endDateSchool.errors %}
                                                 {% for error in form.endDateSchool.errors %}
@@ -86,7 +87,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-8">
-                                            {{ form.schoolDescription(placeholder="Description",rows=5)}}
+                                            {{ form.schoolDescription(placeholder="Description",rows=5, value="{{education.schoolDescription}}")}}
                                             <span class="error">
                                                   {% if form.schoolDescription.errors %}
                                                     {% for error in form.schoolDescription.errors %}
@@ -98,12 +99,18 @@
                                     </div>
                                     </section>
 
-                             <button class="btn-default btn-large pull-left" type="submit">Save</button>
-                             <a href="{{url_for('mod_profile.update_experience')}}" class="btn-default btn-large pull-right" type="submit">Next >></a>
+                                <section>
+                                    <div class="row">
+                                         <button class="btn-default btn-large pull-left" type="submit">Save</button>
+                                         </div>
+                                </section>
                             </div>
-                            <br><br>
+
+
 
                         </form>
+                        {% endfor %}
+                <a href="{{url_for('mod_profile.update_experience')}}" class="btn-default btn-large pull-right" type="submit">Next >></a>
 
 					</div>
 				</div> <!-- end .page-content -->

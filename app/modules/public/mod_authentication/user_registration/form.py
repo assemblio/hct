@@ -138,6 +138,8 @@ class RegisterForm(Form):
         'zipCode',
         validators=[DataRequired()])
 
+    experienceIndex = IntegerField('experienceIndex')
+
     def validate(self):
         initial_validation = super(RegisterForm, self).validate()
         if not initial_validation:
