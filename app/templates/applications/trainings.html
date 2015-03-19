@@ -1,5 +1,6 @@
 {% extends "base/costum_layout.html" %}
 {% block body %}
+
 <div id="page-content">
     <div class="container">
         <div class="row">
@@ -137,10 +138,12 @@
                 {% endfor %}
 
                 <div id="login-modal-content">
-                    <div id="login-modal-title">Register</div>
-                    <div class="close"><a href="#" class="login-close">x</a></div>
-                    <div id="login-modal-data">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div id="login-modal-title">Register</div>
+                    </div>
 
+                    <div id="login-modal-data" class="modal-body">
                         <section class="col-md-5">
                             <h4>Login!  or </h4>
                             <form action="{{url_for('mod_authentication.login')}}" method="POST" name="login_user_form">
@@ -162,12 +165,14 @@
                                 <input type="password" name="password" class="form-control" value=""  placeholder="Password">
                                 <input type="hidden" name="previous_url" value="{{request.endpoint}}">
                                 <input type="submit" class="btn btn-default" value="Register">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </form>
                         </section>
 
-                        <button class="login-close">Close</button>
+                        <button class="login-close" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+            </div>
 
                 <div class="clearfix">
                     <ul class="pagination pull-right">
