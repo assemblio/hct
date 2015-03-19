@@ -8,133 +8,84 @@
 						<div class="widget sidebar-widget white-container candidates-single-widget">
 							<div class="widget-content">
 								<div class="thumb">
-									<img src="img/content/face-6.png" alt="">
+									<img src="{{ url_for('static', filename='img/content/face-6.png') }}" alt="">
 								</div>
+								
+								<h5 class="bottom-line">My Profile</h5>
 
-								<h5 class="bottom-line">Candidate Details</h5>
+								<p>Your profile is not completed yet.</p>
+								<a href="{{url_for('mod_profile.update_personal_info')}}">Click here to complete it.</a>
 
 								<table>
 									<tbody>
 										<tr>
 											<td>Name</td>
-											<td>Abu Antar</td>
+											<td>{{ username.first_name }} {{ username.last_name }}</td>
 										</tr>
 
 										<tr>
-											<td>Age</td>
-											<td>38 Years Old</td>
+											<td>Date Of Birth</td>
+                                            {%  if username.dateOfBirth %}
+											<td>{{username.dateOfBirth.strftime('%Y-%m-%d')}}</td>
+                                            {%  endif %}
 										</tr>
 
 										<tr>
 											<td>Location</td>
-											<td>Jordan Amman</td>
+											<td>{{ username.address1 }} </td>
+
 										</tr>
 
 										<tr>
-											<td>Experiance</td>
-											<td>15 Years</td>
+											<td>Phone Mobile</td>
+											<td>{{ username.phone_mobile }}</td>
 										</tr>
-
 										<tr>
-											<td>Dgree</td>
-											<td>MBA</td>
-										</tr>
-
-										<tr>
-											<td>Career Lavel</td>
-											<td>Mid-Level</td>
-										</tr>
-
-										<tr>
-											<td>Phone</td>
-											<td>(800) 123-4567</td>
+											<td>Phone Work</td>
+											<td>{{ username.phone_work }}</td>
 										</tr>
 
 										<tr>
 											<td>Fax</td>
-											<td>(800) 123-4568</td>
+											<td>{{ username.fax }}</td>
 										</tr>
 
 										<tr>
 											<td>E-mail</td>
-											<td><a href="mailto:example@example.com">example@example.com</a></td>
-										</tr>
-
-										<tr>
-											<td>Website</td>
-											<td><a href="#">example.com</a></td>
+											<td><a href="mailto:{{ username.email }}">{{ username.email }}</a></td>
 										</tr>
 									</tbody>
 								</table>
 
-								<h5 class="bottom-line">Professional Rating</h5>
+								<h5 class="bottom-line">Jobs i applied for</h5>
 
 								<table>
 									<tbody>
+                                    {% for job in show_jobs %}
 										<tr>
-											<td>Expertise</td>
+											<td>{{job.title}}</td>
 											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
+                                                <a href="{{ config.BASE_PATH}}/job/{{job.id}}">View this job</a>
 											</td>
 										</tr>
+                                    {% endfor %}
 
-										<tr>
-											<td>Knowledge</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
-											</td>
-										</tr>
+									</tbody>
+								</table>
 
-										<tr>
-											<td>Quality</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-												</ul>
-											</td>
-										</tr>
+                                <h5 class="bottom-line">Trainings i am attending</h5>
 
+								<table>
+									<tbody>
+                                    {% for training in show_trainings %}
 										<tr>
-											<td>Price</td>
+											<td>{{training.title}}</td>
 											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
+                                                <a href="{{ config.BASE_PATH}}/training/{{training.id}}">View this training</a>
 											</td>
 										</tr>
+                                    {% endfor %}
 
-										<tr>
-											<td>Services</td>
-											<td>
-												<ul class="stars">
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star-o"></i></li>
-												</ul>
-											</td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -144,8 +95,8 @@
 
 				<div class="col-sm-8 page-content">
 					<div class="candidates-item candidates-single-item">
-						<h6 class="title"><a href="#">{{ username.name }} {{ username.surname }}</a></h6>
-						<span class="meta">24 Years Old - Sydney, AU</span>
+						<h6 class="title"><a href="#">{{ username.first_name }} {{ username.last_name }}</a></h6>
+						<span class="meta">24 Years Old - {{ username.country }}</span>
 
 						<ul class="top-btns">
 							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
@@ -159,20 +110,24 @@
 							<li><a href="#" class="btn btn-gray fa fa-pinterest"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-linkedin"></a></li>
 						</ul>
+                        <h5>Summary:</h5>
+                        <p>{{ username.cvSummary}}</p>
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae.</p>
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, at nemo inventore temporibus corporis suscipit.</p>
-
+		                <h4>Education</h4>
 						<ul class="list-unstyled">
-							<li><strong>Experience:</strong> 5 Years</li>
-							<li><strong>Degree:</strong> MBA</li>
-							<li><strong>Career Level:</strong> Mid Career</li>
+							<li><strong>School :</strong> {{ username.education.school}}</li>
+							<li><strong>Field Study:</strong> {{ username.education.fieldOfStudy}}</li>
+							<li><strong>Degree:</strong> {{ username.education.schoolDegree}}</li>
+                            <li><strong>Period of time:  </strong> {%  if username.education.startDateSchool %}{{ username.education.startDateSchool.strftime('%Y/%m/%d')}}--{{ username.education.endDateSchool.strftime('%Y/%m/%d')}}{% endif %}</li>
+                            <li><strong>Description:</strong> <br>{{ username.education.schoolDescription}}</li>
 						</ul>
-
-						<h5>Skills</h5>
+                        <h4>Experience</h4>
+                        <ul class="list-unstyled">
+							<li><strong>Company Name: </strong>{{ username.experience.companyName}}</li>
+							<li><strong>Work Position: </strong> {{ username.experience.workPosition}}</li>
+							<li><strong>Period of time: </strong>{% if username.experience.startDateWork %} {{ username.experience.startDateWork.strftime('%Y/%m/%d')}}--{{ username.experience.endDateWork.strftime('%Y/%m/%d')}}{% endif %}</li>
+						    <li><strong>Description of work:</strong><br> {{ username.experience.experienceDescription}}</li>
+                        </ul>
 
 						<div class="progress-bar toggle" data-progress="60">
 							<a href="#" class="progress-bar-toggle"></a>
@@ -214,9 +169,7 @@
 							</ul>
 						</div>
 					</div>
-
-
-                </div> <!-- end .page-content -->
+				</div> <!-- end .page-content -->
 			</div>
 		</div> <!-- end .container -->
 	</div> <!-- end #page-content -->
