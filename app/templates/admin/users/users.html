@@ -13,11 +13,45 @@
 
 				<div class="col-sm-8 page-content">
 
-
 					<div class="title-lines">
 						<h3 class="mt0">Users</h3>
 					</div>
-				</div> <!-- end .page-content -->
+					<!-- end .page-content -->
+							<table class="table table-striped">
+							  <tr>
+							    <th>Firstname</th>
+							    <th>Lastname</th> 
+							    <th>Education</th>
+							    <th>Act. Position</th>
+							    <th>Title</th>
+							    <th>Salary Req.</th>
+							    <th>Actions</th>
+							  </tr>
+							  {% for user in pagination.items %}
+							  <tr>
+							    <td>{{user.first_name}}</td>
+							    <td>{{user.last_name}}</td> 
+							    <td>{{user.education.schoolDegree}}</td>
+							    <td>{{user.experience.workPosition}}</td><td>{{user.education.fieldOfStudy}}</td>
+							  </tr>
+							  {% endfor %}
+							</table>
+						    <div class=pagination>
+						        {%- for page in pagination.iter_pages() %}
+						            {% if page %}
+										
+						                {% if page != pagination.page %}
+						                    <a href="http://0.0.0.0:5000/admin/users?page={{ page }}">{{ page }}</a>
+						                    </li>
+						                {% else %}
+						                    <strong>{{ page }}</strong>
+						                {% endif %}
+						            {% else %}
+						                <span class=ellipsis>...</span>
+						            {% endif %}
+						        {%- endfor %}
+						    </div>
+				</div> 
 			</div>
 		</div> <!-- end .container -->
 	</div> <!-- end #page-content -->

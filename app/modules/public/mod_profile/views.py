@@ -78,7 +78,6 @@ def update_personal_info():
             set__first_name=user_form.first_name.data,
             set__last_name=user_form.last_name.data,
             set__dateOfBirth=user_form.dateOfBirth.data,
-            set__password=user_form.first_name.data,
             set__phone_mobile=user_form.phone_mobile.data,
             set__phone_work=user_form.phone_work.data,
             set__fax=user_form.fax.data,
