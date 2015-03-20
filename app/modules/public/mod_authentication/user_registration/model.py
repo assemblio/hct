@@ -52,6 +52,7 @@ class User(db.Document, UserMixin):
     experience = db.EmbeddedDocumentField(Experience)
     education = db.ListField(db.EmbeddedDocumentField(Education))
 
+
     def is_authenticated(self):
         return True
 

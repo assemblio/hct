@@ -124,13 +124,20 @@
                             <li><strong>Description:</strong> <br>{{ education.schoolDescription}}</li>
                         </ul>
                         {% endfor %}
-                        <h4 class="bottom-line">Experience</h4>
+
+                        <h4 class="bottom-line">Experience <a href="{{url_for('mod_profile.create_experience')}}" class="btn btn-gray pull-right" >Add Experience</a></h4>
+                         {%  for experience in current_user.experience %}
                         <ul class="list-unstyled">
-							<li><strong>Company Name: </strong>{{ current_user.experience.companyName}}</li>
-							<li><strong>Work Position: </strong> {{ current_user.experience.workPosition}}</li>
-							<li><strong>Period of time: </strong>{% if current_user.experience.startDateWork %} {{ current_user.experience.startDateWork.strftime('%Y/%m/%d')}}--{{ current_user.experience.endDateWork.strftime('%Y/%m/%d')}}{% endif %}</li>
-						    <li><strong>Description of work:</strong><br> {{ current_user.experience.experienceDescription}}</li>
+                        <ul class="list-inline pull-right" >
+							<li><a href="{{url_for('mod_profile.update_experience')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
+                            <li><a href="#" class="btn btn-gray fa fa-times"></a></li>
+						</ul>
+							<li><strong>Company Name: </strong>{{ experience.companyName}}</li>
+							<li><strong>Work Position: </strong> {{ experience.workPosition}}</li>
+							<li><strong>Period of time: </strong>{% if experience.startDateWork %} {{ experience.startDateWork.strftime('%Y/%m/%d')}}--{{ experience.endDateWork.strftime('%Y/%m/%d')}}{% endif %}</li>
+						    <li><strong>Description of work:</strong><br> {{ experience.experienceDescription}}</li>
                         </ul>
+                        {% endfor %}
 
 						<div class="progress-bar toggle" data-progress="60">
 							<a href="#" class="progress-bar-toggle"></a>

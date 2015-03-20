@@ -209,6 +209,32 @@ def update_experience():
         user_doc.update(set__experience=experience)
         return redirect(url_for('mod_profile.update_summary'))
 
+@mod_profile.route('/create-experience', methods=['POST', 'GET'])
+@login_required
+def create_experience():
+    user_form = RegisterForm()
+    if request.method == 'GET' and current_user.is_authenticated():
+        return render_template(
+            'home/create_experience.html',
+            form=user_form
+        )
+    elif request.method == 'POST':
+        user_doc = User.objects.get(email=current_user.email)
+        experience = Experience(
+            companyName=user_form.companyName.data,
+            startDateWork=user_form.startDateWork.data,
+            endDateWork=user_form.endDateWork.data,
+            workPosition=user_form.workPosition.data,
+            companyLocation=user_form.companyLocation.data,
+            experienceDescription=user_form.experienceDescription.data
+        )
+
+        user_doc.update(push__experience=experience)
+        return redirect(url_for('mod_profile.profile'))
+    else:
+        return render_template('home/index.html')
+
+
 
 @mod_profile.route('/update-summary', methods=['POST', 'GET'])
 @login_required
