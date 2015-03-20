@@ -100,12 +100,12 @@ def update_education():
         if current_user.is_authenticated():
             if current_user.education:
                 for education in current_user.education:
-                    user_form.school.data = education['school']
-                    user_form.fieldOfStudy.data = education['fieldOfStudy']
-                    user_form.schoolDegree.data = education['schoolDegree']
-                    user_form.startDateSchool.data = education['startDateSchool']
-                    user_form.endDateSchool.data = education['endDateSchool']
-                    user_form.schoolDescription.data = education['schoolDescription']
+                    user_form.school.data = education['school'].index
+                    user_form.fieldOfStudy.data = education['fieldOfStudy'].index
+                    user_form.schoolDegree.data = education['schoolDegree'].index
+                    user_form.startDateSchool.data = education['startDateSchool'].index
+                    user_form.endDateSchool.data = education['endDateSchool'].index
+                    user_form.schoolDescription.data = education['schoolDescription'].index
                 return render_template(
                     'home/update_education.html',
                     form=user_form,
@@ -174,19 +174,20 @@ def update_experience():
 
     if request.method == "GET":
         if current_user.is_authenticated():
-            if experience:
-                user_form.companyName.data = experience['companyName']
-                user_form.startDateWork.data = experience['startDateWork']
-                user_form.endDateWork.data = experience['endDateWork']
-                user_form.workPosition.data = experience['workPosition']
-                user_form.companyLocation.data = experience['companyLocation']
-                user_form.experienceDescription.data = experience['experienceDescription']
-                return render_template(
-                    'home/update_experience.html',
-                    form=user_form,
-                    action=url_for('mod_profile.update_experience'),
-                    display_pass_field=True
-                )
+            if experience.exp_id():
+                if experience:
+                    user_form.companyName.data = experience['companyName']
+                    user_form.startDateWork.data = experience['startDateWork']
+                    user_form.endDateWork.data = experience['endDateWork']
+                    user_form.workPosition.data = experience['workPosition']
+                    user_form.companyLocation.data = experience['companyLocation']
+                    user_form.experienceDescription.data = experience['experienceDescription']
+                    return render_template(
+                        'home/update_experience.html',
+                        form=user_form,
+                        action=url_for('mod_profile.update_experience'),
+                        display_pass_field=True
+                    )
             else:
                 return render_template(
                     'home/update_experience.html',
@@ -221,6 +222,7 @@ def create_experience():
     elif request.method == 'POST':
         user_doc = User.objects.get(email=current_user.email)
         experience = Experience(
+            _id=ObjectId(),
             companyName=user_form.companyName.data,
             startDateWork=user_form.startDateWork.data,
             endDateWork=user_form.endDateWork.data,

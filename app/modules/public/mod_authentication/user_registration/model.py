@@ -8,6 +8,7 @@ class Role(db.Document, RoleMixin):
 
 
 class Experience(db.EmbeddedDocument):
+    exp_id = db.StringField()
     companyName = db.StringField()
     startDateWork = db.DateTimeField()
     endDateWork = db.DateTimeField()
@@ -49,7 +50,7 @@ class User(db.Document, UserMixin):
     stateProvince = db.StringField()
     city = db.StringField()
     zipCode = db.IntField()
-    experience = db.EmbeddedDocumentField(Experience)
+    experience = db.ListField(db.EmbeddedDocumentField(Experience))
     education = db.ListField(db.EmbeddedDocumentField(Education))
 
 
