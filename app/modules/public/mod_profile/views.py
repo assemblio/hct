@@ -8,7 +8,7 @@ from app.modules.public.mod_authentication.user_registration.form import\
     RegisterForm
 from flask.ext.security import login_required
 from bson import ObjectId
-
+from datetime import datetime
 # Define the blueprint:
 mod_profile = Blueprint('mod_profile', __name__)
 
@@ -169,46 +169,63 @@ def create_education():
 @login_required
 def update_experience():
     user_doc = User.objects.get(email=current_user.email)
-    experience = user_doc['experience']
     user_form = RegisterForm()
-
+    exp_idi = request.args.get('exp_id')
     if request.method == "GET":
         if current_user.is_authenticated():
-            if experience.exp_id():
-                if experience:
-                    user_form.companyName.data = experience['companyName']
-                    user_form.startDateWork.data = experience['startDateWork']
-                    user_form.endDateWork.data = experience['endDateWork']
-                    user_form.workPosition.data = experience['workPosition']
-                    user_form.companyLocation.data = experience['companyLocation']
-                    user_form.experienceDescription.data = experience['experienceDescription']
-                    return render_template(
-                        'home/update_experience.html',
-                        form=user_form,
-                        action=url_for('mod_profile.update_experience'),
-                        display_pass_field=True
-                    )
-            else:
-                return render_template(
-                    'home/update_experience.html',
-                    form=user_form,
-                    action=url_for('mod_profile.update_experience'),
-                    display_pass_field=True
-                )
+            if request.args.get('d'):
+                d = int(request.args.get('d'))
+                if d==1:
+                    index = 0
+                    for experience in user_doc['experience']:
+                        if ObjectId(str(experience['exp_id'])) == ObjectId(str(exp_idi)):
+                            print ObjectId(str(exp_idi))
+                            User._get_collection().update( {"experience.exp_id": ObjectId(str(exp_idi))},
+                                {
+                                    "$pull": {"experience":{ "exp_id": ObjectId(str(exp_idi))}
+                                    }
+                                }
+                            )
+                        index = index + 1
+                    return redirect(url_for('mod_profile.profile'))
+                else:
+                    for experience in current_user.experience:
+                        if experience['exp_id'] == ObjectId(exp_idi):
+                            user_form.exp_id.data = ObjectId(exp_idi)
+                            user_form.companyName.data = experience['companyName']
+                            user_form.startDateWork.data = experience['startDateWork']
+                            user_form.endDateWork.data = experience['endDateWork']
+                            user_form.workPosition.data = experience['workPosition']
+                            user_form.companyLocation.data = experience['companyLocation']
+                            user_form.experienceDescription.data = experience['experienceDescription']
+                            return render_template(
+                                'home/update_experience.html',
+                                form=user_form,
+                                action=url_for('mod_profile.profile'),
+                                display_pass_field=True
+                            )
         else:
             return render_template('home/index.html')
     elif request.method == "POST":
-        experience = Experience(
-            companyName=user_form.companyName.data,
-            startDateWork=user_form.startDateWork.data,
-            endDateWork=user_form.endDateWork.data,
-            workPosition=user_form.workPosition.data,
-            companyLocation=user_form.companyLocation.data,
-            experienceDescription=user_form.experienceDescription.data
-        )
+        index = 0
+        for experience in user_doc['experience']:
+            if ObjectId(str(experience['exp_id'])) == ObjectId(str(user_form.exp_id.data)):
+                User._get_collection().update( {"email": current_user['email']},
+                    {
+                        "$set": {
+                            "experience."+str(index)+".companyName": user_form.companyName.data,
+                            "experience."+str(index)+".startDateWork": datetime.strptime(str(user_form.startDateWork.data), "%Y-%m-%d"),
+                            "experience."+str(index)+".endDateWork": datetime.strptime(str(user_form.endDateWork.data), "%Y-%m-%d"),
+                            "experience."+str(index)+".workPosition": user_form.workPosition.data,
+                            "experience."+str(index)+".companyLocation": user_form.companyLocation.data,
+                            "experience."+str(index)+".experienceDescription": user_form.experienceDescription.data,
+                        }
+                    }
+                )
+            index = index + 1
+        return redirect(url_for('mod_profile.profile'))
 
-        user_doc.update(set__experience=experience)
-        return redirect(url_for('mod_profile.update_summary'))
+
 
 @mod_profile.route('/create-experience', methods=['POST', 'GET'])
 @login_required
@@ -222,7 +239,7 @@ def create_experience():
     elif request.method == 'POST':
         user_doc = User.objects.get(email=current_user.email)
         experience = Experience(
-            _id=ObjectId(),
+            exp_id=ObjectId(),
             companyName=user_form.companyName.data,
             startDateWork=user_form.startDateWork.data,
             endDateWork=user_form.endDateWork.data,

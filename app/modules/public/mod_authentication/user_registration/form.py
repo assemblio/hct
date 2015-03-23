@@ -140,6 +140,8 @@ class RegisterForm(Form):
 
     experienceIndex = IntegerField('experienceIndex')
 
+    exp_id = StringField('exp_id')
+
 
     def validate(self):
         initial_validation = super(RegisterForm, self).validate()

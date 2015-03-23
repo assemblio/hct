@@ -134,8 +134,8 @@
                         <ul class="list-unstyled" width="500px">
                             <li >
                                 <ul class="list-inline pull-right" >
-                                    <li><a href="{{url_for('mod_profile.update_experience')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
-                                    <li><a href="#" class="btn btn-gray fa fa-times"></a></li>
+                                    <li><a href="{{url_for('mod_profile.update_experience')}}?exp_id={{experience.exp_id}}&d=0" class="btn btn-gray fa fa-pencil-square-o"></a></li>
+                                    <li><a href="{{url_for('mod_profile.update_experience')}}?exp_id={{experience.exp_id}}&d=1" class="btn btn-gray fa fa-times"></a></li>
                                 </ul>
                             </li>
 
