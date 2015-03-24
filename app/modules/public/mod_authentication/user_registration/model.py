@@ -18,6 +18,7 @@ class Experience(db.EmbeddedDocument):
 
 
 class Education(db.EmbeddedDocument):
+    edu_id = db.StringField()
     school = db.StringField()
     fieldOfStudy = db.StringField()
     schoolDegree = db.StringField()

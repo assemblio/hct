@@ -95,47 +95,61 @@ def update_personal_info():
 @mod_profile.route('/update-education', methods=['POST', 'GET'])
 @login_required
 def update_education():
+    user_doc = User.objects.get(email=current_user.email)
     user_form = RegisterForm()
-    if request.method == 'GET':
+    edu_idi = request.args.get('edu_id')
+    if request.method == "GET":
         if current_user.is_authenticated():
-            if current_user.education:
-                for education in current_user.education:
-                    user_form.school.data = education['school'].index
-                    user_form.fieldOfStudy.data = education['fieldOfStudy'].index
-                    user_form.schoolDegree.data = education['schoolDegree'].index
-                    user_form.startDateSchool.data = education['startDateSchool'].index
-                    user_form.endDateSchool.data = education['endDateSchool'].index
-                    user_form.schoolDescription.data = education['schoolDescription'].index
-                return render_template(
-                    'home/update_education.html',
-                    form=user_form,
-                    action=url_for('mod_profile.update_education'),
-                    display_pass_field=True
-                )
-            else:
-                return render_template(
-                    'home/update_education.html',
-                    form=user_form,
-                    action=url_for('mod_profile.update_education'),
-                    display_pass_field=True
-                )
-
+            if request.args.get('d'):
+                d = int(request.args.get('d'))
+                if d==1:
+                    index = 0
+                    for education in user_doc['education']:
+                        if ObjectId(str(education['edu_id'])) == ObjectId(str(edu_idi)):
+                            User._get_collection().update({"education.edu_id": ObjectId(str(edu_idi))},
+                                {
+                                    "$pull": {"education":{ "edu_id": ObjectId(str(edu_idi))}
+                                    }
+                                }
+                            )
+                        index = index + 1
+                    return redirect(url_for('mod_profile.profile'))
+                else:
+                    for education in current_user.education:
+                        if education['edu_id'] == ObjectId(str(edu_idi)):
+                            user_form.edu_id.data = ObjectId(str(edu_idi))
+                            user_form.school.data = education['school']
+                            user_form.fieldOfStudy.data = education['fieldOfStudy']
+                            user_form.schoolDegree.data = education['schoolDegree']
+                            user_form.startDateSchool.data = education['startDateSchool']
+                            user_form.endDateSchool.data = education['endDateSchool']
+                            user_form.schoolDescription.data = education['schoolDescription']
+                            return render_template(
+                                'home/update_education.html',
+                                form=user_form,
+                                action=url_for('mod_profile.profile'),
+                                display_pass_field=True
+                            )
         else:
             return render_template('home/index.html')
-    elif request.method == 'POST':
-        user_form_values = RegisterForm(request.form)
-        user_doc = User.objects.get(email=current_user.email)
-        education = Education(
-            school=user_form_values.school.data,
-            fieldOfStudy=user_form_values.fieldOfStudy.data,
-            schoolDegree=user_form_values.schoolDegree.data,
-            startDateSchool=user_form_values.startDateSchool.data,
-            endDateSchool=user_form_values.endDateSchool.data,
-            schoolDescription=user_form_values.schoolDescription.data
-            )
-        user_doc.update(add_to_set__education=education)
-        return redirect(url_for('mod_profile.update_education'))
-
+    elif request.method == "POST":
+        index = 0
+        for education in user_doc['education']:
+            if ObjectId(str(education['edu_id'])) == ObjectId(str(user_form.edu_id.data)):
+                User._get_collection().update({"email": current_user['email']},
+                    {
+                        "$set": {
+                            "education."+str(index)+".school": user_form.school.data,
+                            "education."+str(index)+".fieldOfStudy": user_form.fieldOfStudy.data,
+                            "education."+str(index)+".schoolDegree": user_form.schoolDegree.data,
+                            "education."+str(index)+".startDateSchool": datetime.strptime(str(user_form.startDateSchool.data), "%Y-%m-%d"),
+                            "education."+str(index)+".endDateSchool": datetime.strptime(str(user_form.endDateSchool.data), "%Y-%m-%d"),
+                            "education."+str(index)+".schoolDescription": user_form.schoolDescription.data,
+                        }
+                    }
+                )
+            index = index + 1
+        return redirect(url_for('mod_profile.profile'))
 
 
 
@@ -151,6 +165,7 @@ def create_education():
     elif request.method == 'POST':
         user_doc = User.objects.get(email=current_user.email)
         education = Education(
+            edu_id=ObjectId(),
             school=user_form.school.data,
             fieldOfStudy=user_form.fieldOfStudy.data,
             schoolDegree=user_form.schoolDegree.data,
@@ -162,6 +177,7 @@ def create_education():
         return redirect(url_for('mod_profile.profile'))
     else:
         return render_template('home/index.html')
+
 
 
 

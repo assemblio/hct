@@ -95,11 +95,14 @@
 
 				<div class="col-sm-8 page-content">
 					<div class="candidates-item candidates-single-item">
-						<h6 class="title"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</a></h6>
+						<h6 class="title"><a href="#">{{ current_user.first_name }} {{ current_user.last_name }}</h6>
+
 						<span class="meta">24 Years Old - {{ current_user.country }}</span>
 
 						<ul class="top-btns">
-							<li><a href="#" class="btn btn-gray fa fa-star"></a></li>
+                            <li class="meta">Update personal info
+                            </li>
+                            <li><a href="{{url_for('mod_profile.update_personal_info')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
 						</ul>
 
 						<ul class="social-icons clearfix">
@@ -110,22 +113,31 @@
 							<li><a href="#" class="btn btn-gray fa fa-pinterest"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-linkedin"></a></li>
 						</ul>
-                        <h5 class="bottom-line"> Summary:</h5>
+                        <h5 class="bottom-line"> Summary:  </h5>
+                        <ul class="list-inline pull-right">
+                            <li class="meta">Add profile summary
+                            </li>
+                            <li><a href="{{url_for('mod_profile.update_personal_info')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
+						</ul>
+
                         <p>{{ current_user.cvSummary}}</p>
+
 
 		                <h5 class="bottom-line">Education <a href="{{url_for('mod_profile.create_education')}}" class="btn btn-gray pull-right" >Add Education</a></h5>
 
                         {%  for education in current_user.education %}
 						<ul class="list-unstyled">
                           <ul class="list-inline pull-right" >
-							<li><a href="{{url_for('mod_profile.update_education')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
-                            <li><a href="#" class="btn btn-gray fa fa-times"></a></li>
+							<li><a href="{{url_for('mod_profile.update_education')}}?edu_id={{education.edu_id}}&d=0" class="btn btn-gray fa fa-pencil-square-o"></a></li>
+                            <li><a href="{{url_for('mod_profile.update_education')}}?edu_id={{education.edu_id}}&d=1" class="btn btn-gray fa fa-times"></a></li>
+
 						</ul>
 							<li><strong>School :</strong> {{ education.school}}</li>
 							<li><strong>Field Study:</strong> {{ education.fieldOfStudy}}</li>
 							<li><strong>Degree:</strong> {{ education.schoolDegree}}</li>
                             <li><strong>Period of time:  </strong> {%  if education.startDateSchool %}{{  education.startDateSchool.strftime('%Y/%m/%d')}}--{{ education.endDateSchool.strftime('%Y/%m/%d')}}{% endif %}</li>
                             <li><strong>Description:</strong> <br>{{ education.schoolDescription}}</li>
+                                <hr style="border: 0; border-bottom: 1px dashed #ccc; background: #F9F4FA;"
                         </ul>
                         {% endfor %}
 
@@ -141,7 +153,7 @@
 
 							<li ><strong>Company Name:  </strong>><span style="word-wrap: break-word;">{{ experience.companyName}}</span></li>
 							<li ><strong>Work Position: </strong> ><span style="word-wrap: break-word;">{{ experience.workPosition}}</span></li>
-							<li><strong>Period of time: </strong></li>
+                            <li><strong>Period of time:  </strong> {%  if experience.startDateWork %}{{  experience.startDateWork.strftime('%Y/%m/%d')}}--{{ experience.endDateWork.strftime('%Y/%m/%d')}}{% endif %}</li>
 						    <li ><strong>Description of work:</strong><br><span style="word-wrap: break-word;"> {{ experience.experienceDescription}}</span></li>
                                 <hr style="border: 0; border-bottom: 1px dashed #ccc; background: #F9F4FA;"
                         </ul>
