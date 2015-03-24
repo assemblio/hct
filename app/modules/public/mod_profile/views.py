@@ -18,6 +18,7 @@ mod_profile = Blueprint('mod_profile', __name__)
 @login_required
 def profile():
     jobs_applied = current_user['jobs_applied']
+    user_form = RegisterForm()
     show_jobs = []
     if jobs_applied:
         for job in jobs_applied:
@@ -30,6 +31,7 @@ def profile():
             show_trainings.append(Training.objects.get(id=training))
     return render_template(
         'profile/index.html',
+        form=user_form,
         current_user=current_user,
         show_jobs=show_jobs,
         show_trainings=show_trainings
@@ -186,7 +188,6 @@ def create_education():
 def update_experience():
     user_doc = User.objects.get(email=current_user.email)
     user_form = RegisterForm()
-    exp_idi = request.args.get('exp_id')
     if request.method == "GET":
         if current_user.is_authenticated():
             if request.args.get('d'):
@@ -194,11 +195,11 @@ def update_experience():
                 if d==1:
                     index = 0
                     for experience in user_doc['experience']:
-                        if ObjectId(str(experience['exp_id'])) == ObjectId(str(exp_idi)):
-                            print ObjectId(str(exp_idi))
-                            User._get_collection().update( {"experience.exp_id": ObjectId(str(exp_idi))},
+                        if ObjectId(str(experience['exp_id'])) == ObjectId(user_form.exp_id.data):
+                            print ObjectId(str(experience['exp_id']))
+                            User._get_collection().update( {"experience.exp_id":ObjectId(user_form.exp_id.data)},
                                 {
-                                    "$pull": {"experience":{ "exp_id": ObjectId(str(exp_idi))}
+                                    "$pull": {"experience":{ "exp_id": ObjectId(user_form.exp_id.data)}
                                     }
                                 }
                             )
@@ -206,8 +207,10 @@ def update_experience():
                     return redirect(url_for('mod_profile.profile'))
                 else:
                     for experience in current_user.experience:
-                        if experience['exp_id'] == ObjectId(exp_idi):
-                            user_form.exp_id.data = ObjectId(exp_idi)
+                        print "Hello we are inside looop"
+                        if experience['exp_id'] == ObjectId(user_form.exp_id.data):
+                            print "Hello we are inside if"
+                            user_form.exp_id.data = experience['exp_id']
                             user_form.companyName.data = experience['companyName']
                             user_form.startDateWork.data = experience['startDateWork']
                             user_form.endDateWork.data = experience['endDateWork']
@@ -215,7 +218,7 @@ def update_experience():
                             user_form.companyLocation.data = experience['companyLocation']
                             user_form.experienceDescription.data = experience['experienceDescription']
                             return render_template(
-                                'home/update_experience.html',
+                                url_for('mod_profile.profile'),
                                 form=user_form,
                                 action=url_for('mod_profile.profile'),
                                 display_pass_field=True
