@@ -138,8 +138,6 @@ class RegisterForm(Form):
         'zipCode',
         validators=[DataRequired()])
 
-    experienceIndex = IntegerField('experienceIndex')
-
     exp_id = StringField('exp_id')
     edu_id = StringField('edu_id')
 

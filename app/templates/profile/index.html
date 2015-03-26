@@ -113,21 +113,22 @@
 							<li><a href="#" class="btn btn-gray fa fa-pinterest"></a></li>
 							<li><a href="#" class="btn btn-gray fa fa-linkedin"></a></li>
 						</ul>
-                        <h5 class="bottom-line"> Summary:  </h5>
+                        <h4 class="bottom-line"> Summary:  </h4>
                         <ul class="list-inline pull-right">
                             <li class="meta">Update personal info
                             </li>
-                            <li><a href="{{url_for('mod_profile.update_personal_info')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
+                            <li><a href="{{url_for('mod_profile.update_summary')}}" class="btn btn-gray fa fa-pencil-square-o"></a></li>
 						</ul>
 
-                        <p>{{ current_user.cvSummary}}</p>
+                        <p>{{ current_user.cvSummary}}</p><br></br>
 
 
-		                <h5 class="bottom-line">Education <a href="{{url_for('mod_profile.create_education')}}" class="btn btn-gray pull-right" >Add Education</a></h5>
+		                <h4 class="bottom-line">Education <a href="{{url_for('mod_profile.create_education')}}" class="btn btn-gray pull-right" >Add Education</a></h4>
 
                         {%  for education in current_user.education %}
 						<ul class="list-unstyled">
                           <ul class="list-inline pull-right" >
+
 							<li><a href="{{url_for('mod_profile.update_education')}}?edu_id={{education.edu_id}}&d=0" class="btn btn-gray fa fa-pencil-square-o"></a></li>
                             <li><a href="{{url_for('mod_profile.update_education')}}?edu_id={{education.edu_id}}&d=1" class="btn btn-gray fa fa-times"></a></li>
 
@@ -146,6 +147,8 @@
                         <ul class="list-unstyled" width="500px">
                             <li >
                                 <ul class="list-inline pull-right" >
+                                    <li><a href="#create-experience" class="btn btn-gray fa fa-pencil-square-o" data-toggle="modal">Add</a></li>
+                                    <li><a href="{{url_for('mod_profile.update_experience')}}?exp_id={{experience.exp_id}}&d=0" class="btn btn-gray fa fa-pencil-square-o">Edit</a></li>
                                     <li><a href="#experience-{{ experience.exp_id }}" class="btn btn-gray fa fa-pencil-square-o" data-toggle="modal"></a></li>
                                     <li><a href="{{url_for('mod_profile.update_experience')}}?exp_id={{experience.exp_id}}&d=1" class="btn btn-gray fa fa-times"></a></li>
                                 </ul>
@@ -169,86 +172,37 @@
                                                     <div>
                                                         <section>
                                                             <div class="row">
-                                                            <h6 class="label ">Company name</h6>
-                                                                    <div class="col-sm-8">
+                                                                    <div class="col-sm-7">
                                                                           <span>Company Name:</span>
                                                                         {{ form.companyName(value=experience.companyName) }}
-                                                                            <span class="error">
-                                                                              {% if form.companyName.errors %}
-                                                                                {% for error in form.companyName.errors %}
-                                                                                  {{ error }}
-                                                                                {% endfor %}
-                                                                              {% endif %}
-                                                                            </span>
                                                                     </div>
-
-
                                                             </div>
-
                                                         {{ form.exp_id(type="hidden", value=experience.exp_id)}}
-
-
-                                                        <h6 class="label">Period of Working Here</h6>
                                                         <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <h7 class="label">Start Date</h7>
-                                                            <span>Start Date:</span>
-                                                                {{ form.startDateWork( value=experience.startDateWork,type="date", class = "form-control") }}
-                                                                <span class="error">
-                                                                      {% if form.startDateWork.errors %}
-                                                                        {% for error in form.startDateWork.errors %}
-                                                                          {{ error }}
-                                                                        {% endfor %}
-                                                                      {% endif %}
-                                                                    </span>
+                                                            <div class="col-sm-5">
+                                                            <div>Start Date:</div>
+                                                                {{ form.startDateWork(value=experience.startDateWork,type="date", class = "form-control") }}
+
                                                             </div>
-                                                            <div class="col-sm-6">
-                                                                <h7 class="label">End Date</h7>
-                                                            <span>End Date:</span>
-                                                                {{ form.endDateWork(value=experience.endDateWork,type="date", class = "form-control") }}
-                                                                <span class="error">
-                                                                      {% if form.endDateWork.errors %}
-                                                                        {% for error in form.endDateWork.errors %}
-                                                                          {{ error }}
-                                                                        {% endfor %}
-                                                                      {% endif %}
-                                                                    </span>
+                                                            <div class="col-sm-5">
+                                                            <h5>End Date:</h5>
+                                                                {{ form.endDateWork(value=experience.endDateWork,type="date", class = "form-control")}}
                                                             </div>
                                                             </section>
                                                         <section>
 
                                                             <div class="row">
-                                                            <h6 class="label">Position and Location</h6>
-
                                                                     <div class="col-sm-6">
-                                                                    <h7 class="label">Position</h7>
                                                                     <span>Work position </span>
                                                                           {{ form.workPosition(value=experience.workPosition) }}
-                                                                            <span class="error">
-                                                                              {% if form.workPosition.errors %}
-                                                                                {% for error in form.workPosition.errors %}
-                                                                                  {{ error }}
-                                                                                {% endfor %}
-                                                                              {% endif %}
-                                                                            </span>
                                                                     </div>
                                                                     <div class="col-sm-6">
-                                                                    <h7 class="label">Location</h7>
                                                                         <span>Company location</span>
                                                                           {{ form.companyLocation(value=experience.companyLocation) }}
-                                                                            <span class="error">
-                                                                              {% if form.companyLocation.errors %}
-                                                                                {% for error in form.companyLocation.errors %}
-                                                                                  {{ error }}
-                                                                                {% endfor %}
-                                                                              {% endif %}
-                                                                            </span>
                                                                     </div>
                                                             </div>
                                                         </section>
                                                         <section>
-                                                            <h6 class="label">Description</h6>
-
                                                             <div class="row">
                                                                 <div class="col-sm-8">
                                                                 <span>Description:</span>
@@ -257,7 +211,67 @@
                                                                 </div>
                                                             </div>
                                                             </section>
+                                                    </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                             <div id="create-experience" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Update experience</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="form-register" role="form" method="post" action="{{url_for('mod_profile.create_experience')}}">
+                                                    <div>
+                                                        <section>
+                                                            <div class="row">
+                                                                    <div class="col-sm-7">
+                                                                          <span>Company Name:</span>
+                                                                        {{ form.companyName }}
+                                                                    </div>
+                                                            </div>
+                                                        {{ form.exp_id(type="hidden")}}
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                            <div>Start Date:</div>
+                                                                {{ form.startDateWork(type="date", class = "form-control") }}
 
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                            <h5>End Date:</h5>
+                                                                {{ form.endDateWork(type="date", class = "form-control")}}
+                                                            </div>
+                                                            </section>
+                                                        <section>
+
+                                                            <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                    <span>Work position </span>
+                                                                          {{ form.workPosition}}
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <span>Company location</span>
+                                                                          {{ form.companyLocation }}
+                                                                    </div>
+                                                            </div>
+                                                        </section>
+                                                        <section>
+                                                            <div class="row">
+                                                                <div class="col-sm-8">
+                                                                <span>Description:</span>
+                                                                {{ form.experienceDescription }}
+
+                                                                </div>
+                                                            </div>
+                                                            </section>
                                                     </div>
                                         </div>
                                         <div class="modal-footer">
@@ -270,35 +284,6 @@
                             </div>
 
                         {% endfor %}
-
-						<div class="progress-bar toggle" data-progress="60">
-							<a href="#" class="progress-bar-toggle"></a>
-							<h6 class="progress-bar-title">Web Design</h6>
-							<div class="progress-bar-inner"><span></span></div>
-							<div class="progress-bar-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-							</div>
-						</div>
-
-						<div class="progress-bar toggle" data-progress="60">
-							<a href="#" class="progress-bar-toggle"></a>
-							<h6 class="progress-bar-title">Development</h6>
-							<div class="progress-bar-inner"><span></span></div>
-							<div class="progress-bar-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-							</div>
-						</div>
-
-						<div class="progress-bar toggle" data-progress="60">
-							<a href="#" class="progress-bar-toggle"></a>
-							<h6 class="progress-bar-title">UI/UX</h6>
-							<div class="progress-bar-inner"><span></span></div>
-							<div class="progress-bar-content">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
-							</div>
-						</div>
-
-						<hr>
 
 						<div class="clearfix">
 							<a href="#" class="btn btn-default pull-left"><i class="fa fa-envelope-o"></i> Contact Me</a>
