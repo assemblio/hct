@@ -20,16 +20,16 @@
 							<div class="pagination">
 			                    <ul class="pagination pull-right">
 			                        <li><a href="#" class="fa fa-angle-left"></a></li>
-			                        		{%- for page in pagination.iter_pages() %}
-									            {% if page %}
-													
-									                {% if page != pagination.page %}
-			                        					<li><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
-			                        				{% else %}
-			                        					<li>{{ page }}</li>
-			                        				{% endif %}
-									            {% endif %}
-									        {%- endfor %}
+		                        		{%- for page in pagination.iter_pages() %}
+								            {% if page %}
+												
+								                {% if page != pagination.page %}
+		                        					<li><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
+		                        				{% else %}
+		                        					<li>{{ page }}</li>
+		                        				{% endif %}
+								            {% endif %}
+								        {%- endfor %}
 			                        <li><a href="#" class="fa fa-angle-right"></a></li>
 			                    </ul>
 			                </div>
@@ -39,16 +39,19 @@
 							    <th>Lastname</th> 
 							    <th>Education</th>
 							    <th>Act. Position</th>
-							    <th>Title</th>
 							    <th>Salary Req.</th>
 							    <th>Actions</th>
 							  </tr>
 							  {% for user in pagination.items %}
 							  <tr onclick="document.location = '{{config.BASE_PATH}}/profile/{{ user.id }}';">
 							    <td>{{user.first_name}}</td>
-							    <td>{{user.last_name}}</td> 
-							    <td>{{user.education.schoolDegree}}</td>
-							    <td>{{user.experience.workPosition}}</td><td>{{user.education.fieldOfStudy}}</td>
+							    <td>{{user.last_name}}</td>
+							    <td>{{user.education.0.schoolDegree}}</td>
+							    
+							    
+							    <td>{{user.experience.0.workPosition}}</td>
+							    <td>{{user.expected_salary}}</td>
+							    <td><span class="btn btn-gray fa fa-pencil-square-o"></span><span class="btn btn-gray fa fa-times"></span></td>
 							  </tr>
 							  {% endfor %}
 							</table>

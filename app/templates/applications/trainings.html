@@ -69,18 +69,25 @@
                         <option value="">4</option>
                     </select>
 
+
                     <ul class="pagination pull-right">
                         <li><a href="#" class="fa fa-angle-left"></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+                                {%- for page in pagination.iter_pages() %}
+                                    {% if page %}
+
+                                        {% if page != pagination.page %}
+                                            <li><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
+                                        {% else %}
+                                            <li>{{ page }}</li>
+                                        {% endif %}
+                                    {% endif %}
+                                {%- endfor %}
                         <li><a href="#" class="fa fa-angle-right"></a></li>
                     </ul>
+
                 </div>
 
-                {% for training in trainings %}
+                {% for training in pagination.items %}
                 <div class="jobs-item with-thumb">
                     <div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
                     <div class="clearfix visible-xs"></div>
@@ -173,15 +180,19 @@
                     </div>
                 </div>
             </div>
-
-                <div class="clearfix">
+                <div class="clearfix mb30">
                     <ul class="pagination pull-right">
                         <li><a href="#" class="fa fa-angle-left"></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+                                {%- for page in pagination.iter_pages() %}
+                                    {% if page %}
+
+                                        {% if page != pagination.page %}
+                                            <li ><a href="{{config.BASE_PATH}}/admin/users?page={{ page }}">{{ page }}</a></li>
+                                        {% else %}
+                                            <li>{{ page }}</li>
+                                        {% endif %}
+                                    {% endif %}
+                                {%- endfor %}
                         <li><a href="#" class="fa fa-angle-right"></a></li>
                     </ul>
                 </div>

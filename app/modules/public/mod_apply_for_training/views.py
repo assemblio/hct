@@ -14,8 +14,13 @@ mod_apply_for_training = Blueprint('mod_apply_for_training', __name__)
 # Set the route and accepted methods
 @mod_apply_for_training.route('/trainings')
 def index():
-    trainings = Training.objects()
-    return  render_template('applications/trainings.html', trainings=trainings)
+    if not request.args.get('page'):
+        page = 1
+    else:
+        page = int(request.args.get('page'))
+    trainings = Training.objects.all()
+    pagination = trainings.paginate(page=page, per_page=10)
+    return  render_template('applications/trainings.html', pagination=pagination)
 
 @mod_apply_for_training.route('/training/<string:training_id>')
 def training(training_id):

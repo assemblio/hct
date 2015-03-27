@@ -1,26 +1,109 @@
 {% extends "base/layout_for_all.html" %}
 {% block body %}
-	<div id="page-content">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 page-sidebar">
-					<aside>
-						<div class="white-container mb0">
-						{% include "admin/base/navigation.html" %}
-						</div>
-					</aside>
-				</div> <!-- end .page-sidebar -->
+<div id="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 page-sidebar">
+                <aside>
+                    <div class="white-container mb0">
+                        {% include "admin/base/navigation.html" %}
+                    </div>
+                </aside>
+            </div> <!-- end .page-sidebar -->
 
-				<div class="col-sm-8 page-content">
+            <div class="col-sm-8 page-content">
 
 
-					<div class="title-lines">
-						<h3 class="mt0">Reports</h3>
-					</div>
-					
-				</div> <!-- end .page-content -->
-			</div>
-		</div> <!-- end .container -->
-	</div> <!-- end #page-content -->
+                <div class="title-lines">
+                    <h3 class="mt0">Reports</h3>
+                </div>
+                <div class="piecharts">
+                    <div class="col-sm-4">
+                        <div id="canvas-holder">
+                            <canvas id="chart-area" width="300" height="300"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 pull-right">
+                        <div id="canvas-holder1">
+                            <canvas id="chart-area1" width="300" height="300"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="barchart col-sm-12">
+                    <div >
+                        <canvas id="barchart-canvas"></canvas>
+                    </div>
+                </div>
+                <script>
+                    var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
-	{% endblock %}
+                    var pieData = [
+                        {
+                            value: 300,
+                            color:"#F7464A",
+                            highlight: "#FF5A5E",
+                            label: "Red"
+                        },
+                        {
+                            value: 50,
+                            color: "#46BFBD",
+                            highlight: "#5AD3D1",
+                            label: "Green"
+                        },
+                        {
+                            value: 100,
+                            color: "#FDB45C",
+                            highlight: "#FFC870",
+                            label: "Yellow"
+                        },
+                        {
+                            value: 40,
+                            color: "#949FB1",
+                            highlight: "#A8B3C5",
+                            label: "Grey"
+                        },
+                        {
+                            value: 120,
+                            color: "#4D5360",
+                            highlight: "#616774",
+                            label: "Dark Grey"
+                        }
+                    ];
+
+                    var barChartData = {
+                        labels : ["January","February","March","April","May","June","July"],
+                        datasets : [
+                            {
+                                fillColor : "rgba(220,220,220,0.5)",
+                                strokeColor : "rgba(220,220,220,0.8)",
+                                highlightFill: "rgba(220,220,220,0.75)",
+                                highlightStroke: "rgba(220,220,220,1)",
+                                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                            },
+                            {
+                                fillColor : "rgba(151,187,205,0.5)",
+                                strokeColor : "rgba(151,187,205,0.8)",
+                                highlightFill : "rgba(151,187,205,0.75)",
+                                highlightStroke : "rgba(151,187,205,1)",
+                                data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+                            }
+                        ]
+                    }
+
+                    window.onload = function(){
+                        var ctx = document.getElementById("chart-area").getContext("2d");
+                        var ctx1 = document.getElementById("chart-area1").getContext("2d");
+                        var barchart =  document.getElementById("barchart-canvas").getContext("2d");
+                        window.myPie = new Chart(ctx).Pie(pieData);
+                        window.myPie = new Chart(ctx1).Pie(pieData);
+                        window.myBar = new Chart(barchart).Bar(barChartData, {
+                            responsive : true
+                        });
+                    };
+                </script>
+            </div> <!-- end .page-content -->
+        </div>
+    </div> <!-- end .container -->
+</div> <!-- end #page-content -->
+
+{% endblock %}
