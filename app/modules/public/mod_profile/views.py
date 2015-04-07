@@ -91,7 +91,7 @@ def update_personal_info():
             set__city=user_form.city.data,
             set__zipCode=user_form.zipCode.data
         )
-        return redirect(url_for('mod_profile.update_education'))
+        return redirect(url_for('mod_profile.profile'))
 
 
 @mod_profile.route('/update-education', methods=['POST', 'GET'])

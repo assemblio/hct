@@ -36,10 +36,10 @@
                 </div>
                 <script>
                     var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-
+                    {% for job in job %}
                     var pieData = [
                         {
-                            value: 300,
+                            value:100,
                             color:"#F7464A",
                             highlight: "#FF5A5E",
                             label: "Red"
@@ -69,7 +69,7 @@
                             label: "Dark Grey"
                         }
                     ];
-
+                    {% endfor %}
                     var barChartData = {
                         labels : ["January","February","March","April","May","June","July"],
                         datasets : [

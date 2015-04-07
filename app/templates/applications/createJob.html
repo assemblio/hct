@@ -1,5 +1,9 @@
 {% extends "base/costum_layout.html" %}
+    <script>
+    $(".datepicker").datepicker();
+</script>
 {% block body %}
+
 	<div id="page-content">
 		<div class="container">
 			<div class="row">
@@ -10,7 +14,7 @@
 						<div>
 							<h2>Create Job:</h2>
 							<section>
-								<h6 class="label">Job title</h6>
+								<h6 ><strong>Job title</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
@@ -24,12 +28,12 @@
                                                 </span>
 									</div>
 								</div>
-								<h6 class="label">Date</h6>
+								<h6 ><strong>Date</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<h7 class="label">End Date</h7>
-										{{ form.date(placeholder="End Date" , type="date", class = "form-control") }}
+										<h7 >End Date</h7>
+										{{ form.date( type="date", class = "form-control datepicker" ) }}
                                         <span class="error">
                                               {% if form.date.errors %}
                                                 {% for error in form.date.errors %}
@@ -41,7 +45,7 @@
 									</div>
 								</div>
 
-								<h6 class="label">Location</h6>
+								<h6 ><strong>Location</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
@@ -56,7 +60,7 @@
 									</div>
 								</div>
 
-                                <h6 class="label">Short Description</h6>
+                                <h6 ><strong>Short Description</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-6">
@@ -71,11 +75,11 @@
 									</div>
 								</div>
 
-								<h6 class="label">Description</h6>
+								<h6 ><strong>Description</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-6">
-										{{ form.description(placeholder="Description") }}
+										{{ form.description(placeholder="Description",rows=5) }}
                                         <span class="error">
                                               {% if form.description.errors %}
                                                 {% for error in form.description.errors %}
@@ -85,7 +89,7 @@
                                             </span>
 									</div>
 								</div>
-								<h6 class="label">Requirements</h6>
+								<h6 ><strong>Requirements</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-6">
@@ -100,7 +104,7 @@
 									</div>
 								</div>
 
-                                <h6 class="label">Industry</h6>
+                                <h6 ><strong>Industry</strong></h6>
                                 <div class="row">
 									<div class="col-sm-8">
 										{{ form.industry (class="list-unstyled") }}
@@ -114,7 +118,7 @@
 									</div>
 								</div>
 
-                                <h6 class="label">Target group</h6>
+                                <h6 ><strong>Target group</strong></h6>
                                 <div class="row">
 									<div class="col-sm-8">
 										{{ form.target_group (class="list-unstyled") }}

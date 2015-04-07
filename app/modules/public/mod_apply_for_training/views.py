@@ -27,17 +27,28 @@ def training(training_id):
     training = Training.objects.get(id=ObjectId(training_id))
     return render_template('applications/training.html', training=training)
 
-@mod_apply_for_training.route('/training/apply/<string:training_id>')
+@mod_apply_for_training.route('/training/<string:action>/<string:training_id>')
 @login_required
-def apply_for_training(training_id):
-    training = Training.objects.get(id=ObjectId(training_id))
-    if not training['participants']:
-        training['participants'] = []
-    if not ObjectId(current_user.id) in training['participants']:
-        if training['space'] != 0:
-            Training.objects.get(id=ObjectId(training_id)).update(push__participants=ObjectId(current_user.id), dec__space=1)
-            User.objects.get(id=ObjectId(current_user.id)).update(push__trainings=ObjectId(training_id))
+def apply_for_training(action, training_id):
+    if action == 'apply':
+        training = Training.objects.get(id=ObjectId(training_id))
+        if not training['participants']:
+            training['participants'] = []
+        if not ObjectId(current_user.id) in training['participants']:
+            if training['space'] != 0:
+                Training.objects.get(id=ObjectId(training_id)).update(push__participants=ObjectId(current_user.id), dec__space=1)
+                User.objects.get(id=ObjectId(current_user.id)).update(push__trainings=ObjectId(training_id))
+                return redirect('/trainings')
+    elif action == 'unapply':
+        training = Training.objects.get(id=ObjectId(training_id))
+        if ObjectId(current_user.id) in training['participants']:
+            Training.objects.get(id=ObjectId(training_id)).update(pull__participants=ObjectId(current_user.id), inc__space=1)
+            User.objects.get(id=ObjectId(current_user.id)).update(pull__trainings=ObjectId(training_id))
             return redirect('/trainings')
+    elif action == 'delete' and current_user.has_role('Admin'):
+        Training.objects.get(id=ObjectId(training_id)).delete()
+        User.objects.get(id=ObjectId(current_user.id)).update(pull__trainings=ObjectId(training_id))
+        return redirect('/trainings')
 
 @mod_apply_for_training.route('/create-training', methods=['GET', 'POST'])
 @login_required
@@ -103,6 +114,8 @@ def edit_training(training_id):
             set__target_group=training_form.target_group.data
         )
         return redirect('/training/'+training_id)
+
+
 
 
 

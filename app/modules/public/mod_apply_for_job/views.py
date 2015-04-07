@@ -26,16 +26,30 @@ def job(job_id):
     jobs = Job.objects.get(id=ObjectId(job_id))
     return render_template('applications/jobs-single.html', jobs=jobs)
 
-@mod_apply_for_job.route('/job/apply/<string:job_id>')
+@mod_apply_for_job.route('/job/<string:action>/<string:job_id>')
 @login_required
-def apply_for_job(job_id):
-    job = Job.objects.get(id=ObjectId(job_id))
-    if not job['applicants']:
-        job['applicants'] = []
-    if not ObjectId(current_user.id) in job['applicants']:
-        Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
-        User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
+def apply_for_job(action, job_id):
+    if action == 'apply':
+        job = Job.objects.get(id=ObjectId(job_id))
+        if not job['applicants']:
+            job['applicants'] = []
+        if not ObjectId(current_user.id) in job['applicants']:
+            Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
+            User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
+            return redirect('/jobs')
+    elif action == 'unapply':
+        job = Job.objects.get(id=ObjectId(job_id))
+        if ObjectId(current_user.id) in job['applicants']:
+            Job.objects.get(id=ObjectId(job_id)).update(pull__applicants=current_user.id)
+            User.objects.get(id=ObjectId(current_user.id)).update(pull__jobs_applied=ObjectId(job_id))
+            return redirect('/jobs')
+    elif action == 'delete' and current_user.has_role('Admin'):
+        Job.objects.get(id=ObjectId(job_id)).delete()
+        User.objects.get(id=ObjectId(current_user.id)).update(pull__jobs_applied=ObjectId(job_id))
+
+
         return redirect('/jobs')
+
 
 @mod_apply_for_job.route('/create-job', methods=['GET', 'POST'])
 @login_required
@@ -49,7 +63,6 @@ def create():
         requirements=form.requirements.data,
         target_group=form.target_group.data,
         industry=form.industry.data
-
     )
     if form.validate_on_submit():
         job.save()

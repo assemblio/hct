@@ -97,7 +97,7 @@
                     <div class="apply">
                         {% if current_user.is_authenticated() %}
                             {% if training['participants'] and current_user.id in training['participants'] %}
-                            <a href="#" class="btn btn-gray pull-right ">Applied</a>
+                            <a href="/training/unapply/{{training.id}}" class="btn btn-gray pull-right ">Unapply</a> &nbsp;
                             {% elif training['space'] != 0 %}
                             <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
                             {% endif %}
@@ -112,7 +112,8 @@
                         {% else %}
                         <li>Space left: {{ training['space']}}</li>
                         {% endif %}
-                        <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
+
+                        <li><a href="/training/delete/{{training.id}}" class="btn btn-gray fa fa-times"></a></li>
                         <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
                     </ul>
 

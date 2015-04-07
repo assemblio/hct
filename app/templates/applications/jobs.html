@@ -112,7 +112,7 @@
 
                         <div class="apply">
                             {% if job['applicants'] and current_user.id in job['applicants'] %}
-                            <a href="#" class="btn btn-gray pull-right ">Applied</a>
+                            <a href="/job/unapply/{{job.id}}" class="btn btn-gray pull-right ">Unapply</a>
                             {% else %}
                             <a href="/job/apply/{{job.id}}" class="btn btn-default pull-right">Apply for this Job</a>
                             {% endif %}

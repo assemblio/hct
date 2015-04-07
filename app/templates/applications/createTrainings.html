@@ -10,7 +10,7 @@
 							<h2>Create Training:</h2>
 							<section>
 								{{ form.csrf_token }}
-								<h6 class="label">Training title</h6>
+								<h6><strong>Training title</strong></h6>
 									<div class="row">
 									<div class="col-sm-4">
 										 {{ form.title(placeholder="Training title") }}
@@ -24,11 +24,11 @@
 										</div>
 									</div>
 
-								<h6 class="label">Date</h6>
+								<h6><strong>Date</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
-										<h7 class="label">Start Date and Time</h7>
+										<h8 >Start Date and Time</h8>
 										
 										{{ form.startDate(placeholder="Start Date" , type="date", class = "form-control datepicker") }}
                                         <span class="error">
@@ -41,7 +41,7 @@
 									</div>
 
 									<div class="col-sm-4">
-										<h7 class="label">End Date and Time</h7>
+										<h8 >End Date and Time</h8>
 										{{ form.endDate(placeholder="End Date" , type="date", class = "form-control datepicker") }}
                                         <span class="error">
                                               {% if form.endDate.errors %}
@@ -52,7 +52,7 @@
                                             </span>
 									</div>
 									<div class="col-sm-2">
-										<h7 class="label">Space</h7>
+										<h8 >Space</h8>
 										{{ form.space(placeholder="Space") }}
                                         <span class="error">
                                               {% if form.space.errors %}
@@ -64,7 +64,7 @@
 									</div>
 								</div>
 
-								<h6 class="label">Instructor</h6>
+								<h6><strong>Instructor</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-4">
@@ -91,7 +91,7 @@
 
 								</div>
 
-									<h6 class="label">Agenda</h6>
+								<h6><strong>Agenda</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-8">
@@ -106,10 +106,10 @@
 									</div>
 								</div>
 
-                                <h6 class="label">Short Description</h6>
+                                <h6></h6><strong>Short Description</strong></h6>
 
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-8">
 										{{ form.short_description(placeholder="Short description") }}
                                         <span class="error">
                                               {% if form.short_description.errors %}
@@ -121,11 +121,11 @@
 									</div>
 								</div>
 
-								<h6 class="label">Description</h6>
+								<h6 ><strong>Description</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-8">
-										{{ form.description(placeholder="Description") }}
+										{{ form.description(placeholder="Description", rows=5) }}
                                         <span class="error">
                                               {% if form.description.errors %}
                                                 {% for error in form.description.errors %}
@@ -135,7 +135,7 @@
                                             </span>
 									</div>
 								</div>
-								<h6 class="label">Requirements</h6>
+								<h6 ><strong>Requirements</strong></h6>
 
 								<div class="row">
 									<div class="col-sm-8">
@@ -149,7 +149,7 @@
                                             </span>
 									</div>
 								</div>
-                                <h6 class="label">Target group</h6>
+                                <h6 ><strong>Target group</strong></h6>
                                 <div class="row ">
 									<div class="col-sm-8">
 										{{ form.target_group(class="list-unstyled")}}
