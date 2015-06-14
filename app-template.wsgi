@@ -7,4 +7,4 @@ import sys
 sys.stdout = sys.stderr
 sys.path.insert(0, app_dir_path)
 
-from run import app as application
+from app import app as application
