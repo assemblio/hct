@@ -7,30 +7,32 @@ from flask.ext.mongoengine import MongoEngine, DoesNotExist
 from flask.ext.login import LoginManager
 from flask.ext.bcrypt import Bcrypt
 
-# Create the Flask app.
-app = Flask(__name__)
-
 # Create MongoDB instance
 db = MongoEngine()
-
-# Create Login Manager instance
-login_manager = LoginManager()
-# Initiate Login Manager
-login_manager.init_app(app)
 
 # Initiate Bcrypt
 bcrypt = Bcrypt()
 
 # Setup Flask-Security
 from app.modules.public.mod_authentication.user_registration.model import User, Role
-user_datastore = MongoEngineUserDatastore(db, User, Role)
-security_ = Security(app, user_datastore)
 
+user_datastore = MongoEngineUserDatastore(db, User, Role)
 
 def create_app():
 
+    # Create the Flask app.
+    app = Flask(__name__)
+
     # Load application configurations
     load_config(app)
+
+    # Create Login Manager instance
+    login_manager = LoginManager()
+    # Initiate Login Manager
+    login_manager.init_app(app)
+
+
+    security_ = Security(app, user_datastore)
 
     # Configure logging.
     configure_logging(app)
