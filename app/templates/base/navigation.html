@@ -29,10 +29,10 @@
                              {% else %}
                              <li class="">
                         {% endif %}
-							<a href="{{ config.BASE_PATH }}/trainings">Trainings</a>
+							<a href="{{ url_for('mod_apply_for_training.index') }}">Trainings</a>
                         {% if current_user.has_role('Admin') %}
 							<ul>
-                                     <li><a href="{{ config.BASE_PATH }}/create-training">Create Training</a></li>
+                                     <li><a href="{{ url_for('mod_apply_for_training.create') }}">Create Training</a></li>
 							</ul>
                         {% endif %}
 						</li>
@@ -45,12 +45,12 @@
                         {% endif %}
 
                         {% if current_user.has_role('Admin') %}
-                        <a href="{{ config.BASE_PATH }}/jobs">Jobs</a>
+                        <a href="{{ url_for('mod_apply_for_job.index') }}">Jobs</a>
                         <ul>
-                            <li><a href="{{ config.BASE_PATH }}/create-job">Create Job</a></li>
+                            <li><a href="{{ url_for('mod_apply_for_job.create') }}">Create Job</a></li>
                         </ul>
                         {% else %}
-                            <a href="{{ config.BASE_PATH }}/jobs">Jobs</a>
+                            <a href="{{ url_for('mod_apply_for_job.index') }}">Jobs</a>
                         {% endif %}
 						</li>
                         {% if current_user.has_role('Admin') %}

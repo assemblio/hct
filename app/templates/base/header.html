@@ -16,11 +16,11 @@
             {% if current_user.is_authenticated() %}
                 <span class="pull-right">
                     <span class="btn btn-link bookmarks">Hi {{ current_user.first_name }} {{ current_user.last_name }}!</span>
-                <a href="/logout" class="btn btn-link bookmarks">Logout</a>
+                <a href="{{ url_for("mod_authentication.logout") }}" class="btn btn-link bookmarks">Logout</a>
                 {% if current_user.has_role('Admin') %}
-                    <a href="/admin" class="btn btn-link bookmarks">Admin</a>
+                    <a href="{{ url_for("admin_home.index") }}" class="btn btn-link bookmarks">Admin</a>
                 {% endif %}
-                <a href="/profile" class="btn btn-link bookmarks">My profile</a>
+                <a href="{{ url_for('mod_profile.profile') }}" class="btn btn-link bookmarks">My profile</a>
                 </span>
             {% else %}
             <!-- Header Register -->
