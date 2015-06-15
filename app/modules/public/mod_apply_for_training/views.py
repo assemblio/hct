@@ -113,7 +113,7 @@ def edit_training(training_id):
             set__requirements=training_form.requirements.data,
             set__target_group=training_form.target_group.data
         )
-        return redirect('/training/'+training_id)
+        return redirect(url_for("mod_apply_for_training.training",training_id=training_id))
 
 
 
