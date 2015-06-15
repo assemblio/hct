@@ -113,7 +113,7 @@
                         <li>Space left: {{ training['space']}}</li>
                         {% endif %}
 
-                        <li><a href="/training/delete/{{training.id}}" class="btn btn-gray fa fa-times"></a></li>
+                        <li><a href="{{url_for("mod_apply_for_training.mod_apply_for_training",action="delete",training_id=training.id)}}" class="btn btn-gray fa fa-times"></a></li>
                         <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
                     </ul>
 

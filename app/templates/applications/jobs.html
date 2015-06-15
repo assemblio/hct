@@ -105,16 +105,16 @@
 						<div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-00.png') }}" alt=""></div>
 						<div class="clearfix visible-xs"></div>
 						<div class="date">{{job['date'].strftime('%d')}}<span>{{job['date'].strftime('%B')}}</span></div>
-						<h6 class="title"><a href="/job/{{job.id}}">{{job['title']}}</a></h6>
+						<h6 class="title"><a href="{{ url_for("mod_apply_for_job.job",job_id=job.id)}}">{{job['title']}}</a></h6>
 						<span class="meta">{{job['location']}}, Kosove</span>
                         <div class="description">{{job['short_description']}}</div>
 
 
                         <div class="apply">
                             {% if job['applicants'] and current_user.id in job['applicants'] %}
-                            <a href="/job/unapply/{{job.id}}" class="btn btn-gray pull-right ">Unapply</a>
+                            <a href="{{url_for("mod_apply_for_job.apply_for_job",action="unapply",job_id=job.id)}}" class="btn btn-gray pull-right ">Unapply</a>
                             {% else %}
-                            <a href="/job/apply/{{job.id}}" class="btn btn-default pull-right">Apply for this Job</a>
+                            <a href="{{url_for("mod_apply_for_job.apply_for_job",action="apply",job_id=job.id)}}" class="btn btn-default pull-right">Apply for this Job</a>
                             {% endif %}
                         </div>
 
