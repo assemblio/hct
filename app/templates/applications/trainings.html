@@ -97,9 +97,9 @@
                     <div class="apply">
                         {% if current_user.is_authenticated() %}
                             {% if training['participants'] and current_user.id in training['participants'] %}
-                            <a href="/training/unapply/{{training.id}}" class="btn btn-gray pull-right ">Unapply</a> &nbsp;
+                            <a href="{{ url_for("mod_apply_for_training.apply_for_training",action="unapply",training_id=training.id)}}" class="btn btn-gray pull-right ">Unapply</a> &nbsp;
                             {% elif training['space'] != 0 %}
-                            <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
+                            <a href="{{ url_for("mod_apply_for_training.apply_for_training",action="apply",training_id=training.id)}}" class="btn btn-default pull-right">Apply for this training</a>
                             {% endif %}
                         {% else %}
                         <a name='login' class='login demo btn btn-default pull-right'/>Apply</a>
@@ -113,7 +113,7 @@
                         <li>Space left: {{ training['space']}}</li>
                         {% endif %}
 
-                        <li><a href="{{url_for("mod_apply_for_training.mod_apply_for_training",action="delete",training_id=training.id)}}" class="btn btn-gray fa fa-times"></a></li>
+                        <li><a href="{{url_for("mod_apply_for_training.apply_for_training",action="delete",training_id=training.id)}}" class="btn btn-gray fa fa-times"></a></li>
                         <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
                     </ul>
 
