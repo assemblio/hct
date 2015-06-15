@@ -36,19 +36,19 @@ def apply_for_job(action, job_id):
         if not ObjectId(current_user.id) in job['applicants']:
             Job.objects.get(id=ObjectId(job_id)).update(push__applicants=current_user.id)
             User.objects.get(id=ObjectId(current_user.id)).update(push__jobs_applied=ObjectId(job_id))
-            return redirect('/jobs')
+            return redirect(url_for('mod_apply_for_job.index'))
     elif action == 'unapply':
         job = Job.objects.get(id=ObjectId(job_id))
         if ObjectId(current_user.id) in job['applicants']:
             Job.objects.get(id=ObjectId(job_id)).update(pull__applicants=current_user.id)
             User.objects.get(id=ObjectId(current_user.id)).update(pull__jobs_applied=ObjectId(job_id))
-            return redirect('/jobs')
+            return redirect(url_for('mod_apply_for_job.index'))
     elif action == 'delete' and current_user.has_role('Admin'):
         Job.objects.get(id=ObjectId(job_id)).delete()
         User.objects.get(id=ObjectId(current_user.id)).update(pull__jobs_applied=ObjectId(job_id))
 
 
-        return redirect('/jobs')
+        return redirect(url_for('mod_apply_for_job.index'))
 
 
 @mod_apply_for_job.route('/create-job', methods=['GET', 'POST'])
@@ -67,7 +67,7 @@ def create():
     if form.validate_on_submit():
         job.save()
     # user_datastore.add_role_to_user(user, "User")
-        return redirect('/jobs')
+        return redirect(url_for('mod_apply_for_job.index'))
     return render_template('applications/createJob.html', form=form)
 
 @mod_apply_for_job.route('/edit-job/<string:job_id>', methods=['GET', 'POST'])
@@ -106,4 +106,4 @@ def edit_job(job_id):
             set__target_group=job_form.target_group.data,
             set__industry=job_form.industry.data
         )
-        return redirect('/job/'+job_id)
+        return redirect(url_for('mod_apply_for_job.index', job_id=job_id))

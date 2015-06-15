@@ -38,17 +38,17 @@ def apply_for_training(action, training_id):
             if training['space'] != 0:
                 Training.objects.get(id=ObjectId(training_id)).update(push__participants=ObjectId(current_user.id), dec__space=1)
                 User.objects.get(id=ObjectId(current_user.id)).update(push__trainings=ObjectId(training_id))
-                return redirect('/trainings')
+                return redirect(url_for('mod_apply_for_training.index'))
     elif action == 'unapply':
         training = Training.objects.get(id=ObjectId(training_id))
         if ObjectId(current_user.id) in training['participants']:
             Training.objects.get(id=ObjectId(training_id)).update(pull__participants=ObjectId(current_user.id), inc__space=1)
             User.objects.get(id=ObjectId(current_user.id)).update(pull__trainings=ObjectId(training_id))
-            return redirect('/trainings')
+            return redirect(url_for('mod_apply_for_training.index'))
     elif action == 'delete' and current_user.has_role('Admin'):
         Training.objects.get(id=ObjectId(training_id)).delete()
         User.objects.get(id=ObjectId(current_user.id)).update(pull__trainings=ObjectId(training_id))
-        return redirect('/trainings')
+        return redirect(url_for('mod_apply_for_training.index'))
 
 @mod_apply_for_training.route('/create-training', methods=['GET', 'POST'])
 @login_required
@@ -68,7 +68,7 @@ def create():
     )
     if form.validate_on_submit():
         training.save()
-        return redirect('/trainings')
+        return redirect(url_for('mod_apply_for_training.index'))
     return render_template('applications/createTrainings.html', form=form)
 
 @mod_apply_for_training.route('/training/edit/<string:training_id>', methods=['GET','POST'])
