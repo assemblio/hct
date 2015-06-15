@@ -106,17 +106,17 @@
                                     <li><div class="apply">
                                         {% if current_user.is_authenticated() %}
                                             {% if training['participants'] and current_user.id in training['participants'] %}
-                                            <a href="/training/unapply/{{training.id}}" class="btn btn-default pull-right ">Unapply</a>
+                                            <a href="{{url_for("mod_apply_for_training.apply_for_training", action="unapply", training_id=training.id)}}" class="btn btn-default pull-right ">Unapply</a>
                                             {% elif training['space'] != 0 %}
-                                            <a href="/training/apply/{{training.id}}" class="btn btn-default pull-right">Apply for this training</a>
+                                            <a href="{{url_for("mod_apply_for_training.apply_for_training", action="apply", training_id=training.id)}}" class="btn btn-default pull-right">Apply for this training</a>
                                             {% endif %}
                                         {% else %}
                                         <a name='login' class='login demo btn btn-default pull-right'/>Apply</a>
                                         {% endif %}
                                         </div>
                                         </li>
-                                    <li><a href="/training/edit/{{training.id}}" class="btn btn-default pull-left">Edit training</a>
-                                    <li><a href="/training/delete/{{training.id}}" class="btn btn-default pull-left">Delete training</a>
+                                    <li><a href="{{url_for("mod_apply_for_training.edit_training", training_id=training.id)}}" class="btn btn-default pull-left">Edit training</a>
+                                    <li><a href="{{url_for("mod_apply_for_training.apply_for_training", action="delete", training_id=training.id)}}" class="btn btn-default pull-left">Delete training</a>
                                     </li>
                                 </ul>
 								<ul class="social-icons pull-right">
