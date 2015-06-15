@@ -92,7 +92,7 @@
                     <div class="thumb"><img src="{{ url_for('static', filename='img/content/bus-01.png') }}" alt=""></div>
                     <div class="clearfix visible-xs"></div>
                     <div class="date">{{training['startDate'].strftime('%d')}} <span>{{ training['startDate'].strftime('%B')}}</span></div>
-                    <h6 class="title"><a href="/training/{{training.id}}">{{training['title']}}</a></h6>
+                    <h6 class="title"><a href="{{url_for("mod_apply_for_training.training",training_id=training.id|string)}}">{{training['title']}}</a></h6>
                     <span class="meta">Prishtine, Kosove</span><br>
                     <div class="apply">
                         {% if current_user.is_authenticated() %}

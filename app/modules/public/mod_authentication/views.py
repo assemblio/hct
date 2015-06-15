@@ -76,4 +76,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('mod_public_user.login'))
+    return redirect(url_for('mod_authentication.login'))
