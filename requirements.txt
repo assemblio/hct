@@ -5,7 +5,7 @@ flask-mongoengine
 Flask-Login
 Flask-Security==1.7.4
 Flask-RESTful==0.2.12
-Flask-PyMongo==0.3.1
+Flask-PyMongo==0.3.0
 Flask-WTF==0.10.2
 Flask-Mail==0.9.1
 simplejson==3.3.0

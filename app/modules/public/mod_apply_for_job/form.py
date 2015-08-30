@@ -5,25 +5,25 @@ from wtforms.validators import DataRequired, Length, EqualTo
 class CreateJob(Form):
     title = StringField(
         'title',
-        validators=[DataRequired(), Length(max=40)])
+        validators=[DataRequired(), Length(max=150)])
     date = DateField(
         'date', format="%Y-%m-%d",
         validators=[DataRequired()])
     location = StringField(
         'location',
-        validators=[DataRequired(), Length(max=40)])
+        validators=[DataRequired(), Length(max=150)])
 
     short_description = TextAreaField(
         'Short description.',
-        validators=[DataRequired(), Length(max=300)])
+        validators=[DataRequired(), Length(max=1000)])
 
     description = TextAreaField(
         'Description',
-        validators=[DataRequired(), Length(max=500)])
+        validators=[DataRequired(), Length(max=10000)])
 
     requirements = TextAreaField(
         'requirements',
-        validators=[DataRequired(), Length(max=500)])
+        validators=[DataRequired(), Length(max=10000)])
 
     target_group = SelectMultipleField(
         'Target Group!',

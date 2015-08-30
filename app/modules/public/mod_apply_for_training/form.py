@@ -22,27 +22,27 @@ class RegisterTraining(Form):
 
     instructorName = StringField(
         'instructorName',
-        validators=[DataRequired(), Length( max=40)])
+        validators=[DataRequired(), Length( max=150)])
 
     instructorSurname = StringField(
         'instructorSurname',
-        validators=[DataRequired(), Length( max=40)])
+        validators=[DataRequired(), Length( max=150)])
 
     agenda = TextAreaField(
         'agenda',
-        validators=[DataRequired(), Length(max=100)])
+        validators=[DataRequired(), Length(max=1000)])
 
     short_description = TextAreaField(
         'Short description.',
-        validators=[DataRequired(), Length(max=300)])
+        validators=[DataRequired(), Length(max=5000)])
 
     description = TextAreaField(
         'Description',
-        validators=[DataRequired(), Length(max=500)])
+        validators=[DataRequired(), Length(max=10000)])
 
     requirements = TextAreaField(
         'requirements',
-        validators=[DataRequired(), Length(max=100)])
+        validators=[DataRequired(), Length(max=1000)])
 
     target_group = SelectMultipleField(
         'Target Group!',
